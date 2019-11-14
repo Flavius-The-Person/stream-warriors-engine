@@ -1,4 +1,6 @@
 package com.flavcreations;
 
-public class menu {
+public class menu
+{
+
 }
