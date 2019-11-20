@@ -23,7 +23,7 @@ public class enemy {
             new ImageIcon(""), new ImageIcon(""), new ImageIcon(""), //hit set 1
             new ImageIcon(""), new ImageIcon(""), new ImageIcon(""), //skill set 1
             new ImageIcon(""), new ImageIcon(""), new ImageIcon(""), //magic set 1
-            new ImageIcon(""), new ImageIcon(""), new ImageIcon("")  //KO set
+            new ImageIcon(""), new ImageIcon(""), new ImageIcon(""),  //KO set
             new ImageIcon(""), new ImageIcon(""), new ImageIcon("")  //victory set
     };*/
     public void setData(String bname)

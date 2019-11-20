@@ -3,6 +3,7 @@ package com.flavcreations;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -20,6 +21,7 @@ public class scene extends JFrame {
     private JPanel pboss;
     private JLabel lboss;
     private JPanel eboss;
+    public player[] players;
 
     scene()
     {
@@ -248,10 +250,19 @@ boss.setLocation(825,0);
         playerCount = ri;*/
     }
 
-    public void loadGame(player[] players)
+    public void loadGame()//, int pgen)
     {
-
         int playerCount = players.length;
+        /*players = new player[roster.size()];
+        int playerCount = roster.size();
+        Random randy = new Random();
+
+        int pgen = randy.nextInt(2);
+        for(int gri = 0; gri < playerCount; gri++)
+        {
+            players[gri].setData(roster.get(gri), pgen);
+        }*/
+
         battlerPanels = new JPanel[playerCount];
         battlerLabels = new JLabel[playerCount];
         effectPanels = new JPanel[playerCount+1];
@@ -277,6 +288,18 @@ boss.setLocation(825,0);
 
         setupScene();
 
+    }
+    public void addPlayers(ArrayList<String> roster)
+    {
+        players = new player[roster.size()];
+        Random randy = new Random();
+        int pgen = randy.nextInt(2);
+        for(int pint = 0; pint < players.length; pint++)
+        {
+            players[pint] = new player();
+            players[pint].setData(roster.get(pint), pgen);
+        }
+        loadGame();
     }
 
 }

@@ -5,28 +5,99 @@ import javax.swing.*;
 public class player
 {
     private int maxHealth = 1000;
-    int health;
-    String name;
-    boolean ded;
-    String[] sounds = new String[6];
+    public int health;
+    public String name;
+    public boolean ded;
+    public String[] sounds = new String[6];
     /*
-        0Atk     - 1 sound? - attacing the enemy shouty hyuah?
-        1Hit     - 1 sound? - being hit, an oof, a squee, a something?
-        2Skill   - 1 sound? - using a physical skill so maybe a hear me roar kinda funny thing or something more serious if you want?
-        3Magic   - 1 sound? - using a magical skill so maybe harry potter spell words or something?
-        4Ko      - 1 sound? - getting knocked out so "Ugh, they got me!" or "Ugh! I should have bought better shoulder pads" or something serious or silly if you want.
-        5Victory - 1 sound? - a victorious battle, so like a fanfare or shout of success or "Ugh! thank goodness its over." or whatever?
+
+       sounds[0] = "";//Atk
+       sounds[1] = "";//hit/damaged
+       sounds[2] = "";//physical skill
+       sounds[3] = "";//magical skill
+       sounds[4] = "";//knocked out
+       sounds[5] = "";//victory
     */
-    ImageIcon[] pIcons = new ImageIcon[21];
+    public ImageIcon[] idleIcons = new ImageIcon[3];
     /*{
-            new ImageIcon(""), new ImageIcon(""), new ImageIcon(""), //stance
-            new ImageIcon(""), new ImageIcon(""), new ImageIcon(""), //atk set 1
-            new ImageIcon(""), new ImageIcon(""), new ImageIcon(""), //hit set 1
-            new ImageIcon(""), new ImageIcon(""), new ImageIcon(""), //skill set 1
-            new ImageIcon(""), new ImageIcon(""), new ImageIcon(""), //magic set 1
-            new ImageIcon(""), new ImageIcon(""), new ImageIcon("")  //KO set
-            new ImageIcon(""), new ImageIcon(""), new ImageIcon("")  //victory set
-    };*/
+            idleIcons[0] = new ImageIcon("");//idle 1
+            idleIcons{1] = new ImageIcon("");//idle 2
+            IdleIcons[2] = new ImageIcon("");//idle 3
+    */
+    public ImageIcon[] guardIcons = new ImageIcon[3];
+    /*
+            guardIcons[0] = new ImageIcon("");//guard 1
+            guardIcons[1] = new ImageIcon("");//guard 2
+            guardIcons[2] = new ImageIcon("");//guard 3
+    */
+    public ImageIcon[] damageIcons = new ImageIcon[3];
+    /*
+            damageIcons[0] = new ImageIcon("");//damaged 1
+            damageIcons[1] = new ImageIcon("");//damaged 2
+            damageIcons[2] = new ImageIcon("");//damaged 3
+    */
+    public ImageIcon[] evadeIcons = new ImageIcon[3];
+    /*
+            evadeIcons[0] = new ImageIcon("");//evade1
+            evadeIcons[1] = new ImageIcon("");//evade2
+            evadeIcons[2] = new ImageIcon("");//evade3
+    */
+    public ImageIcon[] skillIcons = new ImageIcon[3];
+    /*
+            skillIcons[0] = new ImageIcon("");physical skill 1
+            skillIcons[1] = new ImageIcon("");physical skill 2
+            skillIcons[2] = new ImageIcon("");physical skill 3
+    */
+    public ImageIcon[] magicIcons = new ImageIcon[3];
+    /*
+            magicIcons[0] = new ImageIcon("");//magical skill 1
+            magicIcons[1] = new ImageIcon("");//magical skill 2
+            magicIcons[2] = new ImageIcon("");//magicak skill 3
+    */
+    public ImageIcon[] itemIcons = new ImageIcon[3];
+    /*
+            itemIcons[0] = new ImageIcon("");//use item 1
+            itemIcons[1] = new ImageIcon("");//use item 2
+            itemIcons[2] = new ImageIcon("");//use item 3
+    */
+    public ImageIcon[] victoryIcons = new ImageIcon[3];
+    /*
+            victoryIcons[0] = new ImageIcon("");//victory 1
+            victoryIcons[1] = new ImageIcon("");//victory 2
+            victoryIcons[2] = new ImageIcon("");//victory 3
+     */
+     public ImageIcon[] crisisIcons = new ImageIcon[3];
+     /*
+            crisisIcons[0] = new ImageIcon("");//crisis/danger 1
+            crisisIcons[1] = new ImageIcon("");//crisis/danger 2
+            crisisIcons[2] = new ImageIcon("");//crisis/danger 3
+     */
+     public ImageIcon[] abnormalIcons = new ImageIcon[3];
+     /*
+            abnormalIcons[0] = new ImageIcon("");//abnormal state 1
+            abnormalIcons[1] = new ImageIcon("");//abnormal state 2
+            abnormalIcons[2] = new ImageIcon("");//abnormal state 3
+     */
+     public ImageIcon[] sleepIcons = new ImageIcon[3];
+     /*
+            sleepIcons[0] = new ImageIcon("");//sleeping 1
+            sleepIcons[1] = new ImageIcon("");//sleeping 2
+            sleepIcons[2] = new ImageIcon("");//sleeping 3
+     */
+     public ImageIcon[] koIcons = new ImageIcon[3];
+     /*
+            koIcons[0] = new ImageIcon("");//knocked out 1
+            koIcons[2] = new ImageIcon("");//knocked out 2
+            koIcons[1] = new ImageIcon("");//knocked out 3
+     */
+     public ImageIcon[] attackIcons = new ImageIcon[3];
+     /*
+            attackIcons[0] = new ImageIcon("");//attack 1
+            attackIcons[2] = new ImageIcon("");//attack 2
+            attackIcons[1] = new ImageIcon("");//attack 3
+     */
+
+
 
 
 
@@ -41,28 +112,57 @@ public class player
         if (inDB)
         {
             System.out.println("Player found in db");
-            System.out.println("Player found in db");
-            pIcons[0] = new ImageIcon("");//stance 1
-            pIcons[1] = new ImageIcon("");//stance 2
-            pIcons[2] = new ImageIcon("");//stance 3
-            pIcons[3] = new ImageIcon("");//atk 1
-            pIcons[4] = new ImageIcon("");//atk 2
-            pIcons[5] = new ImageIcon("");//atk 3
-            pIcons[6] = new ImageIcon("");//hit 1
-            pIcons[7] = new ImageIcon("");//hit 2
-            pIcons[8] = new ImageIcon("");//hit 3
-            pIcons[9] = new ImageIcon("");//skill 1-1
-            pIcons[10] = new ImageIcon("");//skill 1-2
-            pIcons[11] = new ImageIcon("");//skill 1-3
-            pIcons[12] = new ImageIcon("");//magic 1-1
-            pIcons[13] = new ImageIcon("");//magic 1-2
-            pIcons[14] = new ImageIcon("");//magic 1-3
-            pIcons[15] = new ImageIcon("");//ko 1
-            pIcons[16] = new ImageIcon("");//ko 2
-            pIcons[17] = new ImageIcon("");//ko 3
-            pIcons[18] = new ImageIcon("");//victory 1
-            pIcons[19] = new ImageIcon("");//victory 2
-            pIcons[20] = new ImageIcon("");//victory 3
+            idleIcons[0] = new ImageIcon("");//idle 1
+            idleIcons[1] = new ImageIcon("");//idle 2
+            idleIcons[2] = new ImageIcon("");//idle 3
+
+            guardIcons[0] = new ImageIcon("");//guard 1
+            guardIcons[1] = new ImageIcon("");//guard 2
+            guardIcons[2] = new ImageIcon("");//guard 3
+
+            damageIcons[0] = new ImageIcon("");//damaged 1
+            damageIcons[1] = new ImageIcon("");//damaged 2
+            damageIcons[2] = new ImageIcon("");//damaged 3
+
+            evadeIcons[0] = new ImageIcon("");//evade1
+            evadeIcons[1] = new ImageIcon("");//evade2
+            evadeIcons[2] = new ImageIcon("");//evade3
+
+            skillIcons[0] = new ImageIcon("");//physical skill 1
+            skillIcons[1] = new ImageIcon("");//physical skill 2
+            skillIcons[2] = new ImageIcon("");//physical skill 3
+
+            magicIcons[0] = new ImageIcon("");//magical skill 1
+            magicIcons[1] = new ImageIcon("");//magical skill 2
+            magicIcons[2] = new ImageIcon("");//magicak skill 3
+
+            itemIcons[0] = new ImageIcon("");//use item 1
+            itemIcons[1] = new ImageIcon("");//use item 2
+            itemIcons[2] = new ImageIcon("");//use item 3
+
+            victoryIcons[0] = new ImageIcon("");//victory 1
+            victoryIcons[1] = new ImageIcon("");//victory 2
+            victoryIcons[2] = new ImageIcon("");//victory 3
+
+            crisisIcons[0] = new ImageIcon("");//crisis/danger 1
+            crisisIcons[1] = new ImageIcon("");//crisis/danger 2
+            crisisIcons[2] = new ImageIcon("");//crisis/danger 3
+
+            abnormalIcons[0] = new ImageIcon("");//abnormal state 1
+            abnormalIcons[1] = new ImageIcon("");//abnormal state 2
+            abnormalIcons[2] = new ImageIcon("");//abnormal state 3
+
+            sleepIcons[0] = new ImageIcon("");//sleeping 1
+            sleepIcons[1] = new ImageIcon("");//sleeping 2
+            sleepIcons[2] = new ImageIcon("");//sleeping 3
+
+            koIcons[0] = new ImageIcon("");//knocked out 1
+            koIcons[2] = new ImageIcon("");//knocked out 2
+            koIcons[1] = new ImageIcon("");//knocked out 3
+
+            attackIcons[0] = new ImageIcon("");//attack 1
+            attackIcons[2] = new ImageIcon("");//attack 2
+            attackIcons[1] = new ImageIcon("");//attack 3
 
 
             //since I can't store and reproduce the file itself from a database,
@@ -75,17 +175,25 @@ public class player
             //so I just need to take the name of the file being used
             //which makes it sounds[x] = "sound location" + filename.format --- all at once
 
-            sounds[0] = "";
-            sounds[1] = "";
-            sounds[2] = "";
-            sounds[3] = "";
-            sounds[4] = "";
-            sounds[5] = "";
+            sounds[0] = "";//Atk
+            sounds[1] = "";//hit/damaged
+            sounds[2] = "";//physical skill
+            sounds[3] = "";//magical skill
+            sounds[4] = "";//knocked out
+            sounds[5] = "";//victory
+        }
+        else if(!inDB)
+        {
+
         }
     }
 
     public void updateHealth(int damage)
     {
+        /*
+        * update the health based on damage taken,
+        * and if the character dies set health to 0 and ded bool = true;
+         */
         health = health - damage;
         if(health < 0) health = 0;
         ded = true;
