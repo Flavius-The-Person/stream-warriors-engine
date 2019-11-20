@@ -275,6 +275,7 @@ boss.setLocation(825,0);
             battlerLabels[rri] = new JLabel();
             battlerLabels[rri].setText(players[rri].name + " testing");//; = new JLabel(player[rri].name); // + " : "+ player[rri].health);
 
+            System.out.println("player " + rri + " should be " + players[rri].name);
             effectPanels[rri] = new JPanel();
             effectLabels[rri] = new JLabel("Eff Pan");
             effectLabels[rri].setText("Eff Pan " + rri);//  = new JLabel("Eff Pan " + rri);
