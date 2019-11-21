@@ -2,7 +2,8 @@ package com.flavcreations;
 
 import javax.swing.*;
 
-public class enemy {
+public class enemy
+{
     private int maxHealth = 1000000;
     int health;
     String name;

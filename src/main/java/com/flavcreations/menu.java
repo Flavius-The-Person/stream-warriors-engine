@@ -18,7 +18,7 @@ public class menu extends JFrame
     private JPanel menuPan;
     private JLabel pauseLbl, rosterOpnLbl, rosterLbl, menuImgLbl;
     private ImageIcon menuImgIcn;
-    private JButton pauseBtn, opnRstrBtn;
+    private JButton opnRstrBtn;
     private String bgImg = "";
 
     private DefaultListModel dlm, dlm2, dlm3;
@@ -33,7 +33,6 @@ public class menu extends JFrame
     /*
     */
     private JButton startButton;
-    private JButton openRosterButton;
     private JList rosterList;
     private JButton websiteButton, patreonButton, githubButton, creditsButton;
     private JList patronList, vAList;

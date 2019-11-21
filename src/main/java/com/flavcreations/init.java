@@ -9,9 +9,6 @@ public class init
     {
         Scanner inp = new Scanner(System.in);
         menu mn = new menu();
-        //player[] pl = new player[];
-        //enemy en = new enemy();
-        //scene sc = new scene();
 
         String sInp;
         System.out.println("What is the player to be put in?");
