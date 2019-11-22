@@ -1,3 +1,8 @@
 
 *.class
 .idea/vcs.xml
+.idea/stream-warriors-engine.iml
+*.xml
+.idea/compiler.xml
+*.xml
+.idea/compiler.xml
