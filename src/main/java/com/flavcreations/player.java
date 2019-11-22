@@ -97,10 +97,6 @@ public class player
             attackIcons[1] = new ImageIcon("");//attack 3
      */
 
-
-
-
-
     public void setData(String pname, int pgen)
     {
         health = maxHealth;

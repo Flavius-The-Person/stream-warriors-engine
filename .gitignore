@@ -6,3 +6,4 @@
 .idea/compiler.xml
 *.xml
 .idea/compiler.xml
+target/classes/META-INF/stream-warriors-engine.kotlin_module

@@ -9,7 +9,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class scene extends JFrame {
+public class scene extends JFrame
+{
+
     private JFrame healthFrame, healthframe2;
     private JPanel[] battlerPanels;
     private JPanel healthPanel;
@@ -36,16 +38,12 @@ public class scene extends JFrame {
         {
             public void run()
             {
-
                 //System.out.println("update Panels task");
             }
         };
-
         ScheduledExecutorService ex = Executors.newSingleThreadScheduledExecutor();
-
         long updatePanDelay = 1000L;
         long updatePanPeriod = 1000L;
-
         ex.scheduleAtFixedRate(updatePanels, updatePanDelay, updatePanPeriod, TimeUnit.MILLISECONDS);
 
     }
@@ -69,19 +67,15 @@ public class scene extends JFrame {
          */
 
         // lets swap to 1920/1080
-        getContentPane().setSize(1920, 1080);
-
 
         // lets assume we need 80 from the 1080 for stats
         // 1080 - 80 = 1000 = 1000/100 = 10
-
-
-
 
         //250 250
         //1700 / 250 = 6.8 rounded down to 6
         //1000 / 250 = 4
         //6 * 4 = 24
+
         int[] pos24x = {
                 0, 0, 0, 0,             //1-4
                 250, 250, 250, 250,     //2-8
@@ -90,6 +84,7 @@ public class scene extends JFrame {
                 1000, 1000, 1000, 1000, //5-20
                 1250, 1250, 1500, 1500, //6-24
         };
+
         int[] pos24y = {
                 0, 250, 500, 750, //1-4
                 0, 250, 500, 750, //2-8
@@ -104,7 +99,6 @@ public class scene extends JFrame {
         {
             battlerPanels[tpi].setBackground(Color.GREEN);
             add(battlerPanels[tpi]);
-
 
             if(battlerPanels.length < 17)
             {
@@ -129,6 +123,12 @@ public class scene extends JFrame {
         pboss.setSize(900,900);
         pboss.setLocation(1000,25);
 
+
+        /*
+        * for some reason the player health panel
+        * is not popping up again in the frame
+        * until the game is activated (start is pushed)
+        */
         //player health panel
         healthPanel = new JPanel();
         healthPanel.setBackground(Color.RED);
@@ -136,149 +136,44 @@ public class scene extends JFrame {
         healthPanel.setLocation(1000,925);
         add(healthPanel);
 
+
+        /*
+        * I haven't quite figured this one out,
+        * I'm guessing the last panel added to the frame
+        * becomes the primary content pane which gets changed.
+        * So if the last thing added was the above healthPanel
+        * it would make that health panel go full screen and
+        * change it to magenta down below.
+        * If you happen to know a fix to this please let me know.
+        */
         JPanel finalPan = new JPanel();
         add(finalPan);
         finalPan.setBackground(Color.MAGENTA);
-/*
-        healthFrame = new JFrame("Health Frame");
-        healthFrame.setSize(1920,80);
 
-        healthFrame2 = new JFrame("Health Frame 2");
-        healthFrame2.setSize(80,1920);
-
-        healthFrame.setVisible(true);
-        healthFrame2.setVisible(true);
-*/
-
-
-        getContentPane().setBackground(Color.magenta);
-
-        // 1700 / 150 = 11.3333333_ rounded down to 11 across
-        // 1000 / 150 = 6.66666667_ rounded down to 6 down
-        // 11 * 6 = 66
-
-        // 1700 / 200 = 8.5 rounded down to 8 across
-        // 1000 / 200 = 5 down
-        // 8 * 5 = 40
-
-        // 1700 / 250 = 6.8 rounded down to 6 across
-        // 1000 / 250 = 4 down
-        // 6 * 4 = 24
-
-        // 1700 / 300 = 5.6 rounded down to 5 across
-        // 1000 / 300 = 3.333333_ rounded down to 3 down
-        // 5 x 3 = 15
-
-        // 1700 / 500 = 3.4 rounded down to 3 across
-        // 1000 / 500 = 2 down
-        // 3 x 2 = 6
-
-        //probably not going to go this low due to the lack of likelyhood there are this many people playing? but maybe?
-        // 1700 / 50  = 34 across
-        // 1000 / 50 = 20 down
-        // 35 x 50 = 1750
-
-
-
-
-
-            /*
-            btlr1 = new JPanel();
-            btlr2 = new JPanel();
-            btlr3 = new JPanel();
-            btlr4 = new JPanel();
-            btlr5 = new JPanel();
-            boss = new JPanel();
-            finalPan = new JPanel();
-
-            lbtlr1 = new JLabel(btlrshlths[0]);
-            lbtlr2 = new JLabel(btlrshlths[1]);
-            lbtlr3 = new JLabel(btlrshlths[2]);
-            lbtlr4 = new JLabel(btlrshlths[3]);
-            lbtlr5 = new JLabel(btlrshlths[4]);
-            lboss = new JLabel(bossshlths);
-
-            finalPan.setBackground(Color.MAGENTA);
-
-            btlr1.setSize(150,150);
-            btlr2.setSize(150,150);
-            btlr3.setSize(150,150);
-            btlr4.setSize(150,150);
-            btlr5.setSize(150,150);
-            boss.setSize(750,750);
-boss.setLocation(825,0);
-            btlr1.add(lbtlr1);
-            btlr2.add(lbtlr2);
-            btlr3.add(lbtlr3);
-            btlr4.add(lbtlr4);
-            btlr5.add(lbtlr5);
-            boss.add(lboss);
-
-            getContentPane().setBackground(Color.MAGENTA);
-            setSize(1600, 900);
-            add(btlr1);
-            btlr1.setLocation(0,0);
-            add(btlr2);
-            btlr2.setLocation(0,150);
-            add(btlr3);
-            btlr3.setLocation(0, 300);
-            add(btlr4);
-            btlr4.setLocation(0,450);
-            add(btlr5);
-            btlr5.setLocation(0,600);
-
-            add(boss);
-            boss.setLocation(825,0);
-
-            add(finalPan);*/
-
-    }
-    public void loadRoster(ArrayList<String> roster, String charType)
-    {
-        /*int ri = 0;
-        for(String rAdd : roster)
-        {
-
-            players[ri][0] = rAdd;
-            players[ri][1] = charType;
-            ri++;
-
-                    /* for (String pAdd : patrons) {
-            dlm2.addElement(pAdd);
-        }
-
-        playerCount = ri;*/
+        //getContentPane().setBackground(Color.magenta);
     }
 
     public void loadGame()//, int pgen)
     {
         int playerCount = players.length;
-        /*players = new player[roster.size()];
-        int playerCount = roster.size();
-        Random randy = new Random();
-
-        int pgen = randy.nextInt(2);
-        for(int gri = 0; gri < playerCount; gri++)
-        {
-            players[gri].setData(roster.get(gri), pgen);
-        }*/
 
         battlerPanels = new JPanel[playerCount];
         battlerLabels = new JLabel[playerCount];
         effectPanels = new JPanel[playerCount+1];
         effectLabels = new JLabel[playerCount+1];
+
         System.out.println("end of setting player count, and panel/label arrays");
 
         for(int rri = 0; rri < playerCount; rri++)
         {
             battlerPanels[rri] = new JPanel();
             battlerLabels[rri] = new JLabel();
-            battlerLabels[rri].setText(players[rri].name + " testing");//; = new JLabel(player[rri].name); // + " : "+ player[rri].health);
-
+            battlerLabels[rri].setText(players[rri].name + " testing");
             System.out.println("player " + rri + " should be " + players[rri].name);
+
             effectPanels[rri] = new JPanel();
             effectLabels[rri] = new JLabel("Eff Pan");
-            effectLabels[rri].setText("Eff Pan " + rri);//  = new JLabel("Eff Pan " + rri);
+            effectLabels[rri].setText("Eff Pan " + rri);
 
             battlerPanels[rri].add(battlerLabels[rri]);
             System.out.println(players[rri].name);
@@ -286,10 +181,11 @@ boss.setLocation(825,0);
         System.out.println("end of loading player panels/labels");
         //effectPanels[playerCount] = new JPanel();
         //effectLabels[playerCount] = new JLabel();
-
         setupScene();
 
     }
+
+    //add players from roster to the scene
     public void addPlayers(ArrayList<String> roster)
     {
         players = new player[roster.size()];
@@ -302,5 +198,4 @@ boss.setLocation(825,0);
         }
         loadGame();
     }
-
 }

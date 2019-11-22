@@ -11,12 +11,11 @@ import java.util.ArrayList;
 
 public class menu extends JFrame
 {
-    //public player[] players;
+    //class variables and object imports (such as scene and enemy)
     scene sc;
     enemy en;
 
-    private JPanel menuPan;
-    private JLabel pauseLbl, rosterOpnLbl, rosterLbl, menuImgLbl;
+    private JLabel menuImgLbl;
     private ImageIcon menuImgIcn;
     private JButton opnRstrBtn;
     private String bgImg = "";
@@ -25,22 +24,17 @@ public class menu extends JFrame
     boolean opnRstr = false;
     boolean fightStarted = false;
     boolean fightPaused = false;
-    ArrayList<String> roster = new ArrayList<String>();
-    JScrollPane rjsp, pjsp, vjsp;
-    ArrayList<String> patrons = new ArrayList<String>();
-    ArrayList<String> voiceArtists = new ArrayList<String>();
+    public ArrayList<String> roster = new ArrayList<String>();
+    private JScrollPane rjsp, pjsp, vjsp;
+    private ArrayList<String> patrons = new ArrayList<String>();
+    private ArrayList<String> voiceArtists = new ArrayList<String>();
 
-    /*
-    */
     private JButton startButton;
     private JList rosterList;
     private JButton websiteButton, patreonButton, githubButton, creditsButton;
     private JList patronList, vAList;
-    private JLabel ttlLbl, ttlLbl2, strtLbl, rstrOpnLbl, rstrLbl, ptrnLbl, vALbl;
+    private JLabel titleLbl, strtLbl, rstrOpnLbl, rstrLbl, ptrnLbl, vALbl;
 
-
-    /*
-     */
 
 
 
@@ -59,11 +53,8 @@ public class menu extends JFrame
 
         getContentPane().setBackground(Color.BLACK);
 
-        ttlLbl = new JLabel("Game Name");
-        ttlLbl.setForeground(Color.RED);
-
-        strtLbl = new JLabel("Press to Start/Pause/Unpause fight:");
-        strtLbl.setForeground(Color.RED);
+        titleLbl = new JLabel("Game Name");
+        titleLbl.setForeground(Color.RED);
 
         startButton = new JButton("Start");
         startButton.setBackground(Color.DARK_GRAY);
@@ -94,8 +85,6 @@ public class menu extends JFrame
             }
         });
 
-        rstrOpnLbl = new JLabel("Press to Open/Close Roster");
-        rstrOpnLbl.setForeground(Color.RED);
         opnRstrBtn = new JButton("Open Roster");
         opnRstrBtn.setBackground(Color.DARK_GRAY);
         opnRstrBtn.setForeground(Color.RED);
@@ -124,35 +113,12 @@ public class menu extends JFrame
         });
 
         roster.add("Flavius");
-        rstrLbl = new JLabel("Roster:");
-        rstrLbl.setForeground(Color.RED);
         dlm = new DefaultListModel();
         for (String rAdd : roster) {
             dlm.addElement(rAdd);
         }
-        rosterList = new JList(dlm);//JList<Object>(dlm);
+        rosterList = new JList(dlm);
         rjsp = new JScrollPane(rosterList);
-
-        ptrnLbl = new JLabel("PATRONS:");
-        ptrnLbl.setForeground(Color.RED);
-        patrons.add("FlavCreations");
-        dlm2 = new DefaultListModel();
-        for (String pAdd : patrons) {
-            dlm2.addElement(pAdd);
-        }
-        patronList = new JList(dlm2);
-        pjsp = new JScrollPane(patronList);
-
-        vALbl = new JLabel("Voice Artists:");
-        vALbl.setForeground(Color.RED);
-        dlm3 = new DefaultListModel();
-        for(String vAdd : voiceArtists)
-        {
-            dlm3.addElement(vAdd);
-        }
-        vAList = new JList(dlm3);
-        vjsp = new JScrollPane(vAList);
-
 
         websiteButton = new JButton("Website");
         websiteButton.setBackground(Color.DARK_GRAY);
@@ -162,6 +128,7 @@ public class menu extends JFrame
                 openWebPage("https://www.flavcreations.com");
             }
         });
+
         githubButton = new JButton("Github Sponsors");
         githubButton.setBackground(Color.DARK_GRAY);
         githubButton.setForeground(Color.RED);
@@ -170,6 +137,7 @@ public class menu extends JFrame
                 openWebPage("https://github.com/sponsors/Flavius-The-Person");
             }
         });
+
         creditsButton = new JButton("Credits");
         creditsButton.setBackground(Color.DARK_GRAY);
         creditsButton.setForeground(Color.RED);
@@ -178,6 +146,7 @@ public class menu extends JFrame
                 openWebPage("https://www.flavcreations.com");
             }
         });
+
         patreonButton = new JButton("Patreon");
         patreonButton.setBackground(Color.DARK_GRAY);
         patreonButton.setForeground(Color.RED);
@@ -188,54 +157,21 @@ public class menu extends JFrame
         });
 
 
-        add(ttlLbl);
-        ttlLbl.setSize(600,200);
-        ttlLbl.setLocation(0,0);
-
-        /*
-        add(strtLbl);
-        strtLbl.setSize(300,100);
-        strtLbl.setLocation(0,200);
-        */
+        add(titleLbl);
+        titleLbl.setSize(600,200);
+        titleLbl.setLocation(0,0);
         add(startButton);
         startButton.setSize(300,100);
         startButton.setLocation(150,600);
-
-        /*
-        add(rstrOpnLbl);
-        rstrOpnLbl.setSize(300,100);
-        rstrOpnLbl.setLocation(0,300);
-        */
         add(opnRstrBtn);
         opnRstrBtn.setSize(300,100);
         opnRstrBtn.setLocation(150,300);
-        /*
-        add(rstrLbl);
-        rstrLbl.setSize(300, 100);
-        rstrLbl.setLocation(0,400);
-        */
         add(rjsp);
         rjsp.setSize(300,200);
         rjsp.setLocation(150,400);
-        /*
-        add(vALbl);
-        vALbl.setSize(300,100);
-        vALbl.setLocation(0,500);
-        add(vjsp);
-        vjsp.setSize(300,100);
-        vjsp.setLocation(300,500);
-        add(ptrnLbl);
-        ptrnLbl.setSize(300,100);
-        ptrnLbl.setLocation(0,600);
-        add(pjsp);
-        pjsp.setSize(300,100);
-        pjsp.setLocation(300,600);
-        */
-
         add(websiteButton);
         websiteButton.setSize(300,50);
         websiteButton.setLocation(150,700);
-
         add(githubButton);
         githubButton.setSize(200,50);
         githubButton.setLocation(0,750);
@@ -253,6 +189,7 @@ public class menu extends JFrame
 
     }
 
+    //open a website link when function is called with a url string
     public void openWebPage(String url) {
         try {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
@@ -262,22 +199,21 @@ public class menu extends JFrame
         }
     }
 
+    //method for adding a player via string input.
     public void addPlayer(String player) {
         roster.add(player);
-        System.out.println(roster.toString());
-        System.out.println(roster.size());
         dlm.addElement(player);
         rosterList = new JList(dlm);
         rjsp = new JScrollPane(rosterList);
         rjsp.updateUI();
     }
 
+    //method for clearing the roster/scrollpane
     public void clearPlayers() {
         if(!opnRstr)
         {
             return;
         }else
-
             roster.clear();
             dlm.clear();
             rosterList = new JList(dlm);

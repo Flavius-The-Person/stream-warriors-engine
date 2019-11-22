@@ -5,10 +5,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class menuWOswStuff extends JFrame
+/*
+* A menu without stream warriors layout (patreon/github sponsors/website buttons and whatnot)
+ */
+public class menu2 extends JFrame
 {
     /*
     * Class variables used within this class.
@@ -29,7 +31,7 @@ public class menuWOswStuff extends JFrame
 
 
 
-    public menuWOswStuff()
+    public menu2()
     {
         //setting the title of the frame.
         super("Stream Warriors Menu");

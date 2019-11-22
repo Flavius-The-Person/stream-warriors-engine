@@ -26,23 +26,14 @@ public class init
                 {
                     System.out.println("Player already in roster");
                 }
-                if(!mn.roster.contains(sInp)) {
-
+                if(!mn.roster.contains(sInp))
+                {
                     System.out.println("input was: " + sInp);
                     mn.addPlayer(sInp);
                 }
             }
             System.out.println("What is the player to be put in?");
             sInp = inp.nextLine();
-
-
-
         }
-
-
-
-
-
-
     }
 }
