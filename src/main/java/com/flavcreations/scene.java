@@ -38,6 +38,7 @@ public class scene extends JFrame
         {
             public void run()
             {
+                animateScene();
                 //System.out.println("update Panels task");
             }
         };
@@ -47,34 +48,31 @@ public class scene extends JFrame
         ex.scheduleAtFixedRate(updatePanels, updatePanDelay, updatePanPeriod, TimeUnit.MILLISECONDS);
 
     }
-
+    
+    private void animateScene()
+    {
+    
+    }
 
     private void setupScene()
     {
 
 
-        //full size = 1600 , 900 or full size = 1920 , 1080
-
         /*
-
+        full size = 1600 , 900 or full size = 1920 , 1080
         1920-200 = 1720
                                                      |---
         could put players around the boss like this: |[x]
                                                      |---
-
         Or just completely cut out that section around the boss?
-
          */
-
         // lets swap to 1920/1080
-
         // lets assume we need 80 from the 1080 for stats
         // 1080 - 80 = 1000 = 1000/100 = 10
-
-        //250 250
-        //1700 / 250 = 6.8 rounded down to 6
-        //1000 / 250 = 4
-        //6 * 4 = 24
+        // 250 250
+        // 1700 / 250 = 6.8 rounded down to 6
+        // 1000 / 250 = 4
+        // 6 * 4 = 24
 
         int[] pos24x = {
                 0, 0, 0, 0,             //1-4
@@ -179,8 +177,8 @@ public class scene extends JFrame
             System.out.println(players[rri].name);
         }
         System.out.println("end of loading player panels/labels");
-        //effectPanels[playerCount] = new JPanel();
-        //effectLabels[playerCount] = new JLabel();
+        effectPanels[playerCount] = new JPanel();
+        effectLabels[playerCount] = new JLabel();
         setupScene();
 
     }

@@ -1,5 +1,6 @@
-# Stream Warriors
-> Still in developement, Stream Warriors is a JRPG style visual automated combat program designed for use with live streaming. 
+# Stream Warriors Engine
+> Still in developement, Stream Warriors Engine is a JRPG style visual 
+>automated combat program designed for use with live streaming. 
 
 <!---
 [![NPM Version][npm-image]][npm-url]
