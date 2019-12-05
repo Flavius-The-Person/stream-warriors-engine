@@ -3,6 +3,7 @@ package com.flavcreations;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.TimerTask;
 import java.util.concurrent.Executors;
@@ -57,8 +58,20 @@ public class scene extends JFrame
     
     private void updateScene()
     {
-    
-    
+        
+        Random randy = new Random();
+        List<Integer> actions = new ArrayList<Integer>();
+        
+        for(int x = 0; x < players.length + 1; x++)
+        {
+            int actionInt = randy.nextInt(players.length + 1);
+            while(actions.contains(actionInt))
+            {
+                actionInt = randy.nextInt(players.length + 1);
+            }
+            actions.add(actionInt);
+        }
+        
     }
 
     private void setupScene()
