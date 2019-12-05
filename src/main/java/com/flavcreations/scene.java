@@ -34,11 +34,17 @@ public class scene extends JFrame
         setSize(1920,1080);
         setVisible(true);
 
+        
+        /*
+        * set timer task to updateScene();
+        * which will animate and update
+        * the scene while processing battle actions
+         */
         TimerTask updatePanels = new TimerTask()
         {
             public void run()
             {
-                animateScene();
+                updateScene();
                 //System.out.println("update Panels task");
             }
         };
@@ -49,7 +55,7 @@ public class scene extends JFrame
 
     }
     
-    private void animateScene()
+    private void updateScene()
     {
     
     
