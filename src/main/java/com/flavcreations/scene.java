@@ -52,6 +52,7 @@ public class scene extends JFrame
     private void animateScene()
     {
     
+    
     }
 
     private void setupScene()
