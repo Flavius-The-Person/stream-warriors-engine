@@ -25,7 +25,10 @@ public class scene extends JFrame
     private JLabel lboss;
     private JPanel eboss;
     public player[] players;
-
+    public long turnCycleDelay;
+    public long turnCyclePeriod;
+    private List<Integer> actions = new ArrayList<Integer>();
+    
     scene()
     {
         super("Stream Warriors Fight");
@@ -49,25 +52,62 @@ public class scene extends JFrame
                 //System.out.println("update Panels task");
             }
         };
+        
+        
         ScheduledExecutorService ex = Executors.newSingleThreadScheduledExecutor();
-        long updatePanDelay = 1000L;
-        long updatePanPeriod = 1000L;
-        ex.scheduleAtFixedRate(updatePanels, updatePanDelay, updatePanPeriod, TimeUnit.MILLISECONDS);
+        
+        //plan to put in the menu a setting to manipulate how fast events take place
+        turnCycleDelay = 60000L;
+        turnCyclePeriod = 60000L; //60000 milliseconds in a minute
+        
+        
+        ex.scheduleAtFixedRate(updatePanels, turnCycleDelay, turnCyclePeriod, TimeUnit.MILLISECONDS);
 
     }
     
     private void updateScene()
     {
+        generateTurns();
+        
+        final int y = 0;
+        
+        TimerTask actionTask = new TimerTask()
+        {
+            public void run()
+            {
+                doTurn(actions.get(y));
+            }
+        };
+        
+        /*
+        for(int y = 0; y < players.length + 1; y++)
+        {
+            long actionDelay = turnCycleDelay/players.length;
+            long actionPeriod = turnCyclePeriod/players.length;
+            
+        
+        }*/
+        
+        
+    }
+    private void doTurn(Integer integer)
+    {
+        
+    
+    }
+
+    private void generateTurns()
+    {
         //make a random list of integers
         Random randy = new Random();
-        List<Integer> actions = new ArrayList<Integer>();
-        
+        actions = new ArrayList<Integer>();
+    
         //for loop for while integer list is less than number of players + 1 for boss
         for(int x = 0; x < players.length + 1; x++)
         {
             //generate a random integer within player range + 1 for boss
             int actionInt = randy.nextInt(players.length + 1);
-            
+        
             //while the generated integer is already in the list, generate a new one.
             while(actions.contains(actionInt))
             {
@@ -77,9 +117,7 @@ public class scene extends JFrame
             actions.add(actionInt);
         }
         
-        
     }
-
     private void setupScene()
     {
 
