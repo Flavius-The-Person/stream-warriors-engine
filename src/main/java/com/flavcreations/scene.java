@@ -58,19 +58,25 @@ public class scene extends JFrame
     
     private void updateScene()
     {
-        
+        //make a random list of integers
         Random randy = new Random();
         List<Integer> actions = new ArrayList<Integer>();
         
+        //for loop for while integer list is less than number of players + 1 for boss
         for(int x = 0; x < players.length + 1; x++)
         {
+            //generate a random integer within player range + 1 for boss
             int actionInt = randy.nextInt(players.length + 1);
+            
+            //while the generated integer is already in the list, generate a new one.
             while(actions.contains(actionInt))
             {
                 actionInt = randy.nextInt(players.length + 1);
             }
+            //if the new integer is not in the list, add it to the list.
             actions.add(actionInt);
         }
+        
         
     }
 
