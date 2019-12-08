@@ -92,7 +92,7 @@ public class scene extends JFrame
     }
     private void doTurn(Integer integer)
     {
-        
+    
     
     }
 
@@ -182,7 +182,7 @@ public class scene extends JFrame
         pboss.setBackground(Color.DARK_GRAY);
         pboss.add(lboss);
         add(pboss);
-        pboss.setSize(900,900);
+        pboss.setSize(500,500);
         pboss.setLocation(1000,25);
 
 
