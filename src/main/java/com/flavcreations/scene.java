@@ -92,6 +92,7 @@ public class scene extends JFrame
         
         
     }
+    
     Integer stance = 0;
     boolean stanceUp = true;
     private void doTurn(Integer p)
