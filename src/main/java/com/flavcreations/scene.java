@@ -118,7 +118,7 @@ public class scene extends JFrame
             else if(!stanceUp)
             {
                 stance--;
-                if(stance<=1) {
+                if(stance<=0) {
                     stanceUp = true;
                 }
             }
