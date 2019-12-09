@@ -93,8 +93,8 @@ public class scene extends JFrame
         
     }
     
-    Integer stance = 0;
-    boolean stanceUp = true;
+    private Integer stance = 0;
+    private boolean stanceUp = true;
     private void doTurn(Integer p)
     {
         for(int s = 0; s < players.length; s++)
