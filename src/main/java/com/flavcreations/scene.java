@@ -13,18 +13,20 @@ import java.util.concurrent.TimeUnit;
 public class scene extends JFrame
 {
 
-    private JFrame healthFrame, healthframe2;
     private JPanel[] battlerPanels;
+    private JLabel[] battlerLabels;
     private JPanel healthPanel;
     private JPanel bossHealthPanel;
     private JPanel[] effectPanels;
-    private JLabel[] battlerLabels;
     private JLabel[] effectLabels;
 
     private JPanel pboss;
     private JLabel lboss;
     private JPanel eboss;
+    private JLabel elboss;
+    
     public player[] players;
+    
     public long turnCycleDelay;
     public long turnCyclePeriod;
     private List<Integer> actions = new ArrayList<Integer>();
@@ -90,10 +92,37 @@ public class scene extends JFrame
         
         
     }
-    private void doTurn(Integer integer)
+    Integer stance = 0;
+    boolean stanceUp = true;
+    private void doTurn(Integer p)
     {
-    
-    
+        for(int s = 0; s < players.length; s++)
+        {
+            if(s == p)
+            {
+                battlerLabels[s].setIcon(players[s].attackIcons[0]);
+            }
+            if(s!=p)
+            {
+                battlerLabels[s].setIcon(players[s].idleIcons[stance]);
+            }
+            if(stanceUp)
+            {
+                stance++;
+                if(stance>=2)
+                {
+                    stanceUp = false;
+                }
+            }
+            else if(!stanceUp)
+            {
+                stance--;
+                if(stance<=1) {
+                    stanceUp = true;
+                }
+            }
+            
+        }
     }
 
     private void generateTurns()
@@ -184,6 +213,11 @@ public class scene extends JFrame
         add(pboss);
         pboss.setSize(500,500);
         pboss.setLocation(1000,25);
+        eboss = new JPanel();
+        elboss = new JLabel();
+        add(elboss);
+        elboss.setSize(500,500);
+        elboss.setLocation(1000,25);
 
 
         /*
@@ -215,49 +249,65 @@ public class scene extends JFrame
         //getContentPane().setBackground(Color.magenta);
     }
 
-    public void loadGame()//, int pgen)
-    {
-        int playerCount = players.length;
-
-        battlerPanels = new JPanel[playerCount];
-        battlerLabels = new JLabel[playerCount];
-        effectPanels = new JPanel[playerCount+1];
-        effectLabels = new JLabel[playerCount+1];
-
-        System.out.println("end of setting player count, and panel/label arrays");
-
-        for(int rri = 0; rri < playerCount; rri++)
-        {
-            battlerPanels[rri] = new JPanel();
-            battlerLabels[rri] = new JLabel();
-            battlerLabels[rri].setText(players[rri].name + " testing");
-            System.out.println("player " + rri + " should be " + players[rri].name);
-
-            effectPanels[rri] = new JPanel();
-            effectLabels[rri] = new JLabel("Eff Pan");
-            effectLabels[rri].setText("Eff Pan " + rri);
-
-            battlerPanels[rri].add(battlerLabels[rri]);
-            System.out.println(players[rri].name);
-        }
-        System.out.println("end of loading player panels/labels");
-        effectPanels[playerCount] = new JPanel();
-        effectLabels[playerCount] = new JLabel();
-        setupScene();
-
-    }
-
     //add players from roster to the scene
     public void addPlayers(ArrayList<String> roster)
     {
+        //set players object array size to roster size.
         players = new player[roster.size()];
+        
+        //import random function
         Random randy = new Random();
+        
+        //use random function to generate a random number between 2 for use when a person doesn't have a set character
         int pgen = randy.nextInt(2);
+        
+        //for loop through the players object array adding data to each player
         for(int pint = 0; pint < players.length; pint++)
         {
             players[pint] = new player();
             players[pint].setData(roster.get(pint), pgen);
         }
+        
+        //initiate the load game function
         loadGame();
     }
+    
+    //load game function to create panels and labels for each character.
+    public void loadGame()
+    {
+        //initiate pannels and labels arrays for battler panels/labels and effect panels/labels
+        battlerPanels = new JPanel[players.length];
+        battlerLabels = new JLabel[players.length];
+        effectPanels = new JPanel[players.length+1];
+        effectLabels = new JLabel[players.length+1];
+        
+        //console print stating that the panels and labels were created for testing purposes (will be taken out later)
+        System.out.println("end of setting player count, and panel/label arrays");
+        
+        
+        for(int rri = 0; rri < players.length; rri++)
+        {
+            //create a new panel and label for player characters
+            battlerPanels[rri] = new JPanel();
+            battlerLabels[rri] = new JLabel();
+            battlerLabels[rri].setText(players[rri].name + " testing");
+            System.out.println("player " + rri + " should be " + players[rri].name);
+            
+            //create a new pannel and label for battle effects
+            effectPanels[rri] = new JPanel();
+            effectLabels[rri] = new JLabel("Eff Pan");
+            effectLabels[rri].setText("Eff Pan " + rri);
+            
+            battlerPanels[rri].add(battlerLabels[rri]);
+            System.out.println(players[rri].name);
+        }
+        
+        //console print stating that player data has been loaded into panels/labels
+        System.out.println("end of loading player panels/labels");
+        effectPanels[players.length] = new JPanel();
+        effectLabels[players.length] = new JLabel();
+        setupScene();
+        
+    }
+    
 }
