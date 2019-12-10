@@ -8,6 +8,11 @@ public class player
     public int health;
     public String name;
     public boolean ded;
+    public boolean animating = false;
+    /*might use and might not use contemplating controllingg turns here
+    public boolean turn = false;
+    public int attack_phase = 0;
+    */
     public String[] sounds = new String[6];
     /*
 

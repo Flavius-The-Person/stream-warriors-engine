@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class scene extends JFrame
 {
-
+    
     private JPanel[] battlerPanels;
     private JLabel[] battlerLabels;
     private JPanel healthPanel;
@@ -46,6 +46,7 @@ public class scene extends JFrame
         * which will animate and update
         * the scene while processing battle actions
          */
+        /*
         TimerTask updatePanels = new TimerTask()
         {
             public void run()
@@ -61,11 +62,21 @@ public class scene extends JFrame
         //plan to put in the menu a setting to manipulate how fast events take place
         turnCycleDelay = 60000L;
         turnCyclePeriod = 60000L; //60000 milliseconds in a minute
+    
+        long secondMilliSeconds = 1000L;
+        long smsDelay = secondMilliSeconds;
+        long smsPeriod = secondMilliSeconds;
         
         
-        ex.scheduleAtFixedRate(updatePanels, turnCycleDelay, turnCyclePeriod, TimeUnit.MILLISECONDS);
+        
+        
+        ex.scheduleAtFixedRate(updatePanels, smsDelay, smsPeriod, TimeUnit.MILLISECONDS);
+        */
 
     }
+    
+    private Integer stance = 0;
+    private boolean stanceUp = true;
     
     private void updateScene()
     {
@@ -77,9 +88,46 @@ public class scene extends JFrame
         {
             public void run()
             {
-                doTurn(actions.get(y));
+                //doTurn(actions.get(y));
             }
         };
+        
+        //System.out.println("players.length-" + players.length);
+        
+        for(int s = 0; s <= players.length; s++)
+        {
+            if(s < players.length)
+            {
+                battlerLabels[s].setText(players[s].name + "-" + players[s].health + " Frame:" + stance);
+                System.out.println("update player" + s);
+                battlerLabels[s].updateUI();
+            }
+            if(s == players.length)
+            {
+                lboss.setText("Boss-health Frame:" + stance);
+                System.out.println("update boss");
+                lboss.updateUI();
+            }
+            
+        }
+    
+        if(stanceUp)
+        {
+            stance++;
+            if(stance>=2)
+            {
+                stanceUp = false;
+            }
+        }
+        else if(!stanceUp)
+        {
+            stance--;
+            if(stance<=0)
+            {
+                stanceUp = true;
+            
+            }
+        }
         
         /*
         for(int y = 0; y < players.length + 1; y++)
@@ -93,20 +141,20 @@ public class scene extends JFrame
         
     }
     
-    private Integer stance = 0;
-    private boolean stanceUp = true;
     private void doTurn(Integer p)
     {
         for(int s = 0; s < players.length; s++)
         {
-            if(s == p)
+            /*if(s == p)
             {
                 battlerLabels[s].setIcon(players[s].attackIcons[0]);
             }
             if(s!=p)
             {
                 battlerLabels[s].setIcon(players[s].idleIcons[stance]);
-            }
+            }*/
+            
+            
             if(stanceUp)
             {
                 stance++;
@@ -130,7 +178,7 @@ public class scene extends JFrame
     {
         //make a random list of integers
         Random randy = new Random();
-        actions = new ArrayList<Integer>();
+        actions.clear();
     
         //for loop for while integer list is less than number of players + 1 for boss
         for(int x = 0; x < players.length + 1; x++)
@@ -246,6 +294,32 @@ public class scene extends JFrame
         JPanel finalPan = new JPanel();
         add(finalPan);
         finalPan.setBackground(Color.MAGENTA);
+        updateScene();
+    
+        TimerTask updatePanels = new TimerTask()
+        {
+            public void run()
+            {
+                updateScene();
+                //System.out.println("update Panels task");
+            }
+        };
+    
+    
+        ScheduledExecutorService ex = Executors.newSingleThreadScheduledExecutor();
+    
+        //plan to put in the menu a setting to manipulate how fast events take place
+        turnCycleDelay = 60000L;
+        turnCyclePeriod = 60000L; //60000 milliseconds in a minute
+    
+        long secondMilliSeconds = 1000L;
+        long smsDelay = secondMilliSeconds;
+        long smsPeriod = secondMilliSeconds;
+    
+    
+    
+    
+        ex.scheduleAtFixedRate(updatePanels, smsDelay, smsPeriod, TimeUnit.MILLISECONDS);
 
         //getContentPane().setBackground(Color.magenta);
     }
@@ -291,7 +365,7 @@ public class scene extends JFrame
             //create a new panel and label for player characters
             battlerPanels[rri] = new JPanel();
             battlerLabels[rri] = new JLabel();
-            battlerLabels[rri].setText(players[rri].name + " testing");
+            battlerLabels[rri].setText(players[rri].name + "-" + players[rri].health);
             System.out.println("player " + rri + " should be " + players[rri].name);
             
             //create a new pannel and label for battle effects
