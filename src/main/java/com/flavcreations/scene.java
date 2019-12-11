@@ -17,6 +17,7 @@ public class scene extends JFrame
     private JLabel[] battlerLabels;
     private JPanel healthPanel;
     private JPanel bossHealthPanel;
+    private JLabel bossHealthLabel;
     private JPanel[] effectPanels;
     private JLabel[] effectLabels;
 
@@ -93,19 +94,23 @@ public class scene extends JFrame
         };
         
         //System.out.println("players.length-" + players.length);
-        
+        if(stanceUp) System.out.println("Up");
+        if(!stanceUp) System.out.println("Down");
+        System.out.println(stance);
         for(int s = 0; s <= players.length; s++)
         {
+            
             if(s < players.length)
             {
                 battlerLabels[s].setText(players[s].name + "-" + players[s].health + " Frame:" + stance);
-                System.out.println("update player" + s);
+                //System.out.println("update player" + s);
                 battlerLabels[s].updateUI();
             }
+            
             if(s == players.length)
             {
                 lboss.setText("Boss-health Frame:" + stance);
-                System.out.println("update boss");
+                //System.out.println("update boss");
                 lboss.updateUI();
             }
             
@@ -221,8 +226,7 @@ public class scene extends JFrame
                 250, 250, 250, 250,     //2-8
                 500, 500, 500, 500,     //3-12
                 750, 750, 750, 750,     //4-16
-                1000, 1000, 1000, 1000, //5-20
-                1250, 1250, 1500, 1500, //6-24
+                1000, 1000, 1000, 1000 //5-20
         };
 
         int[] pos24y = {
@@ -230,8 +234,7 @@ public class scene extends JFrame
                 0, 250, 500, 750, //2-8
                 0, 250, 500, 750, //3-12
                 0, 250, 500, 750, //4-16
-                0, 250, 500, 750, //5-20
-                0, 750, 0,   750   //6-24
+                0, 250, 500, 750 //5-20
         };
 
         //set background color and add panels to frame
@@ -240,7 +243,7 @@ public class scene extends JFrame
             battlerPanels[tpi].setBackground(Color.GREEN);
             add(battlerPanels[tpi]);
 
-            if(battlerPanels.length < 17)
+            if(battlerPanels.length < 21)
             {
                 battlerPanels[tpi].setSize(250,250);
                 battlerPanels[tpi].setLocation(pos24x[tpi], pos24y[tpi]);
@@ -250,8 +253,10 @@ public class scene extends JFrame
         //boss health panel
         bossHealthPanel = new JPanel();
         bossHealthPanel.setBackground(Color.RED);
-        bossHealthPanel.setSize(900,25);
-        bossHealthPanel.setLocation(1000,0);
+        bossHealthPanel.setSize(500,25);
+        bossHealthPanel.setLocation(1400,0);
+        bossHealthLabel = new JLabel("Boss:");
+        bossHealthPanel.add(bossHealthLabel);
         add(bossHealthPanel);
 
         //boss panel
@@ -260,13 +265,14 @@ public class scene extends JFrame
         pboss.setBackground(Color.DARK_GRAY);
         pboss.add(lboss);
         add(pboss);
-        pboss.setSize(500,500);
-        pboss.setLocation(1000,25);
+        pboss.setSize(600,600);
+        pboss.setLocation(1300,100);
         eboss = new JPanel();
         elboss = new JLabel();
         add(elboss);
         elboss.setSize(500,500);
-        elboss.setLocation(1000,25);
+        elboss.setLocation(1400,25);
+        
 
 
         /*
@@ -277,8 +283,8 @@ public class scene extends JFrame
         //player health panel
         healthPanel = new JPanel();
         healthPanel.setBackground(Color.RED);
-        healthPanel.setSize(900,75);
-        healthPanel.setLocation(1000,925);
+        healthPanel.setSize(500,75);
+        healthPanel.setLocation(1400,925);
         add(healthPanel);
 
 
