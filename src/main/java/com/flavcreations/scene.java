@@ -319,13 +319,13 @@ public class scene extends JFrame
         turnCyclePeriod = 60000L; //60000 milliseconds in a minute
     
         long secondMilliSeconds = 1000L;
-        long smsDelay = secondMilliSeconds;
-        long smsPeriod = secondMilliSeconds;
+        long sMsDelay = secondMilliSeconds;
+        long sMsPeriod = secondMilliSeconds;
     
     
     
     
-        ex.scheduleAtFixedRate(updatePanels, smsDelay, smsPeriod, TimeUnit.MILLISECONDS);
+        ex.scheduleAtFixedRate(updatePanels, sMsDelay, sMsPeriod, TimeUnit.MILLISECONDS);
 
         //getContentPane().setBackground(Color.magenta);
     }
