@@ -221,7 +221,7 @@ public class scene extends JFrame
         // 1000 / 250 = 4
         // 6 * 4 = 24
 
-        int[] pos24x = {
+        int[] pos20x = {
                 0, 0, 0, 0,             //1-4
                 250, 250, 250, 250,     //2-8
                 500, 500, 500, 500,     //3-12
@@ -229,7 +229,7 @@ public class scene extends JFrame
                 1000, 1000, 1000, 1000 //5-20
         };
 
-        int[] pos24y = {
+        int[] pos20y = {
                 0, 250, 500, 750, //1-4
                 0, 250, 500, 750, //2-8
                 0, 250, 500, 750, //3-12
@@ -246,7 +246,7 @@ public class scene extends JFrame
             if(battlerPanels.length < 21)
             {
                 battlerPanels[tpi].setSize(250,250);
-                battlerPanels[tpi].setLocation(pos24x[tpi], pos24y[tpi]);
+                battlerPanels[tpi].setLocation(pos20x[tpi], pos20y[tpi]);
             }
         }
 
