@@ -52,6 +52,18 @@ public class scene extends JFrame
 	}
 	private int ht = 200;
 	private int wd = 200;
+	
+	/*
+	1920 - 520 = 1400 / 200 = 7
+	x							x==== 35
+	1080 - 80 =  1000 / 200 = 5
+	
+	1920 - 520 = 1400 / 250 = 5.75ish? -- 5.75ish - .75ish = 5
+	x 														x========== 20
+	1080 / 250 = 4 ----------------------------------------- 4
+		
+	 */
+	
 	private void setupScene()
 	{
 		battlerPanels = new JPanel[2];
@@ -64,7 +76,7 @@ public class scene extends JFrame
 		battlerLabels[1] = new JLabel();
 		
 		
-		ImageIcon icontest = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\PhantomKnightIdle1.png");
+		ImageIcon icontest = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\200\\PhantomKnightIdle1.png");
 		AlphaIcon icontest2 = new AlphaIcon(icontest,1.0F);
 		//ImageIcon icontest2 = new AlphaImageIcon(icontest,1.0F);
 		battlerLabels[0].setIcon(icontest);
@@ -91,7 +103,7 @@ public class scene extends JFrame
 		
 		add(battlerPanels[1]);
 		
-		ImageIcon icontest3 = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\PhantomKnightIdle3rev.png");
+		ImageIcon icontest3 = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\200\\PhantomKnightIdle3rev.png");
 		battlerLabels[0].setIcon(icontest3);
 		
 		
