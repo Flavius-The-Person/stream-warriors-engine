@@ -99,7 +99,7 @@ public class menu extends JFrame
 
                     System.out.println(roster);
                     sc.addPlayers(roster);
-                    sc.loadGame();
+                    //sc.loadGame();
 
                 } else if(!opnRstr)
                 {
