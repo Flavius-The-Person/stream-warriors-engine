@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.BufferedImageOp;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,8 +23,13 @@ public class scene extends JFrame
 	
 	private JPanel pBoss;
 	private JLabel lBoss;
+	
 	private JPanel epBoss;
 	private JLabel elBoss;
+	
+	private JPanel bgPanel;
+	private JLabel bgLabel;
+	public ImageIcon bgIcon;
 	
 	public long turnCycleDelay;
 	public long turnCyclePeriod;
@@ -34,6 +40,7 @@ public class scene extends JFrame
 	scene()
 	{
 		//swFrame = new JFrame("Stream Warriors Battle");
+		
 		setLayout(null);
 		setupScene();
 		
@@ -42,7 +49,8 @@ public class scene extends JFrame
 		//swFrame.setSize(1920, 1080);
 		//swFrame.setVisible(true);
 		
-		getContentPane().setBackground(Color.BLACK);
+		
+		
 		setSize(1920,1080);
 		setVisible(true);
 	}
@@ -66,14 +74,24 @@ public class scene extends JFrame
 	
 	private void setupScene()
 	{
-		battlerPanels = new JPanel[2];
-		battlerLabels = new JLabel[2];
+		battlerPanels = new JPanel[5];
+		battlerLabels = new JLabel[5];
 		
 		battlerPanels[0] = new JPanel();
 		battlerLabels[0] = new JLabel();
 		
 		battlerPanels[1] = new JPanel();
 		battlerLabels[1] = new JLabel();
+		
+		battlerPanels[2] = new JPanel();
+		battlerLabels[2] = new JLabel();
+		
+		battlerPanels[3] = new JPanel();
+		battlerLabels[3] = new JLabel();
+		
+		battlerPanels[4] = new JPanel();
+		battlerLabels[4] = new JLabel();
+		
 		
 		
 		ImageIcon icontest = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\200\\PhantomKnightIdle1.png");
@@ -103,8 +121,75 @@ public class scene extends JFrame
 		
 		add(battlerPanels[1]);
 		
+		battlerLabels[2].setIcon(icontest2);
+		battlerLabels[2].setSize(wd,ht);
+		battlerLabels[2].setOpaque(false);
+		
+		battlerPanels[2].add(battlerLabels[2]);
+		battlerPanels[2].setSize(wd,ht);
+		battlerPanels[2].setLocation(0,ht*2);
+		battlerPanels[2].setOpaque(false);
+		
+		add(battlerPanels[2]);
+		
+		battlerLabels[3].setIcon(icontest2);
+		battlerLabels[3].setSize(wd,ht);
+		battlerLabels[3].setOpaque(false);
+		
+		battlerPanels[3].add(battlerLabels[3]);
+		battlerPanels[3].setSize(wd,ht);
+		battlerPanels[3].setLocation(0,ht*3);
+		battlerPanels[3].setOpaque(false);
+		
+		
+		add(battlerPanels[3]);
+		
+		battlerLabels[4].setIcon(icontest2);
+		battlerLabels[4].setSize(wd,ht);
+		battlerLabels[4].setOpaque(false);
+		
+		battlerPanels[4].add(battlerLabels[4]);
+		battlerPanels[4].setSize(wd,ht);
+		battlerPanels[4].setLocation(0,ht*4);
+		battlerPanels[4].setOpaque(false);
+		
+		
+		add(battlerPanels[4]);
+		
 		ImageIcon icontest3 = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\200\\PhantomKnightIdle3rev.png");
 		battlerLabels[0].setIcon(icontest3);
+		
+		
+		pBoss = new JPanel();
+		lBoss = new JLabel();
+		ImageIcon bossIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\celestialguard-horus-idle1.png");
+		lBoss.setIcon(bossIcon);
+		lBoss.setOpaque(false);
+		pBoss.add(lBoss);
+		pBoss.setOpaque(false);
+		lBoss.setSize(500,500);
+		pBoss.setSize(500,500);
+		pBoss.setLocation(1400,250);
+		add(pBoss);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		bgPanel = new JPanel();
+		bgLabel = new JLabel();
+		bgIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\overlay_map_01v1.png");
+		bgLabel.setIcon(bgIcon);
+		bgPanel.add(bgLabel);
+		bgPanel.setLocation(0,-10);
+		bgPanel.setSize(1920,1080);
+		add(bgPanel);
 		
 		
 		
