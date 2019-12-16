@@ -74,29 +74,18 @@ public class scene extends JFrame
 	
 	private void setupScene()
 	{
-		battlerPanels = new JPanel[5];
-		battlerLabels = new JLabel[5];
-		
-		battlerPanels[0] = new JPanel();
-		battlerLabels[0] = new JLabel();
-		
-		battlerPanels[1] = new JPanel();
-		battlerLabels[1] = new JLabel();
-		
-		battlerPanels[2] = new JPanel();
-		battlerLabels[2] = new JLabel();
-		
-		battlerPanels[3] = new JPanel();
-		battlerLabels[3] = new JLabel();
-		
-		battlerPanels[4] = new JPanel();
-		battlerLabels[4] = new JLabel();
 		
 		
+		
+		battlerPanels = new JPanel[5]; battlerLabels = new JLabel[5];
+		battlerPanels[0] = new JPanel(); battlerLabels[0] = new JLabel();
+		battlerPanels[1] = new JPanel(); battlerLabels[1] = new JLabel();
+		battlerPanels[2] = new JPanel(); battlerLabels[2] = new JLabel();
+		battlerPanels[3] = new JPanel(); battlerLabels[3] = new JLabel();
+		battlerPanels[4] = new JPanel(); battlerLabels[4] = new JLabel();
 		
 		ImageIcon icontest = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\200\\PhantomKnightIdle1.png");
-		AlphaIcon icontest2 = new AlphaIcon(icontest,1.0F);
-		//ImageIcon icontest2 = new AlphaImageIcon(icontest,1.0F);
+		
 		battlerLabels[0].setIcon(icontest);
 		battlerLabels[0].setSize(wd,ht);
 		battlerLabels[0].setOpaque(false);
@@ -106,10 +95,9 @@ public class scene extends JFrame
 		battlerPanels[0].setLocation(0,0);
 		battlerPanels[0].setOpaque(false);
 		
-		
 		add(battlerPanels[0]);
 		
-		battlerLabels[1].setIcon(icontest2);
+		battlerLabels[1].setIcon(icontest);
 		battlerLabels[1].setSize(wd,ht);
 		battlerLabels[1].setOpaque(false);
 		
@@ -121,7 +109,7 @@ public class scene extends JFrame
 		
 		add(battlerPanels[1]);
 		
-		battlerLabels[2].setIcon(icontest2);
+		battlerLabels[2].setIcon(icontest);
 		battlerLabels[2].setSize(wd,ht);
 		battlerLabels[2].setOpaque(false);
 		
@@ -132,7 +120,7 @@ public class scene extends JFrame
 		
 		add(battlerPanels[2]);
 		
-		battlerLabels[3].setIcon(icontest2);
+		battlerLabels[3].setIcon(icontest);
 		battlerLabels[3].setSize(wd,ht);
 		battlerLabels[3].setOpaque(false);
 		
@@ -140,11 +128,9 @@ public class scene extends JFrame
 		battlerPanels[3].setSize(wd,ht);
 		battlerPanels[3].setLocation(0,ht*3);
 		battlerPanels[3].setOpaque(false);
-		
-		
 		add(battlerPanels[3]);
 		
-		battlerLabels[4].setIcon(icontest2);
+		battlerLabels[4].setIcon(icontest);
 		battlerLabels[4].setSize(wd,ht);
 		battlerLabels[4].setOpaque(false);
 		
@@ -152,8 +138,6 @@ public class scene extends JFrame
 		battlerPanels[4].setSize(wd,ht);
 		battlerPanels[4].setLocation(0,ht*4);
 		battlerPanels[4].setOpaque(false);
-		
-		
 		add(battlerPanels[4]);
 		
 		ImageIcon icontest3 = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\200\\PhantomKnightIdle3rev.png");
