@@ -72,11 +72,24 @@ public class scene extends JFrame
 		
 	 */
 	
+	private int[] pos35x = {
+	
+	};
+	private int[] pos35y = {
+	
+	};
 	private void setupScene()
 	{
-		
-		
-		
+		for(int ss = 0; ss < battlerPanels.length; ss++)
+		{
+				/*
+				battlerPanels[2].setLocation(0,ht*2);
+				 */
+			while(ss < 35)
+			{
+				
+			}
+		}
 		battlerPanels = new JPanel[5]; battlerLabels = new JLabel[5];
 		battlerPanels[0] = new JPanel(); battlerLabels[0] = new JLabel();
 		battlerPanels[1] = new JPanel(); battlerLabels[1] = new JLabel();
