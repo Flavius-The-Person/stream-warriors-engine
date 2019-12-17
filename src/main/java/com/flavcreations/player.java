@@ -113,24 +113,19 @@ public class player
 
         if (inDB)
         {
-            URL path = player.class.getResource("\\testfiles\\");
             System.out.println("Player found in db");
-            ImageIcon icontest = new ImageIcon(
-                    path+
-                            "PhantomKnightIdle1.png");
-            AlphaIcon icontest2 = new AlphaIcon(icontest,1.0F);
             
             idleIcons[0] = new ImageIcon( //idle 1
                     "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\" +
+                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
                             "PhantomKnightIdle1.png");
             idleIcons[1] = new ImageIcon( //idle 2
                     "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\" +
+                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
                             "PhantomKnightIdle2.png");
             idleIcons[2] = new ImageIcon( //idle 3
                     "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\" +
+                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
                             "PhantomKnightIdle3.png");
 
             guardIcons[0] = new ImageIcon("");//guard 1
@@ -202,9 +197,18 @@ public class player
         else if(!inDB)
         {
             System.out.println("Player found in db");
-            idleIcons[0] = new ImageIcon("com/flavcreations/testfiles/PhantomKnightIdle1.png");//idle 1
-            idleIcons[1] = new ImageIcon("com/flavcreations/testfiles/PhantomKnightIdle2.png");//idle 2
-            idleIcons[2] = new ImageIcon("com/flavcreations/testfiles/PhantomKnightIdle3.png");//idle 3
+            idleIcons[0] = new ImageIcon( //idle 1
+                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
+                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
+                            "PhantomKnightIdle1.png");
+            idleIcons[1] = new ImageIcon( //idle 2
+                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
+                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
+                            "PhantomKnightIdle2.png");
+            idleIcons[2] = new ImageIcon( //idle 3
+                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
+                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
+                            "PhantomKnightIdle3rev.png");
     
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2

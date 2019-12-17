@@ -42,7 +42,7 @@ public class scene extends JFrame
 		//swFrame = new JFrame("Stream Warriors Battle");
 		
 		setLayout(null);
-		setupScene();
+		//setupScene();
 		
 		updateScene();
 		
@@ -86,7 +86,7 @@ public class scene extends JFrame
 		
 		ImageIcon icontest = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\200\\PhantomKnightIdle1.png");
 		
-		battlerLabels[0].setIcon(icontest);
+		battlerLabels[0].setIcon(players[0].idleIcons[0]);
 		battlerLabels[0].setSize(wd,ht);
 		battlerLabels[0].setOpaque(false);
 		
@@ -141,7 +141,7 @@ public class scene extends JFrame
 		add(battlerPanels[4]);
 		
 		ImageIcon icontest3 = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\200\\PhantomKnightIdle3rev.png");
-		battlerLabels[0].setIcon(icontest3);
+		battlerLabels[0].setIcon(players[0].idleIcons[2]);
 		
 		
 		pBoss = new JPanel();
