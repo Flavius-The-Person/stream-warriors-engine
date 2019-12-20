@@ -3,13 +3,13 @@ package com.flavcreations;
 import javax.swing.*;
 import java.net.URL;
 
-public class player
+public class Player
 {
     private int maxHealth = 1000;
     public int health;
     public String name;
-    public boolean ded;
-    public boolean animating = false;
+    public boolean isKO = false;
+    public boolean isAnimating = false;
     /*might use and might not use contemplating controllingg turns here
     public boolean turn = false;
     public int attack_phase = 0;
@@ -107,7 +107,7 @@ public class player
     {
         health = maxHealth;
         name = pname;
-        ded = false;
+        isKO = false;
         boolean inDB = false;
         //check if in db
 
@@ -286,7 +286,7 @@ public class player
          */
         health = health - damage;
         if(health < 0) health = 0;
-        ded = true;
+        isKO = true;
     }
 
 }

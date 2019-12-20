@@ -2,7 +2,7 @@ package com.flavcreations;
 
 import java.util.Scanner;
 
-public class init
+public class Init
 {
 
     public static void main(String[] args)

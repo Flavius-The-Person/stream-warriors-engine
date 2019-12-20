@@ -2,7 +2,7 @@ package com.flavcreations;
 
 import javax.swing.*;
 
-public class enemy
+public class Enemy
 {
     private int maxHealth = 1000000;
     int health;

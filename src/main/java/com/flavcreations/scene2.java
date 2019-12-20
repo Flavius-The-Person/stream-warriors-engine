@@ -26,7 +26,7 @@ public class scene2 extends JFrame
     private JPanel eboss;
     private JLabel elboss;
     
-    public player[] players;
+    public Player[] players;
     
     public long turnCycleDelay;
     public long turnCyclePeriod;

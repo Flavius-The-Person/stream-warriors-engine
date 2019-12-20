@@ -1,19 +1,25 @@
 package com.flavcreations;
 
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class menu extends JFrame
+public class Menu extends JFrame
 {
     //class variables and object imports (such as scene and enemy)
-    scene sc;
-    enemy en;
+    Scene sc;
+    Enemy en;
 
     private JLabel menuImgLbl;
     private ImageIcon menuImgIcn;
@@ -39,12 +45,12 @@ public class menu extends JFrame
 
 
 
-    public menu()
+    public Menu()
     {
         super("Stream Warriors Menu");
 
-        sc = new scene();
-        en = new enemy();
+        sc = new Scene();
+        en = new Enemy();
         setSize(615,840);
         menuImgIcn = new ImageIcon(bgImg);
         menuImgLbl = new JLabel();
