@@ -8,7 +8,7 @@ public class Init
     public static void main(String[] args)
     {
         Scanner inp = new Scanner(System.in);
-        menu mn = new menu();
+        Menu mn = new Menu();
 
         String sInp;
         System.out.println("What is the player to be put in?");

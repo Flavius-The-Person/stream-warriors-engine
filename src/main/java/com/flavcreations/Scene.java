@@ -11,11 +11,11 @@ public class Scene extends JFrame
 {
 	private JFrame swFrame;
 	
-	private List<JPanel> battlerPanels2;
-	private List<JLabel> battlerLabels2;
+	private List<JPanel> battlerPanels2 = new ArrayList<JPanel>();
+	private List<JLabel> battlerLabels2 = new ArrayList<JLabel>();
 	
-	private List<JPanel> effectPanels2;
-	private List<JLabel> effectLabels2;
+	private List<JPanel> effectPanels2 = new ArrayList<JPanel>();
+	private List<JLabel> effectLabels2 = new ArrayList<JLabel>();
 	
 	
 	private JPanel[] battlerPanels;
@@ -100,10 +100,18 @@ public class Scene extends JFrame
 	private void setupScene()
 	{
 		System.out.println(Players[0].name);
-		for(int ss = 0; ss < battlerPanels.length; ss++)
+		for(int ss = 0; ss < Players.length; ss++) //battlerPanels.length; ss++)
 		{
 			if(ss < 36)
 			{
+				battlerPanels2.get(ss).setSize(wd,ht);
+				battlerLabels2.get(ss).setIcon(Players[ss].idleIcons[0]);
+				battlerLabels2.get(ss).setSize(wd,ht);
+				battlerPanels2.get(ss).add(battlerLabels2.get(ss));
+				add(battlerPanels2.get(ss));
+				battlerPanels2.get(ss).setLocation(pos35x[ss],pos35y[ss]);
+				battlerPanels2.get(ss).setOpaque(false);
+				/*
 				battlerPanels[ss].setSize(wd,ht);
 				battlerLabels[ss].setIcon(Players[ss].idleIcons[0]);
 				System.out.println(Players[ss].idleIcons[0]);
@@ -112,6 +120,7 @@ public class Scene extends JFrame
 				add(battlerPanels[ss]);
 				battlerPanels[ss].setLocation(pos35x[ss],pos35y[ss]);
 				battlerPanels[ss].setOpaque(false);
+				*/
 			}
 				/*
 				battlerPanels[2].setLocation(0,ht*2);
@@ -286,26 +295,37 @@ public class Scene extends JFrame
 	private void loadGame()
 	{
 		//initiate pannels and labels arrays for battler panels/labels and effect panels/labels
-		battlerPanels = new JPanel[Players.length];
+		/*battlerPanels = new JPanel[Players.length];
 		battlerLabels = new JLabel[Players.length];
 		effectPanels = new JPanel[Players.length];
 		effectLabels = new JLabel[Players.length];
 		battlerPanels2.add(new JPanel());
-		
+		*/
 		
 		//console print stating that the panels and labels were created for testing purposes (will be taken out later)
-		System.out.println("end of setting player count, and panel/label arrays");
-		
+		// System.out.println("end of setting player count, and panel/label arrays");
+		battlerPanels2.clear();
+		//battlerLabels2.clear();
 		
 		for(int rri = 0; rri < Players.length; rri++)
 		{
 			//create a new panel and label for player characters
+			
+			battlerPanels2.add(new JPanel());
+			battlerLabels2.add(new JLabel());
+			
+			effectPanels2.add(new JPanel());
+			effectLabels2.add(new JLabel());
+			/*
 			battlerPanels[rri] = new JPanel();
 			battlerPanels[rri].setLayout(null);
 			battlerLabels[rri] = new JLabel();
 			battlerLabels[rri].setText(Players[rri].name);
 			System.out.println("player " + rri + " should be " + Players[rri].name);
+			*/
 			
+			
+			/*
 			//create a new pannel and label for battle effects
 			effectPanels[rri] = new JPanel();
 			effectPanels[rri].setLayout(null);
@@ -314,6 +334,10 @@ public class Scene extends JFrame
 			
 			battlerPanels[rri].add(battlerLabels[rri]);
 			System.out.println(Players[rri].name);
+			
+			 */
+			//battlerPanels2.get(rri).add(battlerLabels2.get(rri));
+			
 		}
 		
 		//console print stating that player data has been loaded into panels/labels

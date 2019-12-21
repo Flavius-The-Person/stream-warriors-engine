@@ -360,7 +360,7 @@ public class scene2 extends JFrame
     public void addPlayers(ArrayList<String> roster)
     {
         //set players object array size to roster size.
-        players = new player[roster.size()];
+        players = new Player[roster.size()];
         
         //import random function
         Random randy = new Random();
@@ -371,7 +371,7 @@ public class scene2 extends JFrame
         //for loop through the players object array adding data to each player
         for(int pint = 0; pint < players.length; pint++)
         {
-            players[pint] = new player();
+            players[pint] = new Player();
             players[pint].setData(roster.get(pint), pgen);
         }
         
