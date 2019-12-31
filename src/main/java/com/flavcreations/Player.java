@@ -1,7 +1,6 @@
 package com.flavcreations;
 
 import javax.swing.*;
-import java.net.URL;
 
 public class Player
 {

@@ -11,30 +11,25 @@ public class Scene extends JFrame
 {
 	private JFrame swFrame;
 	
-	private List<JPanel> battlerPanels2 = new ArrayList<JPanel>();
-	private List<JLabel> battlerLabels2 = new ArrayList<JLabel>();
+	private List<JPanel> battlerPanels = new ArrayList<JPanel>();
+	private List<JLabel> battlerLabels = new ArrayList<JLabel>();
 	
-	private List<JPanel> effectPanels2 = new ArrayList<JPanel>();
-	private List<JLabel> effectLabels2 = new ArrayList<JLabel>();
+	private List<JPanel> effectPanels = new ArrayList<JPanel>();
+	private List<JLabel> effectLabels = new ArrayList<JLabel>();
 	
 	
-	private JPanel[] battlerPanels;
-	private JLabel[] battlerLabels;
 	
-	private JPanel[] effectPanels;
-	private JLabel[] effectLabels;
+	private JPanel bossPanel;
+	private JLabel bossLabel;
+	private JPanel bossHealthPanel;
+	private JLabel bossHealthLabel;
 	
-	private JPanel pBoss;
-	private JLabel lBoss;
-	private JPanel pBossH;
-	private JLabel lBossH;
+	private JPanel bossEffectPanel;
+	private JLabel bossEffectLabel;
 	
-	private JPanel epBoss;
-	private JLabel elBoss;
-	
-	private JPanel bgPanel;
-	private JLabel bgLabel;
-	private ImageIcon bgIcon;
+	private JPanel backgroundPanel;
+	private JLabel backgroundLabel;
+	private ImageIcon backgroundIcon;
 	
 	private JScrollPane phsp;
 	private JTextArea phta;
@@ -100,17 +95,17 @@ public class Scene extends JFrame
 	private void setupScene()
 	{
 		System.out.println(Players[0].name);
-		for(int ss = 0; ss < Players.length; ss++) //battlerPanels.length; ss++)
+		for(int sceneSetupInt = 0; sceneSetupInt < Players.length; sceneSetupInt++) //battlerPanels.length; ss++)
 		{
-			if(ss < 36)
+			if(sceneSetupInt < 36)
 			{
-				battlerPanels2.get(ss).setSize(wd,ht);
-				battlerLabels2.get(ss).setIcon(Players[ss].idleIcons[0]);
-				battlerLabels2.get(ss).setSize(wd,ht);
-				battlerPanels2.get(ss).add(battlerLabels2.get(ss));
-				add(battlerPanels2.get(ss));
-				battlerPanels2.get(ss).setLocation(pos35x[ss],pos35y[ss]);
-				battlerPanels2.get(ss).setOpaque(false);
+				battlerPanels.get(sceneSetupInt).setSize(wd,ht);
+				battlerLabels.get(sceneSetupInt).setIcon(Players[sceneSetupInt].idleIcons[0]);
+				battlerLabels.get(sceneSetupInt).setSize(wd,ht);
+				battlerPanels.get(sceneSetupInt).add(battlerLabels.get(sceneSetupInt));
+				add(battlerPanels.get(sceneSetupInt));
+				battlerPanels.get(sceneSetupInt).setLocation(pos35x[sceneSetupInt],pos35y[sceneSetupInt]);
+				battlerPanels.get(sceneSetupInt).setOpaque(false);
 				/*
 				battlerPanels[ss].setSize(wd,ht);
 				battlerLabels[ss].setIcon(Players[ss].idleIcons[0]);
@@ -122,152 +117,49 @@ public class Scene extends JFrame
 				battlerPanels[ss].setOpaque(false);
 				*/
 			}
-				/*
-				battlerPanels[2].setLocation(0,ht*2);
-				 */
 		/*	while(ss < 36)
 			{
 			
 			}
 			*/
 		}
-		/*
-		battlerPanels = new JPanel[5]; battlerLabels = new JLabel[5];
-		battlerPanels[0] = new JPanel(); battlerLabels[0] = new JLabel();
-		battlerPanels[1] = new JPanel(); battlerLabels[1] = new JLabel();
-		battlerPanels[2] = new JPanel(); battlerLabels[2] = new JLabel();
-		battlerPanels[3] = new JPanel(); battlerLabels[3] = new JLabel();
-		battlerPanels[4] = new JPanel(); battlerLabels[4] = new JLabel();
 		
-		ImageIcon icontest = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\200\\PhantomKnightIdle1.png");
-		
-		battlerLabels[0].setIcon(players[0].idleIcons[0]);
-		battlerLabels[0].setSize(wd,ht);
-		battlerLabels[0].setOpaque(false);
-		
-		battlerPanels[0].add(battlerLabels[0]);
-		battlerPanels[0].setSize(wd,ht);
-		battlerPanels[0].setLocation(0,0);
-		battlerPanels[0].setOpaque(false);
-		
-		add(battlerPanels[0]);
-		
-		battlerLabels[1].setIcon(icontest);
-		battlerLabels[1].setSize(wd,ht);
-		battlerLabels[1].setOpaque(false);
-		
-		battlerPanels[1].add(battlerLabels[1]);
-		battlerPanels[1].setSize(wd,ht);
-		battlerPanels[1].setLocation(0,ht);
-		battlerPanels[1].setOpaque(false);
-		
-		
-		add(battlerPanels[1]);
-		
-		battlerLabels[2].setIcon(icontest);
-		battlerLabels[2].setSize(wd,ht);
-		battlerLabels[2].setOpaque(false);
-		
-		battlerPanels[2].add(battlerLabels[2]);
-		battlerPanels[2].setSize(wd,ht);
-		battlerPanels[2].setLocation(0,ht*2);
-		battlerPanels[2].setOpaque(false);
-		
-		add(battlerPanels[2]);
-		
-		battlerLabels[3].setIcon(icontest);
-		battlerLabels[3].setSize(wd,ht);
-		battlerLabels[3].setOpaque(false);
-		
-		battlerPanels[3].add(battlerLabels[3]);
-		battlerPanels[3].setSize(wd,ht);
-		battlerPanels[3].setLocation(0,ht*3);
-		battlerPanels[3].setOpaque(false);
-		add(battlerPanels[3]);
-		
-		
-		battlerLabels[4].setIcon(icontest);
-		battlerLabels[4].setSize(wd,ht);
-		battlerLabels[4].setOpaque(false);
-		
-		battlerPanels[4].add(battlerLabels[4]);
-		battlerPanels[4].setSize(wd,ht);
-		battlerPanels[4].setLocation(0,ht*4);
-		battlerPanels[4].setOpaque(false);
-		add(battlerPanels[4]);
-		
-		
-		ImageIcon icontest3 = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\200\\PhantomKnightIdle3rev.png");
-		battlerLabels[0].setIcon(players[0].idleIcons[2]);
-		/*
-		dlm = new DefaultListModel();
-		for(int pn = 0; pn < players.length; pn++)
-		{
-			dlm.addElement(players[pn].name + "-" + players[pn].health);
-		}
-		
-		playerData = new JList(dlm);
-		phsp = new JScrollPane(playerData);
-		jspp = new JPanel();
-		jspp.add(phsp);
-		jspp.setSize(200,130);
-		jspp.setBackground(Color.BLACK);
-		add(jspp);
-		jspp.setLocation(0,950);
-		*/
-		
-		pBoss = new JPanel();
-		lBoss = new JLabel();
+		//add boss
+		bossPanel = new JPanel();
+		bossLabel = new JLabel();
 		ImageIcon bossIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\celestialguard-horus-idle1.png");
-		lBoss.setIcon(bossIcon);
-		lBoss.setOpaque(false);
-		pBoss.add(lBoss);
-		pBoss.setOpaque(false);
-		lBoss.setSize(500,500);
-		pBoss.setSize(500,500);
-		pBoss.setLocation(1400,250);
-		add(pBoss);
+		bossLabel.setIcon(bossIcon);
+		bossLabel.setOpaque(false);
+		bossPanel.add(bossLabel);
+		bossPanel.setOpaque(false);
+		bossLabel.setSize(500,500);
+		bossPanel.setSize(500,500);
+		bossPanel.setLocation(1400,250);
+		add(bossPanel);
 		
+		// Add Boss health Panel and label
+		bossHealthPanel = new JPanel();
+		bossHealthLabel = new JLabel("Boss Health: ");
+		bossHealthLabel.setBackground(Color.BLACK);
+		bossHealthLabel.setForeground(Color.GREEN);
+		bossHealthPanel.setLocation(1400,0);
+		bossHealthPanel.setBackground(Color.BLACK);
+		bossHealthPanel.setSize(500,50);
+		bossHealthPanel.add(bossHealthLabel);
+		add(bossHealthPanel);
 		
-		pBossH = new JPanel();
-		lBossH = new JLabel("Boss Health: ");
-		lBossH.setBackground(Color.BLACK);
-		lBossH.setForeground(Color.GREEN);
-		pBossH.setLocation(1400,0);
-		pBossH.setBackground(Color.BLACK);
-		pBossH.setSize(500,50);
-		pBossH.add(lBossH);
-		add(pBossH);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		bgPanel = new JPanel();
-		bgLabel = new JLabel();
-		bgIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\overlay_map_01v1.png");
-		bgLabel.setIcon(bgIcon);
-		bgPanel.add(bgLabel);
-		bgPanel.setLocation(0,-10);
-		bgPanel.setSize(1920,1080);
-		add(bgPanel);
-		
-		
-		
-		
-		
-		
-		
-		/*JPanel finPan = new JPanel();
-		add(finPan);*/
+		// Add background Panel
+		backgroundPanel = new JPanel();
+		backgroundLabel = new JLabel();
+		backgroundIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\overlay_map_01v1.png");
+		backgroundLabel.setIcon(backgroundIcon);
+		backgroundPanel.add(backgroundLabel);
+		backgroundPanel.setLocation(0,-10);
+		backgroundPanel.setSize(1920,1080);
+		add(backgroundPanel);
 		
 	}
+	
 	//add players from roster to the scene
 	public void addPlayers(ArrayList<String> roster)
 	{
@@ -280,11 +172,11 @@ public class Scene extends JFrame
 		//use random function to generate a random number between 2 for use when a person doesn't have a set character
 		int pgen = randy.nextInt(2);
 		
-		//for loop through the players object array adding data to each player
-		for(int pint = 0; pint < Players.length; pint++)
+		//for loop through the players object list adding data to each player
+		for(int playerLoopInt = 0; playerLoopInt < Players.length; playerLoopInt++)
 		{
-			Players[pint] = new Player();
-			Players[pint].setData(roster.get(pint), pgen);
+			Players[playerLoopInt] = new Player();
+			Players[playerLoopInt].setData(roster.get(playerLoopInt), pgen);
 		}
 		
 		//initiate the load game function
@@ -304,44 +196,26 @@ public class Scene extends JFrame
 		
 		//console print stating that the panels and labels were created for testing purposes (will be taken out later)
 		// System.out.println("end of setting player count, and panel/label arrays");
-		battlerPanels2.clear();
-		//battlerLabels2.clear();
+		battlerPanels.clear();
+		battlerLabels.clear();
 		
-		for(int rri = 0; rri < Players.length; rri++)
+		//loop through players and add panels and labels for each player
+		for(int addPlayerInt = 0; addPlayerInt < Players.length; addPlayerInt++)
 		{
 			//create a new panel and label for player characters
 			
-			battlerPanels2.add(new JPanel());
-			battlerLabels2.add(new JLabel());
+			battlerPanels.add(new JPanel());
+			battlerLabels.add(new JLabel());
 			
-			effectPanels2.add(new JPanel());
-			effectLabels2.add(new JLabel());
-			/*
-			battlerPanels[rri] = new JPanel();
-			battlerPanels[rri].setLayout(null);
-			battlerLabels[rri] = new JLabel();
-			battlerLabels[rri].setText(Players[rri].name);
-			System.out.println("player " + rri + " should be " + Players[rri].name);
-			*/
-			
-			
-			/*
-			//create a new pannel and label for battle effects
-			effectPanels[rri] = new JPanel();
-			effectPanels[rri].setLayout(null);
-			effectLabels[rri] = new JLabel("Eff Pan");
-			effectLabels[rri].setText("Eff Pan " + rri);
-			
-			battlerPanels[rri].add(battlerLabels[rri]);
-			System.out.println(Players[rri].name);
-			
-			 */
-			//battlerPanels2.get(rri).add(battlerLabels2.get(rri));
+			effectPanels.add(new JPanel());
+			effectLabels.add(new JLabel());
 			
 		}
 		
 		//console print stating that player data has been loaded into panels/labels
 		System.out.println("end of loading player panels/labels");
+		
+		//initiate scene setup
 		setupScene();
 		
 	}
