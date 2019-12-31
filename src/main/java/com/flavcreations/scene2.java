@@ -366,13 +366,13 @@ public class scene2 extends JFrame
         Random randy = new Random();
         
         //use random function to generate a random number between 2 for use when a person doesn't have a set character
-        int pgen = randy.nextInt(2);
+        int characterGen = randy.nextInt(2);
         
         //for loop through the players object array adding data to each player
         for(int pint = 0; pint < players.length; pint++)
         {
             players[pint] = new Player();
-            players[pint].setData(roster.get(pint), pgen);
+            players[pint].setData(roster.get(pint), characterGen);
         }
         
         //initiate the load game function
