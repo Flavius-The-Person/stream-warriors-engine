@@ -45,12 +45,15 @@ public class Scene extends JFrame
 	{
 		
 		setLayout(null);
+		getContentPane().setBackground(Color.BLACK);
 		//setupScene();
 		
 		updateScene();
 		
 		setSize(1920,1080);
 		setVisible(true);
+		
+		
 	}
 	private void updateScene()
 	{
@@ -106,16 +109,13 @@ public class Scene extends JFrame
 				add(battlerPanels.get(sceneSetupInt));
 				battlerPanels.get(sceneSetupInt).setLocation(pos35x[sceneSetupInt],pos35y[sceneSetupInt]);
 				battlerPanels.get(sceneSetupInt).setOpaque(false);
-				/*
-				battlerPanels[ss].setSize(wd,ht);
-				battlerLabels[ss].setIcon(Players[ss].idleIcons[0]);
-				System.out.println(Players[ss].idleIcons[0]);
-				battlerLabels[ss].setSize(wd,ht);
-				battlerPanels[ss].add(battlerLabels[ss]);
-				add(battlerPanels[ss]);
-				battlerPanels[ss].setLocation(pos35x[ss],pos35y[ss]);
-				battlerPanels[ss].setOpaque(false);
-				*/
+				
+				effectPanels.get(sceneSetupInt).setSize(wd,ht);
+				effectLabels.get(sceneSetupInt).setSize(wd,ht);
+				add(effectPanels.get(sceneSetupInt));
+				effectPanels.get(sceneSetupInt).setLocation(pos35x[sceneSetupInt],pos35y[sceneSetupInt]);
+				effectPanels.get(sceneSetupInt).setOpaque(false);
+				
 			}
 		/*	while(ss < 36)
 			{
@@ -148,6 +148,7 @@ public class Scene extends JFrame
 		bossHealthPanel.add(bossHealthLabel);
 		add(bossHealthPanel);
 		
+		
 		// Add background Panel
 		backgroundPanel = new JPanel();
 		backgroundLabel = new JLabel();
@@ -157,6 +158,7 @@ public class Scene extends JFrame
 		backgroundPanel.setLocation(0,-10);
 		backgroundPanel.setSize(1920,1080);
 		add(backgroundPanel);
+		
 		
 	}
 	
@@ -186,7 +188,7 @@ public class Scene extends JFrame
 	//load game function to create panels and labels for each character.
 	private void loadGame()
 	{
-		//initiate pannels and labels arrays for battler panels/labels and effect panels/labels
+		//initiate panels and labels arrays for battler panels/labels and effect panels/labels
 		/*battlerPanels = new JPanel[Players.length];
 		battlerLabels = new JLabel[Players.length];
 		effectPanels = new JPanel[Players.length];

@@ -287,5 +287,10 @@ public class Player
         if(health < 0) health = 0;
         isKO = true;
     }
+    
+    public void animate()
+    {
+    
+    }
 
 }

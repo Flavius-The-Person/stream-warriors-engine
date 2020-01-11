@@ -8,7 +8,7 @@ public class Init
     public static void main(String[] args)
     {
         Scanner inp = new Scanner(System.in);
-        Menu mn = new Menu();
+        Menu menu = new Menu();
 
         String sInp;
         System.out.println("What is the player to be put in?");
@@ -16,20 +16,25 @@ public class Init
 
         while(!(sInp.equals("done")))
         {
-            if(!mn.opnRstr)
+            if(menu.rosterArrayList.size() == 35)
+            {
+                System.out.println("Roster at max");
+                return;
+            }
+            if(!menu.isOpenRoster)
             {
                 System.out.println("Roster is not open");
             }
-            if(mn.opnRstr)
+            if(menu.isOpenRoster)
             {
-                if(mn.roster.contains(sInp))
+                if(menu.rosterArrayList.contains(sInp))
                 {
                     System.out.println("Player already in roster");
                 }
-                if(!mn.roster.contains(sInp))
+                if(!menu.rosterArrayList.contains(sInp))
                 {
                     System.out.println("input was: " + sInp);
-                    mn.addPlayer(sInp);
+                    menu.addPlayer(sInp);
                 }
             }
             System.out.println("What is the player to be put in?");

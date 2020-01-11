@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /*
 * A menu without stream warriors layout (patreon/github sponsors/website buttons and whatnot)
  */
-public class menu2 extends JFrame
+public class Menu2 extends JFrame
 {
     /*
     * Class variables used within this class.
@@ -31,7 +31,7 @@ public class menu2 extends JFrame
 
 
 
-    public menu2()
+    public Menu2()
     {
         //setting the title of the frame.
         super("Stream Warriors Menu");
