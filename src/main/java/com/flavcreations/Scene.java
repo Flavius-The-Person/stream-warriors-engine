@@ -6,6 +6,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class Scene extends JFrame
 {
@@ -38,6 +44,17 @@ public class Scene extends JFrame
 	public long turnCycleDelay;
 	public long turnCyclePeriod;
 	
+	private TimerTask gameTask;
+	private Timer gameCycleTimer;
+	
+	
+	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+	private Runnable gameCycleEvent;
+	
+	
+	boolean isOpenRoster = false;
+	boolean isFightStarted = false;
+	boolean isFightPaused = false;
 	
 	private Player[] Players;
 	
@@ -46,19 +63,57 @@ public class Scene extends JFrame
 		
 		setLayout(null);
 		getContentPane().setBackground(Color.BLACK);
+		
 		//setupScene();
 		
-		updateScene();
+		//updateScene();
 		
 		setSize(1920,1080);
 		setVisible(true);
 		
+	}
+	
+	//start game function
+	public void startGame()
+	{
+		gameCycleEvent = new Runnable() {
+			@Override
+			public void run() {
+				gameTask();
+				
+			}
+		};
+		isFightPaused = false;
+		isFightStarted = true;
+		
+		scheduler.scheduleAtFixedRate(gameCycleEvent, turnCycleDelay, turnCyclePeriod, MILLISECONDS);
 		
 	}
-	private void updateScene()
+	
+	//game task on the timer
+	public void gameTask()
+	{
+		if(isFightStarted && !isFightPaused)
+		{
+		
+		
+		}
+	}
+	
+	
+	public void updateScene()
 	{
 	
 	}
+	
+	//pause the game
+	public void pauseGame()
+	{
+		isFightPaused = true;
+		
+	}
+	
+	
 	private int ht = 200;
 	private int wd = 200;
 	
@@ -159,6 +214,8 @@ public class Scene extends JFrame
 		backgroundPanel.setSize(1920,1080);
 		add(backgroundPanel);
 		
+		startGame();
+		
 		
 	}
 	
@@ -188,13 +245,7 @@ public class Scene extends JFrame
 	//load game function to create panels and labels for each character.
 	private void loadGame()
 	{
-		//initiate panels and labels arrays for battler panels/labels and effect panels/labels
-		/*battlerPanels = new JPanel[Players.length];
-		battlerLabels = new JLabel[Players.length];
-		effectPanels = new JPanel[Players.length];
-		effectLabels = new JLabel[Players.length];
-		battlerPanels2.add(new JPanel());
-		*/
+		
 		
 		//console print stating that the panels and labels were created for testing purposes (will be taken out later)
 		// System.out.println("end of setting player count, and panel/label arrays");

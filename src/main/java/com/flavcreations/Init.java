@@ -16,15 +16,17 @@ public class Init
 
         while(!(sInp.equals("done")))
         {
-            if(menu.rosterArrayList.size() == 35)
-            {
-                System.out.println("Roster at max");
-                return;
-            }
             if(!menu.isOpenRoster)
             {
                 System.out.println("Roster is not open");
             }
+            else
+            if(menu.rosterArrayList.size() == 35)
+            {
+                System.out.println("Roster at max");
+                //return;
+            }
+            else
             if(menu.isOpenRoster)
             {
                 if(menu.rosterArrayList.contains(sInp))

@@ -23,9 +23,13 @@ public class Menu extends JFrame
     private JPanel backgroundPanel;
 
     private DefaultListModel dlm;
+    
+    /*
     boolean isOpenRoster = false;
     boolean isFightStarted = false;
     boolean isFightPaused = false;
+    */
+    
     public ArrayList<String> rosterArrayList = new ArrayList<String>();
     private JScrollPane rosterScrollPane;
     
@@ -85,22 +89,26 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                if(!isOpenRoster)
+                if(!sc.isOpenRoster)
                 {
-                    if(isFightStarted)
+                    if(sc.isFightStarted)
                     {
-                        if(isFightPaused)
+                        if(sc.isFightPaused)
                         {
-                            isFightPaused = false;
+                            sc.isFightPaused = false;
                             startButton.setText("Pause");
-                        } else if(!isFightPaused)
-                        {
-                            isFightPaused = true;
-                            startButton.setText("Start/Resume");
+                            sc.isFightPaused = false;
+                            
                         }
-                    }else if(!isFightStarted)
+                        else if(!sc.isFightPaused)
+                        {
+                            sc.isFightPaused = true;
+                            startButton.setText("Start/Resume");
+                            sc.isFightPaused = false;
+                        }
+                    }else if(!sc.isFightStarted)
                     {
-                        isFightStarted = true;
+                        sc.isFightStarted = true;
                         startButton.setText("Pause");
                     }
                 }
@@ -114,7 +122,12 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-            
+                if(sc.isFightStarted)
+                {
+                    sc.isFightStarted = false;
+                    sc.isOpenRoster = true;
+                    clearPlayers();
+                }
             }
         });
         
@@ -125,20 +138,20 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                if(isOpenRoster)
+                if(sc.isOpenRoster)
                 {
-                    isOpenRoster = false;
+                    sc.isOpenRoster = false;
                     openRosterButton.setText("Open Roster");
 
                     System.out.println(rosterArrayList);
                     sc.addPlayers(rosterArrayList);
                     //sc.loadGame();
 
-                } else if(!isOpenRoster)
+                } else if(!sc.isOpenRoster)
                 {
-                    if(!isFightStarted)
+                    if(!sc.isFightStarted)
                     {
-                        isOpenRoster = true;
+                        sc.isOpenRoster = true;
                         openRosterButton.setText("Close Roster");
                     }
                 }
@@ -255,7 +268,7 @@ public class Menu extends JFrame
 
     //method for clearing the roster/scrollpane
     public void clearPlayers() {
-        if(!isOpenRoster)
+        if(!sc.isOpenRoster)
         {
             return;
         }else
