@@ -6,6 +6,8 @@ public class Player
 {
     private int maxHealth = 1000;
     public int health;
+    public int idleFrame = 0;
+    public boolean idleUp = true;
     public String name;
     public boolean isKO = false;
     public boolean isAnimating = false;

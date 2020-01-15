@@ -6,6 +6,8 @@ public class Enemy
 {
     private int maxHealth = 1000000;
     int health;
+    public int idleFrame = 0;
+    public boolean idleUp = true;
     String name;
     boolean ded;
     
@@ -103,23 +105,25 @@ public class Enemy
         health = maxHealth;
         name = bname;
         ded = false;
+        System.out.println("name" + name);
     
     
-        if (bname == "") {
+        if (name == "celestialguard-horus") {
     
+            System.out.println("CelestialGuard-horus was name of boss");
     
             idleIcons[0] = new ImageIcon( //idle 1
                     "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
-                            "PhantomKnightIdle1.png");
+                            "src\\main\\java\\com\\flavcreations\\testfiles\\500\\" +
+                            "celestialguard-horus-idle1.png");
             idleIcons[1] = new ImageIcon( //idle 2
                     "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
-                            "PhantomKnightIdle2.png");
+                            "src\\main\\java\\com\\flavcreations\\testfiles\\500\\" +
+                            "celestialguard-horus-idle2.png");
             idleIcons[2] = new ImageIcon( //idle 3
                     "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
-                            "PhantomKnightIdle3.png");
+                            "src\\main\\java\\com\\flavcreations\\testfiles\\500\\" +
+                            "celestialguard-horus-idle3.png");
         
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2

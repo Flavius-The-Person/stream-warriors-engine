@@ -57,6 +57,8 @@ public class Scene extends JFrame
 	boolean isFightPaused = false;
 	
 	private Player[] Players;
+	private Enemy Boss;
+	
 	
 	Scene()
 	{
@@ -86,6 +88,13 @@ public class Scene extends JFrame
 		isFightPaused = false;
 		isFightStarted = true;
 		
+		// 1000L should be 1 second from Milliseconds?
+		long lSecond = 1000L;
+		
+		turnCycleDelay = lSecond;
+		turnCyclePeriod = lSecond;
+		
+		
 		scheduler.scheduleAtFixedRate(gameCycleEvent, turnCycleDelay, turnCyclePeriod, MILLISECONDS);
 		
 	}
@@ -93,10 +102,66 @@ public class Scene extends JFrame
 	//game task on the timer
 	public void gameTask()
 	{
-		if(isFightStarted && !isFightPaused)
+		/*
+		* While the game is started cycle through idle animations
+		* with a for loop, then cycle boss through idle animations
+		*
+		*
+		* Coming soon - check if attacking,
+		*
+		* cycle through attack animations if attacking
+		* instead of idle animations
+		*
+		* when finished with attack animations resume with idle animations
+		 */
+		if(isFightStarted)// && !isFightPaused)
 		{
-		
-		
+			System.out.println("entered gameTask()");
+			for(int x = 0; x < Players.length; x++)
+			{
+				if(Players[x].idleUp)
+				{
+					Players[x].idleFrame += 1;
+					
+				}
+				if(!Players[x].idleUp)
+				{
+					Players[x].idleFrame -= 1;
+				}
+				battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
+				if(Players[x].idleFrame == 2)
+				{
+					Players[x].idleUp = false;
+				}
+				if(Players[x].idleFrame == 0)
+				{
+					Players[x].idleUp = true;
+				}
+				
+			}
+			System.out.println("Exited for loop");
+			
+			
+			if(Boss.idleUp)
+			{
+				Boss.idleFrame += 1;
+			}
+			if(!Boss.idleUp)
+			{
+				Boss.idleFrame -= 1;
+			}
+			bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
+			if(Boss.idleFrame == 2)
+			{
+				Boss.idleUp = false;
+			}
+			if(Boss.idleFrame == 0)
+			{
+				Boss.idleUp = true;
+			}
+			
+			System.out.println("end of turn cycle");
+			
 		}
 	}
 	
@@ -105,6 +170,7 @@ public class Scene extends JFrame
 	{
 	
 	}
+	
 	
 	//pause the game
 	public void pauseGame()
@@ -152,7 +218,9 @@ public class Scene extends JFrame
 	
 	private void setupScene()
 	{
-		System.out.println(Players[0].name);
+		
+		//System.out.println(Players[0].name);
+		
 		for(int sceneSetupInt = 0; sceneSetupInt < Players.length; sceneSetupInt++) //battlerPanels.length; ss++)
 		{
 			if(sceneSetupInt < 36)
@@ -161,29 +229,32 @@ public class Scene extends JFrame
 				battlerLabels.get(sceneSetupInt).setIcon(Players[sceneSetupInt].idleIcons[0]);
 				battlerLabels.get(sceneSetupInt).setSize(wd,ht);
 				battlerPanels.get(sceneSetupInt).add(battlerLabels.get(sceneSetupInt));
+				
 				add(battlerPanels.get(sceneSetupInt));
 				battlerPanels.get(sceneSetupInt).setLocation(pos35x[sceneSetupInt],pos35y[sceneSetupInt]);
 				battlerPanels.get(sceneSetupInt).setOpaque(false);
 				
 				effectPanels.get(sceneSetupInt).setSize(wd,ht);
 				effectLabels.get(sceneSetupInt).setSize(wd,ht);
+				effectPanels.get(sceneSetupInt).add(effectLabels.get(sceneSetupInt));
+				
 				add(effectPanels.get(sceneSetupInt));
 				effectPanels.get(sceneSetupInt).setLocation(pos35x[sceneSetupInt],pos35y[sceneSetupInt]);
 				effectPanels.get(sceneSetupInt).setOpaque(false);
 				
 			}
-		/*	while(ss < 36)
-			{
-			
-			}
-			*/
 		}
 		
 		//add boss
 		bossPanel = new JPanel();
 		bossLabel = new JLabel();
-		ImageIcon bossIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\celestialguard-horus-idle1.png");
-		bossLabel.setIcon(bossIcon);
+		ImageIcon bossIcon = new ImageIcon( //idle 1
+				"D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
+						"src\\main\\java\\com\\flavcreations\\testfiles\\500\\" +
+						"celestialguard-horus-idle1.png");
+		//ImageIcon bossIcon = new ImageIcon(
+				//"D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\celestialguard-horus-idle1.png");
+		bossLabel.setIcon(Boss.idleIcons[0]);
 		bossLabel.setOpaque(false);
 		bossPanel.add(bossLabel);
 		bossPanel.setOpaque(false);
@@ -217,6 +288,19 @@ public class Scene extends JFrame
 		startGame();
 		
 		
+	}
+	
+	//pull integer from Menu based on combo box selection
+	public void setBoss(int bossInt)
+	{
+		//create new boss enemy
+		Boss = new Enemy();
+		
+		//if bossint = 0, set boss to celestial guard - horus
+		if(bossInt == 0)
+		{
+			Boss.setData("celestialguard-horus");
+		}
 	}
 	
 	//add players from roster to the scene

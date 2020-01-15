@@ -9,14 +9,15 @@ public class Init
     {
         Scanner inp = new Scanner(System.in);
         Menu menu = new Menu();
-
+    
+        
         String sInp;
         System.out.println("What is the player to be put in?");
         sInp = inp.nextLine();
 
         while(!(sInp.equals("done")))
         {
-            if(!menu.isOpenRoster)
+            if(!menu.scene.isOpenRoster)
             {
                 System.out.println("Roster is not open");
             }
@@ -27,7 +28,7 @@ public class Init
                 //return;
             }
             else
-            if(menu.isOpenRoster)
+            if(menu.scene.isOpenRoster)
             {
                 if(menu.rosterArrayList.contains(sInp))
                 {

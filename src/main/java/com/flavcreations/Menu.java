@@ -12,8 +12,8 @@ import java.util.ArrayList;
 public class Menu extends JFrame
 {
     //class variables and object imports (such as scene and enemy)
-    Scene sc;
-    Enemy en;
+    Scene scene ;
+    
 
     private JLabel menuImageLabel;
     private ImageIcon menuImageIcon;
@@ -42,6 +42,7 @@ public class Menu extends JFrame
     private JLabel titleLabel;
     private JComboBox bossComboBox;
     private String[] bossChoices = {"boss1", "not available", "not available"};
+    private int bossChoice;
     private ImageIcon[] bossChoiceImages = {
             new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\celestialguard-horus-idle1.png"),
             new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\celestialguard-horus-idle1.png")
@@ -67,8 +68,8 @@ public class Menu extends JFrame
     {
         super("Stream Warriors Menu");
 
-        sc = new Scene();
-        en = new Enemy();
+        scene = new Scene();
+        
         setSize(600,930);
         menuImageIcon = new ImageIcon(backgroundImage);
         menuImageLabel = new JLabel();
@@ -81,6 +82,15 @@ public class Menu extends JFrame
         titleLabel.setForeground(Color.RED);
 
         bossComboBox = new JComboBox(bossChoiceImages);
+        bossComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                bossChoice = actionEvent.getID();
+                System.out.println("bossChoice-" + bossChoice);
+                
+        
+            }
+        });
         
         startButton = new JButton("Start");
         startButton.setBackground(Color.DARK_GRAY);
@@ -89,26 +99,26 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                if(!sc.isOpenRoster)
+                if(!scene.isOpenRoster)
                 {
-                    if(sc.isFightStarted)
+                    if(scene.isFightStarted)
                     {
-                        if(sc.isFightPaused)
+                        if(scene.isFightPaused)
                         {
-                            sc.isFightPaused = false;
+                            scene.isFightPaused = false;
                             startButton.setText("Pause");
-                            sc.isFightPaused = false;
+                            scene.isFightPaused = false;
                             
                         }
-                        else if(!sc.isFightPaused)
+                        else if(!scene.isFightPaused)
                         {
-                            sc.isFightPaused = true;
+                            scene.isFightPaused = true;
                             startButton.setText("Start/Resume");
-                            sc.isFightPaused = false;
+                            scene.isFightPaused = false;
                         }
-                    }else if(!sc.isFightStarted)
+                    }else if(!scene.isFightStarted)
                     {
-                        sc.isFightStarted = true;
+                        scene.isFightStarted = true;
                         startButton.setText("Pause");
                     }
                 }
@@ -122,10 +132,10 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                if(sc.isFightStarted)
+                if(scene.isFightStarted)
                 {
-                    sc.isFightStarted = false;
-                    sc.isOpenRoster = true;
+                    scene.isFightStarted = false;
+                    scene.isOpenRoster = true;
                     clearPlayers();
                 }
             }
@@ -138,20 +148,22 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                if(sc.isOpenRoster)
+                if(scene.isOpenRoster)
                 {
-                    sc.isOpenRoster = false;
+                    scene.isOpenRoster = false;
                     openRosterButton.setText("Open Roster");
 
                     System.out.println(rosterArrayList);
-                    sc.addPlayers(rosterArrayList);
+                    System.out.println("boss combo box index=" + bossComboBox.getSelectedIndex());
+                    scene.setBoss(bossComboBox.getSelectedIndex());
+                    scene.addPlayers(rosterArrayList);
                     //sc.loadGame();
 
-                } else if(!sc.isOpenRoster)
+                } else if(!scene.isOpenRoster)
                 {
-                    if(!sc.isFightStarted)
+                    if(!scene.isFightStarted)
                     {
-                        sc.isOpenRoster = true;
+                        scene.isOpenRoster = true;
                         openRosterButton.setText("Close Roster");
                     }
                 }
@@ -268,7 +280,7 @@ public class Menu extends JFrame
 
     //method for clearing the roster/scrollpane
     public void clearPlayers() {
-        if(!sc.isOpenRoster)
+        if(!scene.isOpenRoster)
         {
             return;
         }else
