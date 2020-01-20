@@ -91,8 +91,8 @@ public class Scene extends JFrame
 		// 1000L should be 1 second from Milliseconds?
 		long lSecond = 1000L;
 		
-		turnCycleDelay = lSecond;
-		turnCyclePeriod = lSecond;
+		turnCycleDelay = lSecond / 2;
+		turnCyclePeriod = lSecond / 2;
 		
 		
 		scheduler.scheduleAtFixedRate(gameCycleEvent, turnCycleDelay, turnCyclePeriod, MILLISECONDS);
