@@ -7,6 +7,7 @@ public class Enemy
     private int maxHealth = 1000000;
     int health;
     public int idleFrame = 0;
+    public int attFrame = 3;
     public boolean idleUp = true;
     String name;
     boolean ded;

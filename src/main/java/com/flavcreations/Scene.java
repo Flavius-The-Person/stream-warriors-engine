@@ -65,8 +65,7 @@ public class Scene extends JFrame
 		
 		setLayout(null);
 		getContentPane().setBackground(Color.BLACK);
-		
-		//setupScene();
+				//setupScene();
 		
 		//updateScene();
 		
@@ -119,49 +118,54 @@ public class Scene extends JFrame
 			System.out.println("entered gameTask()");
 			for(int x = 0; x < Players.length; x++)
 			{
-				if(Players[x].idleUp)
+				//check if player is doing regular idle or not? for now it would be attacking or idle
+				if(Players[x].attFrame < 3)
 				{
-					Players[x].idleFrame += 1;
-					
+					battlerLabels.get(x).setIcon(Players[x].attackIcons[Players[x].attFrame]);
+					Players[x].attFrame++;
 				}
-				if(!Players[x].idleUp)
-				{
-					Players[x].idleFrame -= 1;
+				if(Players[x].attFrame > 2) {
+					if (Players[x].idleUp) {
+						Players[x].idleFrame += 1;
+						
+					}
+					if (!Players[x].idleUp) {
+						Players[x].idleFrame -= 1;
+					}
+					battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
+					if (Players[x].idleFrame == 2) {
+						Players[x].idleUp = false;
+					}
+					if (Players[x].idleFrame == 0) {
+						Players[x].idleUp = true;
+					}
 				}
-				battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
-				if(Players[x].idleFrame == 2)
-				{
-					Players[x].idleUp = false;
-				}
-				if(Players[x].idleFrame == 0)
-				{
-					Players[x].idleUp = true;
-				}
-				
 			}
 			System.out.println("Exited for loop");
 			
+			if(Boss.attFrame < 3)
+			{
+				bossLabel.setIcon(Boss.attackIcons[Boss.attFrame]);
+				Boss.attFrame++;
+			}
+			if(Boss.attFrame > 2) {
+				
+				if (Boss.idleUp) {
+					Boss.idleFrame += 1;
+				}
+				if (!Boss.idleUp) {
+					Boss.idleFrame -= 1;
+				}
+				bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
+				if (Boss.idleFrame == 2) {
+					Boss.idleUp = false;
+				}
+				if (Boss.idleFrame == 0) {
+					Boss.idleUp = true;
+				}
+			}
 			
-			if(Boss.idleUp)
-			{
-				Boss.idleFrame += 1;
-			}
-			if(!Boss.idleUp)
-			{
-				Boss.idleFrame -= 1;
-			}
-			bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
-			if(Boss.idleFrame == 2)
-			{
-				Boss.idleUp = false;
-			}
-			if(Boss.idleFrame == 0)
-			{
-				Boss.idleUp = true;
-			}
-			
-			System.out.println("end of turn cycle");
-			
+			System.out.println("end of one animating cycle");
 		}
 	}
 	

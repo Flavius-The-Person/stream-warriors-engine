@@ -7,6 +7,7 @@ public class Player
     private int maxHealth = 1000;
     public int health;
     public int idleFrame = 0;
+    public int attFrame = 3;
     public boolean idleUp = true;
     public String name;
     public boolean isKO = false;
@@ -17,7 +18,6 @@ public class Player
     */
     public String[] sounds = new String[6];
     /*
-
        sounds[0] = "";//Atk
        sounds[1] = "";//hit/damaged
        sounds[2] = "";//physical skill
