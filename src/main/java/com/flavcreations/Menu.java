@@ -41,6 +41,7 @@ public class Menu extends JFrame
     
     private JLabel titleLabel;
     private JComboBox bossComboBox;
+    
     private String[] bossChoices = {"boss1", "not available", "not available"};
     private int bossChoice;
     private ImageIcon[] bossChoiceImages = {
@@ -157,7 +158,7 @@ public class Menu extends JFrame
                     System.out.println("boss combo box index=" + bossComboBox.getSelectedIndex());
                     scene.setBoss(bossComboBox.getSelectedIndex());
                     scene.addPlayers(rosterArrayList);
-                    //sc.loadGame();
+                    
 
                 } else if(!scene.isOpenRoster)
                 {
