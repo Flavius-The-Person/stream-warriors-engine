@@ -51,7 +51,7 @@ public class Menu extends JFrame
     
     
     
-    /*** Variables no longer using? Or might not be uysing?
+    /*** Variables no longer using? Or might not be using?
      *
      * ArrayList<String> patrons = new ArrayList<String>();
      * ArrayList<String> voiceArtists = new ArrayList<String>();
@@ -59,6 +59,7 @@ public class Menu extends JFrame
      * JList patronList, vAList;
      * JLabel strtLbl, rstrOpnLbl, rstrLbl, ptrnLbl, vALbl;
      * DefaultListModel dlm2, dlm3
+     *
      */
     
     
