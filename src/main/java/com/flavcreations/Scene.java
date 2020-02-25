@@ -107,7 +107,6 @@ public class Scene extends JFrame
 		* While the game is started cycle through idle animations
 		* with a for loop, then cycle boss through idle animations
 		*
-		*
 		* Coming soon - check if attacking,
 		*
 		* cycle through attack animations if attacking
