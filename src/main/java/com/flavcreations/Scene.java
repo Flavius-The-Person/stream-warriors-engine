@@ -2,14 +2,12 @@ package com.flavcreations;
 
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
-import java.util.TimerTask;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
@@ -47,6 +45,8 @@ public class Scene extends JFrame
 	private TimerTask gameTask;
 	private Timer gameCycleTimer;
 	
+	private List<Integer> turnList;// = new List<Integer>();
+	private int turn = 0;
 	
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	private Runnable gameCycleEvent;
@@ -59,7 +59,7 @@ public class Scene extends JFrame
 	private Player[] Players;
 	private Enemy Boss;
 	
-	private int eventTimer = 0;
+	private int eventTimer = 3;
 	
 	
 	Scene()
@@ -117,13 +117,35 @@ public class Scene extends JFrame
 		
 		if(isFightStarted)// && !isFightPaused)
 		{
+			if(turnList.isEmpty())
+			{
+				double temp_turns = Players.length * 1.6;
+				long temp_turns_long = Math.round(temp_turns);
+				for (int temp_turn = 0; temp_turn <= temp_turns_long; )
+				{
+					Random randy = new Random();
+					int temp_randy = randy.nextInt((int) temp_turns_long);
+					while (turnList.contains(temp_randy))
+					{
+						temp_randy = randy.nextInt((int) temp_turns_long);
+					}
+					turnList.add(temp_randy);
+				}
+				Collections.shuffle(turnList);
+			}
+			
 			if(eventTimer>2)
 			{
-			
+				eventTimer = 0;
+				turn++;
 			}
 			System.out.println("entered gameTask()");
 			for(int x = 0; x < Players.length; x++)
 			{
+				if(x == turnList.get(turn))
+				{
+					battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
+				}
 				//check if player is doing regular idle or not? for now it would be attacking or idle
 				if(Players[x].attFrame < 3)
 				{
