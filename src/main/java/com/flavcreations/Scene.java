@@ -45,8 +45,8 @@ public class Scene extends JFrame
 	private TimerTask gameTask;
 	private Timer gameCycleTimer;
 	
-	private List<Integer> turnList;// = new List<Integer>();
-	private int turn = 0;
+	private List<Integer> turnList = new ArrayList<Integer>();
+	private int turn = 1;
 	
 	private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	private Runnable gameCycleEvent;
@@ -59,7 +59,7 @@ public class Scene extends JFrame
 	private Player[] Players;
 	private Enemy Boss;
 	
-	private int eventTimer = 3;
+	private int eventTimer = 0;
 	
 	
 	Scene()
@@ -92,8 +92,8 @@ public class Scene extends JFrame
 		// 1000L should be 1 second from Milliseconds?
 		long lSecond = 1000L;
 		
-		turnCycleDelay = lSecond / 4;
-		turnCyclePeriod = lSecond / 4;
+		turnCycleDelay = lSecond;// / 4;
+		turnCyclePeriod = lSecond;// / 4;
 		
 		// schedule task gameCycleEvent at turndycledelay, turncycleperiod, for milliseconds.
 		scheduler.scheduleAtFixedRate(gameCycleEvent, turnCycleDelay, turnCyclePeriod, MILLISECONDS);
@@ -117,41 +117,56 @@ public class Scene extends JFrame
 		
 		if(isFightStarted)// && !isFightPaused)
 		{
-			if(turnList.isEmpty())
+			System.out.println("pre turnlist");
+			if(turn >= turnList.size()) //turnList.isEmpty())
 			{
-				double temp_turns = Players.length * 1.6;
-				long temp_turns_long = Math.round(temp_turns);
+				turnList.clear();
+				System.out.println("enter turn list");
+				//double temp_turns = Players.length * 1.6;
+				//long temp_turns_long = Math.round(temp_turns);
+				int temp_turns = Players.length * 2;
+				for(int temp_turn = 0; temp_turn <= temp_turns; temp_turn++) //temp_turns_long; temp_turn++)
+				{
+					turnList.add(temp_turn);
+					//System.out.println("For loop for adding temp turn: " + temp_turn);
+				}
+				
+				/*
 				for (int temp_turn = 0; temp_turn <= temp_turns_long; )
 				{
+					System.out.println("for testing temp_turn:" + temp_turn);
 					Random randy = new Random();
 					int temp_randy = randy.nextInt((int) temp_turns_long);
 					while (turnList.contains(temp_randy))
 					{
+						System.out.println("While testing turnlist contains");
 						temp_randy = randy.nextInt((int) temp_turns_long);
 					}
 					turnList.add(temp_randy);
-				}
+					System.out.println("Exited while loop");
+				}*/
+				//System.out.println("exited for loop and shuffling collection");
 				Collections.shuffle(turnList);
+				//System.out.println("after shuffled collection, exiting if");
+				System.out.println(turnList);
+				turn = 0;
 			}
 			
-			if(eventTimer>2)
+			/*if(eventTimer>2)
 			{
 				eventTimer = 0;
 				turn++;
-			}
-			System.out.println("entered gameTask()");
+			}*/
+			//System.out.println("entered gameTask()");
+			System.out.println("pre for loop turn: " + turnList.get(turn));
+			
 			for(int x = 0; x < Players.length; x++)
 			{
 				if(x == turnList.get(turn))
 				{
-					battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
+					battlerLabels.get(x).setIcon(Players[x].idleIcons[eventTimer]);
 				}
 				//check if player is doing regular idle or not? for now it would be attacking or idle
-				if(Players[x].attFrame < 3)
-				{
-					battlerLabels.get(x).setIcon(Players[x].attackIcons[Players[x].attFrame]);
-					Players[x].attFrame++;
-				}
 				if(Players[x].attFrame > 2) {
 					if (Players[x].idleUp) {
 						Players[x].idleFrame += 1;
@@ -169,31 +184,62 @@ public class Scene extends JFrame
 					}
 				}
 			}
-			System.out.println("Exited for loop");
 			
-			if(Boss.attFrame < 3)
+			//System.out.println("Exited for loop");
+			
+			if(turnList.get(turn)>=Players.length)
 			{
-				bossLabel.setIcon(Boss.attackIcons[Boss.attFrame]);
-				Boss.attFrame++;
+				bossLabel.setIcon(Boss.idleIcons[eventTimer]);
 			}
-			if(Boss.attFrame > 2) {
-				
-				if (Boss.idleUp) {
+			
+			if(turnList.get(turn)<Players.length)
+			{
+				if (Boss.idleUp)
+				{
 					Boss.idleFrame += 1;
 				}
-				if (!Boss.idleUp) {
+				
+				if (!Boss.idleUp)
+				{
 					Boss.idleFrame -= 1;
 				}
+				
 				bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
-				if (Boss.idleFrame == 2) {
+				
+				if (Boss.idleFrame == 2)
+				{
 					Boss.idleUp = false;
 				}
-				if (Boss.idleFrame == 0) {
+				
+				if (Boss.idleFrame == 0)
+				{
 					Boss.idleUp = true;
 				}
 			}
 			
-			System.out.println("end of one animating cycle");
+			//System.out.println("end of one animating cycle");
+			
+			System.out.println("Event Timer before eventTimer++: " + eventTimer);
+			eventTimer++;
+			if(eventTimer>2)
+			{
+				//System.out.println("inside if eventTimer > 3");
+				//System.out.println("pre-turn++: " + turn);
+				
+				turn++;
+				
+				//System.out.println("post-turn++: " + turn);
+				//System.out.println("pre-eventTimer=0: " + eventTimer);
+				
+				eventTimer = 0;
+				
+				//System.out.println("post-eventTimer=0: " + eventTimer);
+				
+			}
+			
+			//System.out.println("turn: " + turn);
+			//System.out.println("Event Timer after eventTimer++: " + eventTimer);
+			
 		}
 	}
 	
