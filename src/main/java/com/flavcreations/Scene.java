@@ -158,6 +158,7 @@ public class Scene extends JFrame
 				turn++;
 			}*/
 			//System.out.println("entered gameTask()");
+			
 			System.out.println("pre for loop turn: " + turnList.get(turn));
 			
 			for(int x = 0; x < Players.length; x++)
@@ -297,8 +298,6 @@ public class Scene extends JFrame
 	private void setupScene()
 	{
 		
-		//System.out.println(Players[0].name);
-		
 		for(int sceneSetupInt = 0; sceneSetupInt < Players.length; sceneSetupInt++) //battlerPanels.length; ss++)
 		{
 			if(sceneSetupInt < 36)
@@ -326,12 +325,12 @@ public class Scene extends JFrame
 		//add boss
 		bossPanel = new JPanel();
 		bossLabel = new JLabel();
+		
 		ImageIcon bossIcon = new ImageIcon( //idle 1
 				"D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
 						"src\\main\\java\\com\\flavcreations\\testfiles\\500\\" +
 						"celestialguard-horus-idle1.png");
-		//ImageIcon bossIcon = new ImageIcon(
-				//"D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\celestialguard-horus-idle1.png");
+		
 		bossLabel.setIcon(Boss.idleIcons[0]);
 		bossLabel.setOpaque(false);
 		bossPanel.add(bossLabel);
