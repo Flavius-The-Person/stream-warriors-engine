@@ -117,14 +117,17 @@ public class Scene extends JFrame
 		
 		if(isFightStarted)// && !isFightPaused)
 		{
-			System.out.println("pre turnlist");
+			//System.out.println("pre turnlist");
 			if(turn >= turnList.size()) //turnList.isEmpty())
 			{
 				turnList.clear();
-				System.out.println("enter turn list");
+				
+				//System.out.println("enter turn list");
 				//double temp_turns = Players.length * 1.6;
 				//long temp_turns_long = Math.round(temp_turns);
+				
 				int temp_turns = Players.length * 2;
+				
 				for(int temp_turn = 0; temp_turn <= temp_turns; temp_turn++) //temp_turns_long; temp_turn++)
 				{
 					turnList.add(temp_turn);
@@ -145,10 +148,11 @@ public class Scene extends JFrame
 					turnList.add(temp_randy);
 					System.out.println("Exited while loop");
 				}*/
+				
 				//System.out.println("exited for loop and shuffling collection");
 				Collections.shuffle(turnList);
 				//System.out.println("after shuffled collection, exiting if");
-				System.out.println(turnList);
+				//System.out.println(turnList);
 				turn = 0;
 			}
 			
@@ -157,9 +161,10 @@ public class Scene extends JFrame
 				eventTimer = 0;
 				turn++;
 			}*/
+			
 			//System.out.println("entered gameTask()");
 			
-			System.out.println("pre for loop turn: " + turnList.get(turn));
+			//System.out.println("pre for loop turn: " + turnList.get(turn));
 			
 			for(int x = 0; x < Players.length; x++)
 			{
@@ -167,25 +172,29 @@ public class Scene extends JFrame
 				{
 					battlerLabels.get(x).setIcon(Players[x].idleIcons[eventTimer]);
 				}
+
 				//check if player is doing regular idle or not? for now it would be attacking or idle
 				if(Players[x].attFrame > 2) {
 					if (Players[x].idleUp) {
 						Players[x].idleFrame += 1;
 						
 					}
+					
 					if (!Players[x].idleUp) {
 						Players[x].idleFrame -= 1;
 					}
+					
 					battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
+					
 					if (Players[x].idleFrame == 2) {
 						Players[x].idleUp = false;
 					}
+					
 					if (Players[x].idleFrame == 0) {
 						Players[x].idleUp = true;
 					}
 				}
 			}
-			
 			//System.out.println("Exited for loop");
 			
 			if(turnList.get(turn)>=Players.length)
@@ -222,6 +231,7 @@ public class Scene extends JFrame
 			
 			System.out.println("Event Timer before eventTimer++: " + eventTimer);
 			eventTimer++;
+
 			if(eventTimer>2)
 			{
 				//System.out.println("inside if eventTimer > 3");
