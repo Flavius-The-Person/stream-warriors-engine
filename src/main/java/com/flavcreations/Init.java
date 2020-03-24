@@ -22,7 +22,7 @@ public class Init
                 System.out.println("Roster is not open");
             }
             else
-            if(menu.rosterArrayList.size() == 35)
+            if(menu.rosterArrayList.size() == 28)
             {
                 System.out.println("Roster at max");
                 //return;

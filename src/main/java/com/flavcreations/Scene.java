@@ -195,6 +195,7 @@ public class Scene extends JFrame
 					}
 				}
 			}
+			
 			//System.out.println("Exited for loop");
 			
 			if(turnList.get(turn)>=Players.length)
