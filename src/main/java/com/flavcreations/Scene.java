@@ -31,6 +31,10 @@ public class Scene extends JFrame
 	private JPanel bossEffectPanel;
 	private JLabel bossEffectLabel;
 	
+	private JPanel menuPanel;
+	
+	private JPanel statsPanel;
+	
 	private JPanel backgroundPanel;
 	private JLabel backgroundLabel;
 	private ImageIcon backgroundIcon;
@@ -79,9 +83,11 @@ public class Scene extends JFrame
 	//start game function
 	public void startGame()
 	{
-		gameCycleEvent = new Runnable() {
+		gameCycleEvent = new Runnable()
+		{
 			@Override
-			public void run() {
+			public void run()
+			{
 				gameTask();
 				
 			}
@@ -150,9 +156,12 @@ public class Scene extends JFrame
 				}*/
 				
 				//System.out.println("exited for loop and shuffling collection");
+				
 				Collections.shuffle(turnList);
+				
 				//System.out.println("after shuffled collection, exiting if");
 				//System.out.println(turnList);
+				
 				turn = 0;
 			}
 			
@@ -174,23 +183,27 @@ public class Scene extends JFrame
 				}
 
 				//check if player is doing regular idle or not? for now it would be attacking or idle
-				if(Players[x].attFrame > 2) {
-					if (Players[x].idleUp) {
+				if(Players[x].attFrame > 2)
+				{
+					if (Players[x].idleUp)
+					{
 						Players[x].idleFrame += 1;
-						
 					}
 					
-					if (!Players[x].idleUp) {
+					if (!Players[x].idleUp)
+					{
 						Players[x].idleFrame -= 1;
 					}
 					
 					battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
 					
-					if (Players[x].idleFrame == 2) {
+					if (Players[x].idleFrame == 2)
+					{
 						Players[x].idleUp = false;
 					}
 					
-					if (Players[x].idleFrame == 0) {
+					if (Players[x].idleFrame == 0)
+					{
 						Players[x].idleUp = true;
 					}
 				}
