@@ -84,13 +84,14 @@ public class Menu extends JFrame
         titleLabel.setForeground(Color.RED);
 
         bossComboBox = new JComboBox(bossChoiceImages);
-        bossComboBox.addActionListener(new ActionListener() {
+        bossComboBox.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+            public void actionPerformed(ActionEvent actionEvent)
+            {
                 bossChoice = actionEvent.getID();
                 System.out.println("bossChoice-" + bossChoice);
                 
-        
             }
         });
         
@@ -174,7 +175,8 @@ public class Menu extends JFrame
 
         rosterArrayList.add("Flavius");
         dlm = new DefaultListModel();
-        for (String rAdd : rosterArrayList) {
+        for (String rAdd : rosterArrayList)
+        {
             dlm.addElement(rAdd);
         }
         rosterList = new JList(dlm);
@@ -183,8 +185,10 @@ public class Menu extends JFrame
         websiteButton = new JButton("Website");
         websiteButton.setBackground(Color.DARK_GRAY);
         websiteButton.setForeground(Color.RED);
-        websiteButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        websiteButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
                 openWebPage("https://www.flavcreations.com");
             }
         });
@@ -192,8 +196,10 @@ public class Menu extends JFrame
         githubButton = new JButton("Github Sponsors");
         githubButton.setBackground(Color.DARK_GRAY);
         githubButton.setForeground(Color.RED);
-        githubButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        githubButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
                 openWebPage("https://github.com/sponsors/Flavius-The-Person");
             }
         });
@@ -201,8 +207,10 @@ public class Menu extends JFrame
         creditsButton = new JButton("Credits");
         creditsButton.setBackground(Color.DARK_GRAY);
         creditsButton.setForeground(Color.RED);
-        creditsButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        creditsButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
                 openWebPage("https://www.flavcreations.com");
             }
         });
@@ -210,8 +218,10 @@ public class Menu extends JFrame
         patreonButton = new JButton("Patreon");
         patreonButton.setBackground(Color.DARK_GRAY);
         patreonButton.setForeground(Color.RED);
-        patreonButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        patreonButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
                 openWebPage("https://www.patreon.com/FlavCreations");
             }
         });
@@ -262,17 +272,21 @@ public class Menu extends JFrame
     }
 
     //open a website link when function is called with a url string
-    public void openWebPage(String url) {
-        try {
+    public void openWebPage(String url)
+    {
+        try
+        {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
 
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
         }
     }
 
     //method for adding a player via string input.
-    public void addPlayer(String player) {
+    public void addPlayer(String player)
+    {
         rosterArrayList.add(player);
         dlm.addElement(player);
         rosterList = new JList(dlm);
@@ -281,11 +295,12 @@ public class Menu extends JFrame
     }
 
     //method for clearing the roster/scrollpane
-    public void clearPlayers() {
+    public void clearPlayers()
+    {
         if(!scene.isOpenRoster)
         {
             return;
-        }else
+        } else
             rosterArrayList.clear();
             dlm.clear();
             rosterList = new JList(dlm);
