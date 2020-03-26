@@ -140,20 +140,6 @@ public class Scene extends JFrame
 					//System.out.println("For loop for adding temp turn: " + temp_turn);
 				}
 				
-				/*
-				for (int temp_turn = 0; temp_turn <= temp_turns_long; )
-				{
-					System.out.println("for testing temp_turn:" + temp_turn);
-					Random randy = new Random();
-					int temp_randy = randy.nextInt((int) temp_turns_long);
-					while (turnList.contains(temp_randy))
-					{
-						System.out.println("While testing turnlist contains");
-						temp_randy = randy.nextInt((int) temp_turns_long);
-					}
-					turnList.add(temp_randy);
-					System.out.println("Exited while loop");
-				}*/
 				
 				//System.out.println("exited for loop and shuffling collection");
 				
@@ -243,7 +229,8 @@ public class Scene extends JFrame
 			
 			//System.out.println("end of one animating cycle");
 			
-			System.out.println("Event Timer before eventTimer++: " + eventTimer);
+			//System.out.println("Event Timer before eventTimer++: " + eventTimer);
+			
 			eventTimer++;
 
 			if(eventTimer>2)
