@@ -132,7 +132,13 @@ public class Scene extends JFrame
 				//double temp_turns = Players.length * 1.6;
 				//long temp_turns_long = Math.round(temp_turns);
 				
-				int temp_turns = Players.length * 2;
+				Random rand = new Random();
+				
+				int maxBossTurns = (int) Math.rint(Players.length*0.75);
+				int bossTurns = rand.nextInt(maxBossTurns+1);
+				
+				int temp_turns = Players.length + bossTurns;
+				
 				
 				for(int temp_turn = 0; temp_turn <= temp_turns; temp_turn++) //temp_turns_long; temp_turn++)
 				{
