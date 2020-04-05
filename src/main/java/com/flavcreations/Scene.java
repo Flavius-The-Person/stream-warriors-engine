@@ -322,6 +322,7 @@ public class Scene extends JFrame
 				battlerPanels.get(sceneSetupInt).setSize(wd,ht);
 				battlerLabels.get(sceneSetupInt).setIcon(Players[sceneSetupInt].idleIcons[0]);
 				battlerLabels.get(sceneSetupInt).setSize(wd,ht);
+				//battlerLabels.get(sceneSetupInt).setText(Players[sceneSetupInt].name);
 				battlerPanels.get(sceneSetupInt).add(battlerLabels.get(sceneSetupInt));
 				
 				add(battlerPanels.get(sceneSetupInt));
