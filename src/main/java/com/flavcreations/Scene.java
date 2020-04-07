@@ -68,12 +68,15 @@ public class Scene extends JFrame
 	
 	Scene()
 	{
-		/*JFrame tFrame = new JFrame("transparent frame");
+		/*
+		JFrame tFrame = new JFrame("transparent frame");
 		tFrame.setSize(200, 200);
 		tFrame.setUndecorated(true);
 		tFrame.setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
 		tFrame.setVisible(true);
-		*/
+		JLabel jLabel = new JLabel("");
+		ImageIcon iIcon = new ImageIcon("");
+		/**/
 		setLayout(null);
 		getContentPane().setBackground(Color.BLACK);
 				//setupScene();
