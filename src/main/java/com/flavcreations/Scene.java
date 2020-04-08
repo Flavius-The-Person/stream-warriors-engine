@@ -13,7 +13,9 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class Scene extends JFrame
 {
-	private JFrame swFrame;
+	
+	private JFrame iFrame;
+	
 	
 	private List<JPanel> battlerPanels = new ArrayList<JPanel>();
 	private List<JLabel> battlerLabels = new ArrayList<JLabel>();
@@ -35,8 +37,8 @@ public class Scene extends JFrame
 	
 	private JPanel statsPanel;
 	
-	private JPanel backgroundPanel;
-	private JLabel backgroundLabel;
+	private JPanel backgroundPanel, backgroundPanel2;
+	private JLabel backgroundLabel, backgroundLabel2;
 	private ImageIcon backgroundIcon;
 	
 	private JScrollPane phsp;
@@ -68,15 +70,49 @@ public class Scene extends JFrame
 	
 	Scene()
 	{
-		
+		iFrame = new JFrame("Stream Warriors Info");
+		iFrame.setSize(1920,180);
+		setTitle("Stream Adventures");
 		setLayout(null);
-		getContentPane().setBackground(Color.BLACK);
 		
+		
+		
+		//getContentPane().setBackground(Color.BLACK);
+		
+		/*
+		// Add background Panel
+		backgroundPanel = new JPanel();
+		backgroundLabel = new JLabel();
+		backgroundIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\overlay_map_01v1.png");
+		//backgroundLabel.setIcon(backgroundIcon);
+		//backgroundLabel.setBackground(Color.decode("#c900c9"));
+		
+		backgroundPanel.add(backgroundLabel);
+		//backgroundPanel.setBackground(Color.decode("#c900c9"));
+		
+		backgroundPanel.setLocation(0,-10);
+		backgroundPanel.setSize(1920,1080);
+		
+		repaint();
+		getContentPane().repaint();
+		
+		*/
 		//setupScene();
 		//updateScene();
 		
-		setSize(1920,1080);
+		setSize(1920,900);
+		//setVisible(true);
 		setVisible(true);
+		
+		backgroundPanel = new JPanel();
+		backgroundLabel = new JLabel();
+		backgroundIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\overlay_map_01v1.png");
+		add(backgroundPanel);
+		
+		getContentPane().repaint();
+		super.repaint();
+		setVisible(true);
+		//iFrame.setVisible(true);
 		
 	}
 	
@@ -355,7 +391,7 @@ public class Scene extends JFrame
 		bossPanel.setOpaque(false);
 		bossLabel.setSize(500,500);
 		bossPanel.setSize(500,500);
-		bossPanel.setLocation(1400,250);
+		bossPanel.setLocation(1420,250);
 		add(bossPanel);
 		
 		// Add Boss health Panel and label
@@ -363,7 +399,7 @@ public class Scene extends JFrame
 		bossHealthLabel = new JLabel("Boss Health: ");
 		bossHealthLabel.setBackground(Color.BLACK);
 		bossHealthLabel.setForeground(Color.GREEN);
-		bossHealthPanel.setLocation(1400,0);
+		bossHealthPanel.setLocation(1420,0);
 		bossHealthPanel.setBackground(Color.BLACK);
 		bossHealthPanel.setSize(500,50);
 		bossHealthPanel.add(bossHealthLabel);
@@ -371,14 +407,29 @@ public class Scene extends JFrame
 		
 		
 		// Add background Panel
-		backgroundPanel = new JPanel();
-		backgroundLabel = new JLabel();
-		backgroundIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\overlay_map_01v1.png");
+		//backgroundPanel = new JPanel();
+		//backgroundLabel = new JLabel();
+		//backgroundIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\overlay_map_01v1.png");
 		backgroundLabel.setIcon(backgroundIcon);
+		//backgroundLabel.setBackground(Color.decode("#c900c9"));
+		
 		backgroundPanel.add(backgroundLabel);
+		//backgroundPanel.setBackground(Color.decode("#c900c9"));
+		
 		backgroundPanel.setLocation(0,-10);
 		backgroundPanel.setSize(1920,1080);
 		add(backgroundPanel);
+		
+		/*
+		backgroundPanel2 = new JPanel();
+		add(backgroundPanel2);
+		*/
+		getContentPane().repaint();
+		super.repaint();
+		
+		setVisible(true);
+		
+		
 		
 		startGame();
 		
