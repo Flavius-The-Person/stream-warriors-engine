@@ -101,7 +101,6 @@ public class Scene extends JFrame
 		//updateScene();
 		
 		setSize(1920,900);
-		//setVisible(true);
 		setVisible(true);
 		
 		backgroundPanel = new JPanel();
@@ -111,8 +110,9 @@ public class Scene extends JFrame
 		
 		getContentPane().repaint();
 		super.repaint();
+		backgroundPanel.setLocation(0,-10);
 		setVisible(true);
-		//iFrame.setVisible(true);
+		iFrame.setVisible(true);
 		
 	}
 	
@@ -128,6 +128,7 @@ public class Scene extends JFrame
 				
 			}
 		};
+		
 		isFightPaused = false;
 		isFightStarted = true;
 		
