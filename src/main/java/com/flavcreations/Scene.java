@@ -60,7 +60,7 @@ public class Scene extends JFrame
 	
 	boolean isOpenRoster = false;
 	boolean isFightStarted = false;
-	boolean isFightPaused = false;
+	boolean isFightPaused = true;
 	
 	private Player[] Players;
 	private Enemy Boss;
@@ -129,8 +129,8 @@ public class Scene extends JFrame
 			}
 		};
 		
-		isFightPaused = false;
-		isFightStarted = true;
+		//isFightPaused = false;
+		//isFightStarted = true;
 		
 		// 1000L should be 1 second from Milliseconds?
 		long lSecond = 1000L;
@@ -160,141 +160,130 @@ public class Scene extends JFrame
 		
 		if(isFightStarted)// && !isFightPaused)
 		{
-			//System.out.println("pre turnlist");
-			if(turn >= turnList.size()) //turnList.isEmpty())
-			{
-				turnList.clear();
+			if (!isFightPaused) {
 				
-				//System.out.println("enter turn list");
-				//double temp_turns = Players.length * 1.6;
-				//long temp_turns_long = Math.round(temp_turns);
-				
-				Random rand = new Random();
-				
-				int maxBossTurns = (int) Math.rint(Players.length*0.75);
-				int bossTurns = rand.nextInt(maxBossTurns+1);
-				
-				int temp_turns = Players.length + bossTurns;
-				
-				
-				for(int temp_turn = 0; temp_turn <= temp_turns; temp_turn++) //temp_turns_long; temp_turn++)
+				//System.out.println("pre turnlist");
+				if (turn >= turnList.size()) //turnList.isEmpty())
 				{
-					turnList.add(temp_turn);
-					//System.out.println("For loop for adding temp turn: " + temp_turn);
-				}
-				
-				
-				//System.out.println("exited for loop and shuffling collection");
-				
-				Collections.shuffle(turnList);
-				
-				//System.out.println("after shuffled collection, exiting if");
-				//System.out.println(turnList);
-				
-				turn = 0;
-			}
-			
-			/*if(eventTimer>2)
-			{
-				eventTimer = 0;
-				turn++;
-			}*/
-			
-			//System.out.println("entered gameTask()");
-			
-			//System.out.println("pre for loop turn: " + turnList.get(turn));
-			
-			for(int x = 0; x < Players.length; x++)
-			{
-				if(x == turnList.get(turn))
-				{
-					battlerLabels.get(x).setIcon(Players[x].idleIcons[eventTimer]);
-				}
-
-				//check if player is doing regular idle or not? for now it would be attacking or idle
-				if(Players[x].attFrame > 2)
-				{
-					if (Players[x].idleUp)
+					turnList.clear();
+					
+					//System.out.println("enter turn list");
+					//double temp_turns = Players.length * 1.6;
+					//long temp_turns_long = Math.round(temp_turns);
+					
+					Random rand = new Random();
+					
+					int maxBossTurns = (int) Math.rint(Players.length * 0.75);
+					int bossTurns = rand.nextInt(maxBossTurns + 1);
+					
+					int temp_turns = Players.length + bossTurns;
+					
+					
+					for (int temp_turn = 0; temp_turn <= temp_turns; temp_turn++) //temp_turns_long; temp_turn++)
 					{
-						Players[x].idleFrame += 1;
+						turnList.add(temp_turn);
+						//System.out.println("For loop for adding temp turn: " + temp_turn);
 					}
 					
-					if (!Players[x].idleUp)
-					{
-						Players[x].idleFrame -= 1;
+					
+					//System.out.println("exited for loop and shuffling collection");
+					
+					Collections.shuffle(turnList);
+					
+					//System.out.println("after shuffled collection, exiting if");
+					//System.out.println(turnList);
+					
+					turn = 0;
+				}
+				
+				/*if(eventTimer>2)
+				{
+					eventTimer = 0;
+					turn++;
+				}*/
+				
+				//System.out.println("entered gameTask()");
+				
+				//System.out.println("pre for loop turn: " + turnList.get(turn));
+				
+				for (int x = 0; x < Players.length; x++) {
+					if (x == turnList.get(turn)) {
+						battlerLabels.get(x).setIcon(Players[x].idleIcons[eventTimer]);
 					}
 					
-					battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
-					
-					if (Players[x].idleFrame == 2)
-					{
-						Players[x].idleUp = false;
+					//check if player is doing regular idle or not? for now it would be attacking or idle
+					if (Players[x].attFrame > 2) {
+						if (Players[x].idleUp) {
+							Players[x].idleFrame += 1;
+						}
+						
+						if (!Players[x].idleUp) {
+							Players[x].idleFrame -= 1;
+						}
+						
+						battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
+						
+						if (Players[x].idleFrame == 2) {
+							Players[x].idleUp = false;
+						}
+						
+						if (Players[x].idleFrame == 0) {
+							Players[x].idleUp = true;
+						}
+					}
+				}
+				
+				//System.out.println("Exited for loop");
+				
+				if (turnList.get(turn) >= Players.length) {
+					bossLabel.setIcon(Boss.idleIcons[eventTimer]);
+				}
+				
+				if (turnList.get(turn) < Players.length) {
+					if (Boss.idleUp) {
+						Boss.idleFrame += 1;
 					}
 					
-					if (Players[x].idleFrame == 0)
-					{
-						Players[x].idleUp = true;
+					if (!Boss.idleUp) {
+						Boss.idleFrame -= 1;
+					}
+					
+					bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
+					
+					if (Boss.idleFrame == 2) {
+						Boss.idleUp = false;
+					}
+					
+					if (Boss.idleFrame == 0) {
+						Boss.idleUp = true;
 					}
 				}
-			}
-			
-			//System.out.println("Exited for loop");
-			
-			if(turnList.get(turn)>=Players.length)
-			{
-				bossLabel.setIcon(Boss.idleIcons[eventTimer]);
-			}
-			
-			if(turnList.get(turn)<Players.length)
-			{
-				if (Boss.idleUp)
-				{
-					Boss.idleFrame += 1;
+				
+				//System.out.println("end of one animating cycle");
+				
+				//System.out.println("Event Timer before eventTimer++: " + eventTimer);
+				
+				eventTimer++;
+				
+				if (eventTimer > 2) {
+					//System.out.println("inside if eventTimer > 3");
+					//System.out.println("pre-turn++: " + turn);
+					
+					turn++;
+					
+					//System.out.println("post-turn++: " + turn);
+					//System.out.println("pre-eventTimer=0: " + eventTimer);
+					
+					eventTimer = 0;
+					
+					//System.out.println("post-eventTimer=0: " + eventTimer);
+					
 				}
 				
-				if (!Boss.idleUp)
-				{
-					Boss.idleFrame -= 1;
-				}
-				
-				bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
-				
-				if (Boss.idleFrame == 2)
-				{
-					Boss.idleUp = false;
-				}
-				
-				if (Boss.idleFrame == 0)
-				{
-					Boss.idleUp = true;
-				}
-			}
-			
-			//System.out.println("end of one animating cycle");
-			
-			//System.out.println("Event Timer before eventTimer++: " + eventTimer);
-			
-			eventTimer++;
-
-			if(eventTimer>2)
-			{
-				//System.out.println("inside if eventTimer > 3");
-				//System.out.println("pre-turn++: " + turn);
-				
-				turn++;
-				
-				//System.out.println("post-turn++: " + turn);
-				//System.out.println("pre-eventTimer=0: " + eventTimer);
-				
-				eventTimer = 0;
-				
-				//System.out.println("post-eventTimer=0: " + eventTimer);
+				//System.out.println("turn: " + turn);
+				//System.out.println("Event Timer after eventTimer++: " + eventTimer);
 				
 			}
-			
-			//System.out.println("turn: " + turn);
-			//System.out.println("Event Timer after eventTimer++: " + eventTimer);
-			
 		}
 	}
 	
@@ -497,7 +486,7 @@ public class Scene extends JFrame
 		}
 		
 		//console print stating that player data has been loaded into panels/labels
-		System.out.println("end of loading player panels/labels");
+		//System.out.println("end of loading player panels/labels");
 		
 		//initiate scene setup
 		setupScene();

@@ -110,18 +110,17 @@ public class Menu extends JFrame
                         {
                             scene.isFightPaused = false;
                             startButton.setText("Pause");
-                            scene.isFightPaused = false;
                             
                         }
                         else if(!scene.isFightPaused)
                         {
                             scene.isFightPaused = true;
                             startButton.setText("Start/Resume");
-                            scene.isFightPaused = false;
                         }
                     }else if(!scene.isFightStarted)
                     {
                         scene.isFightStarted = true;
+                        scene.isFightPaused = false;
                         startButton.setText("Pause");
                     }
                 }
