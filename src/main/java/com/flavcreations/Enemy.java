@@ -113,19 +113,29 @@ public class Enemy
     
             System.out.println("CelestialGuard-horus was name of boss");
     
+            String baseloc = "src/main/java/com/flavcreations/testfiles/500/";
+    
             idleIcons[0] = new ImageIcon( //idle 1
-                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\500\\" +
-                            "celestialguard-horus-idle1.png");
+                    baseloc + "celestialguard-horus-idle1.png");
             idleIcons[1] = new ImageIcon( //idle 2
-                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\500\\" +
-                            "celestialguard-horus-idle2.png");
+                    baseloc + "celestialguard-horus-idle2.png");
             idleIcons[2] = new ImageIcon( //idle 3
-                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\500\\" +
-                            "celestialguard-horus-idle3.png");
-        
+                    baseloc + "celestialguard-horus-idle3.png");
+    
+            koIcons[0] = new ImageIcon(//knocked out 1
+                    baseloc + "");
+            koIcons[1] = new ImageIcon(//knocked out 2
+                    baseloc + "");
+            koIcons[2] = new ImageIcon(//knocked out 3
+                    baseloc + "");
+    
+            attackIcons[0] = new ImageIcon(//attack 1
+                    baseloc + "");
+            attackIcons[1] = new ImageIcon(//attack 2
+                    baseloc + "");
+            attackIcons[2] = new ImageIcon(//attack 3
+                    baseloc + "");
+            
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2
             guardIcons[2] = new ImageIcon("");//guard 3
@@ -166,13 +176,7 @@ public class Enemy
             sleepIcons[1] = new ImageIcon("");//sleeping 2
             sleepIcons[2] = new ImageIcon("");//sleeping 3
         
-            koIcons[0] = new ImageIcon("");//knocked out 1
-            koIcons[2] = new ImageIcon("");//knocked out 2
-            koIcons[1] = new ImageIcon("");//knocked out 3
-        
-            attackIcons[0] = new ImageIcon("");//attack 1
-            attackIcons[2] = new ImageIcon("");//attack 2
-            attackIcons[1] = new ImageIcon("");//attack 3
+            
             
             sounds[0] = "";//Atk
             sounds[1] = "";//hit/damaged

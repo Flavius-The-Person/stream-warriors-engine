@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -69,7 +70,7 @@ public class Menu extends JFrame
     public Menu()
     {
         super("Stream Warriors Menu");
-
+        
         scene = new Scene();
         
         setSize(600,930);

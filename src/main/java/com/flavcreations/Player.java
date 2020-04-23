@@ -1,6 +1,7 @@
 package com.flavcreations;
 
 import javax.swing.*;
+import java.net.URL;
 
 public class Player
 {
@@ -132,17 +133,19 @@ public class Player
             System.out.println("Player found in db");
             
             idleIcons[0] = new ImageIcon( //idle 1
-                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
-                            "PhantomKnightIdle1.png");
+                    "com/flavcreations/testfiles/200/PhantomKnightIdle1.png");
             idleIcons[1] = new ImageIcon( //idle 2
-                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
-                            "PhantomKnightIdle2.png");
+                    "com/flavcreations/testfiles/200/PhantomKnightIdle2.png");
             idleIcons[2] = new ImageIcon( //idle 3
-                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
-                            "PhantomKnightIdle3.png");
+                    "com/flavcreations/testfiles/200/PhantomKnightIdle3.png");
+    
+            koIcons[0] = new ImageIcon("");//knocked out 1
+            koIcons[2] = new ImageIcon("");//knocked out 2
+            koIcons[1] = new ImageIcon("");//knocked out 3
+    
+            attackIcons[0] = new ImageIcon("");//attack 1
+            attackIcons[2] = new ImageIcon("");//attack 2
+            attackIcons[1] = new ImageIcon("");//attack 3
 
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2
@@ -184,13 +187,6 @@ public class Player
             sleepIcons[1] = new ImageIcon("");//sleeping 2
             sleepIcons[2] = new ImageIcon("");//sleeping 3
 
-            koIcons[0] = new ImageIcon("");//knocked out 1
-            koIcons[2] = new ImageIcon("");//knocked out 2
-            koIcons[1] = new ImageIcon("");//knocked out 3
-
-            attackIcons[0] = new ImageIcon("");//attack 1
-            attackIcons[2] = new ImageIcon("");//attack 2
-            attackIcons[1] = new ImageIcon("");//attack 3
 
 
             //since I can't store and reproduce the file itself from a database,
@@ -212,20 +208,34 @@ public class Player
         }
         else if(!inDB)
         {
-            System.out.println("Player found in db");
-            idleIcons[0] = new ImageIcon( //idle 1
-                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
-                            "PhantomKnightIdle1.png");
-            idleIcons[1] = new ImageIcon( //idle 2
-                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
-                            "PhantomKnightIdle2.png");
-            idleIcons[2] = new ImageIcon( //idle 3
-                    "D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                            "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
-                            "PhantomKnightIdle3rev.png");
+            /*"D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
+                "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
+                "PhantomKnightIdle1.png"*/
+            System.out.println("Player not found in db");
     
+            String baseloc = "src/main/java/com/flavcreations/testfiles/200/";
+            
+            idleIcons[0] = new ImageIcon( //idle 1
+                    baseloc + "PhantomKnightIdle1.png");
+            idleIcons[1] = new ImageIcon( //idle 2
+                    baseloc + "PhantomKnightIdle2.png");
+            idleIcons[2] = new ImageIcon( //idle 3
+                    baseloc + "PhantomKnightIdle3.png");
+    
+            koIcons[0] = new ImageIcon(//knocked out 1
+                    baseloc + "");
+            koIcons[1] = new ImageIcon(//knocked out 2
+                    baseloc + "");
+            koIcons[2] = new ImageIcon(//knocked out 3
+                    baseloc + "");
+    
+            attackIcons[0] = new ImageIcon(//attack 1
+                    baseloc + "");
+            attackIcons[1] = new ImageIcon(//attack 2
+                    baseloc + "");
+            attackIcons[2] = new ImageIcon(//attack 3
+                    baseloc + "");
+            
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2
             guardIcons[2] = new ImageIcon("");//guard 3
@@ -266,13 +276,7 @@ public class Player
             sleepIcons[1] = new ImageIcon("");//sleeping 2
             sleepIcons[2] = new ImageIcon("");//sleeping 3
     
-            koIcons[0] = new ImageIcon("");//knocked out 1
-            koIcons[2] = new ImageIcon("");//knocked out 2
-            koIcons[1] = new ImageIcon("");//knocked out 3
-    
-            attackIcons[0] = new ImageIcon("");//attack 1
-            attackIcons[2] = new ImageIcon("");//attack 2
-            attackIcons[1] = new ImageIcon("");//attack 3
+           
     
     
             //since I can't store and reproduce the file itself from a database,

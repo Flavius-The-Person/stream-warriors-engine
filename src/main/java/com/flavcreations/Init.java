@@ -1,5 +1,6 @@
 package com.flavcreations;
 
+import java.net.URL;
 import java.util.Scanner;
 
 public class Init
@@ -11,6 +12,7 @@ public class Init
         Menu menu = new Menu();
     
         
+    
         String sInp;
         System.out.println("What is the player to be put in?");
         sInp = inp.nextLine();
