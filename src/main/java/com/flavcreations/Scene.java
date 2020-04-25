@@ -105,7 +105,7 @@ public class Scene extends JFrame
 		
 		backgroundPanel = new JPanel();
 		backgroundLabel = new JLabel();
-		backgroundIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\overlay_map_01v1.png");
+		backgroundIcon = new ImageIcon("src/main/java/com/flavcreations/testfiles/overlay_map_01v1.png");
 		add(backgroundPanel);
 		
 		getContentPane().repaint();
