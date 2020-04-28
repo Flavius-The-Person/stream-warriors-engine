@@ -67,8 +67,10 @@ public class Scene extends JFrame
 	
 	private int eventTimer = 0;
 	
-	
-	Scene()
+	boolean allPlayersDead = false;
+	private int playersDead = 0;
+			
+			Scene()
 	{
 		iFrame = new JFrame("Stream Warriors Info");
 		iFrame.setSize(1920,180);
@@ -160,8 +162,9 @@ public class Scene extends JFrame
 		
 		if(isFightStarted)// && !isFightPaused)
 		{
-			if (!isFightPaused) {
-				
+			if (!isFightPaused)
+			{
+				Random rand = new Random();
 				//System.out.println("pre turnlist");
 				if (turn >= turnList.size()) //turnList.isEmpty())
 				{
@@ -171,7 +174,7 @@ public class Scene extends JFrame
 					//double temp_turns = Players.length * 1.6;
 					//long temp_turns_long = Math.round(temp_turns);
 					
-					Random rand = new Random();
+					
 					
 					int maxBossTurns = (int) Math.rint(Players.length * 0.75);
 					int bossTurns = rand.nextInt(maxBossTurns + 1);
@@ -206,97 +209,133 @@ public class Scene extends JFrame
 				
 				//System.out.println("pre for loop turn: " + turnList.get(turn));
 				
+				//check for player deaths
+				playersDead = 0;
 				for (int x = 0; x < Players.length; x++)
-				
 				{
-					if(x == turnList.get(turn))
+					if(Players[x].isKO)
 					{
-						//System.out.println("player turn: " + eventTimer);
-						battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
-						//System.out.println("Set player att icon");
+						playersDead++;
+						//battlerLabels.get(x).setIcon(Players[x].koIcons[0]);
 					}
-					//System.out.println("exiting player turn 1");
-					if(x != turnList.get(turn))
-					{
-						//System.out.println("Player but not turn: " + eventTimer + " Idle frame: " + Players[x].idleFrame);
-						if (Players[x].idleUp) {
-							Players[x].idleFrame += 1;
-						}
-						
-						if (!Players[x].idleUp) {
-							Players[x].idleFrame -= 1;
-						}
-						//System.out.println("setting player idle icon");
-						battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
-						
-						if (Players[x].idleFrame == 2) {
-							Players[x].idleUp = false;
-						}
-						
-						if (Players[x].idleFrame == 0) {
-							Players[x].idleUp = true;
-						}
-					}
-					//System.out.println("Exiting player idle 1");
-					/*
-					if (x == turnList.get(turn)) {
-						if(Players[x].attFrame>2) Players[x].attFrame = 0;
-						//battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
-					}
-					
-					//check if player is doing regular idle or not? for now it would be attacking or idle
-					if (Players[x].attFrame > 2) {
-						if (Players[x].idleUp) {
-							Players[x].idleFrame += 1;
-						}
-						
-						if (!Players[x].idleUp) {
-							Players[x].idleFrame -= 1;
-						}
-						
-						battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
-						
-						if (Players[x].idleFrame == 2) {
-							Players[x].idleUp = false;
-						}
-						
-						if (Players[x].idleFrame == 0) {
-							Players[x].idleUp = true;
-						}
-					}
-					if(Players[x].attFrame<3)
-					{
-						battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
-					}*/
+					System.out.println("Players Dead: " + playersDead);
+				}
+				if(playersDead >= Players.length) allPlayersDead = true;
+				
+				if(allPlayersDead)
+				{
+					System.out.println("Players ded, game pausing");
+					pauseGame();
+				}
+				if(Boss.ded)
+				{
+					System.out.println("Boss ded, game pausing");
+					pauseGame();
 				}
 				
-				//System.out.println("Exited for loop");
-				
-				if (turnList.get(turn) > Players.length) {
-					bossLabel.setIcon(Boss.attackIcons[eventTimer]);
-					//System.out.println("animating boss turn");
+				if(!allPlayersDead) {
+					for (int x = 0; x < Players.length; x++) {
+						if (x == turnList.get(turn)) {
+							//System.out.println("player turn: " + eventTimer);
+							battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
+							//System.out.println("Set player att icon");
+							if (eventTimer == 2) {
+								//Boss.updateHealth(50000);
+								if (Boss.ded) bossLabel.setIcon(Boss.koIcons[0]);
+							}
+						}
+						//System.out.println("exiting player turn 1");
+						if (x != turnList.get(turn)) {
+							//System.out.println("Player but not turn: " + eventTimer + " Idle frame: " + Players[x].idleFrame);
+							if (Players[x].idleUp) {
+								Players[x].idleFrame += 1;
+							}
+							
+							if (!Players[x].idleUp) {
+								Players[x].idleFrame -= 1;
+							}
+							//System.out.println("setting player idle icon");
+							battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
+							
+							if (Players[x].idleFrame == 2) {
+								Players[x].idleUp = false;
+							}
+							
+							if (Players[x].idleFrame == 0) {
+								Players[x].idleUp = true;
+							}
+						}
+						//System.out.println("Exiting player idle 1");
+						/*
+						if (x == turnList.get(turn)) {
+							if(Players[x].attFrame>2) Players[x].attFrame = 0;
+							//battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
+						}
+						
+						//check if player is doing regular idle or not? for now it would be attacking or idle
+						if (Players[x].attFrame > 2) {
+							if (Players[x].idleUp) {
+								Players[x].idleFrame += 1;
+							}
+							
+							if (!Players[x].idleUp) {
+								Players[x].idleFrame -= 1;
+							}
+							
+							battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
+							
+							if (Players[x].idleFrame == 2) {
+								Players[x].idleUp = false;
+							}
+							
+							if (Players[x].idleFrame == 0) {
+								Players[x].idleUp = true;
+							}
+						}
+						if(Players[x].attFrame<3)
+						{
+							battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
+						}*/
+					}
+					
+					System.out.println("Exited for loop");
 				}
 				
-				if (turnList.get(turn) < Players.length) {
-					if (Boss.idleUp) {
-						Boss.idleFrame += 1;
+				if(!Boss.ded)
+				{
+					System.out.println("boss not dead");
+					if (turnList.get(turn) > Players.length) {
+						bossLabel.setIcon(Boss.attackIcons[eventTimer]);
+						if (eventTimer == 2) {
+							int target = rand.nextInt(Players.length);
+							//Players[target].updateHealth(500);
+							if(Players[target].isKO) battlerLabels.get(target).setIcon(Players[target].koIcons[0]);
+							
+						}
+						//System.out.println("animating boss turn");
 					}
 					
-					if (!Boss.idleUp) {
-						Boss.idleFrame -= 1;
+					if (turnList.get(turn) < Players.length) {
+						if (Boss.idleUp) {
+							Boss.idleFrame += 1;
+						}
+						
+						if (!Boss.idleUp) {
+							Boss.idleFrame -= 1;
+						}
+						
+						bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
+						
+						if (Boss.idleFrame == 2) {
+							Boss.idleUp = false;
+						}
+						
+						if (Boss.idleFrame == 0) {
+							Boss.idleUp = true;
+						}
+						//System.out.println("Animating boss idle");
 					}
-					
-					bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
-					
-					if (Boss.idleFrame == 2) {
-						Boss.idleUp = false;
-					}
-					
-					if (Boss.idleFrame == 0) {
-						Boss.idleUp = true;
-					}
-					//System.out.println("Animating boss idle");
-				}
+				
 				
 				//System.out.println("end of one animating cycle");
 				
@@ -322,6 +361,7 @@ public class Scene extends JFrame
 				//System.out.println("turn: " + turn);
 				//System.out.println("Event Timer after eventTimer++: " + eventTimer);
 				
+				}
 			}
 		}
 	}
