@@ -267,13 +267,15 @@ public class Scene extends JFrame
 						}
 						//System.out.println("Exiting player idle 1");
 						/*
-						if (x == turnList.get(turn)) {
+						if (x == turnList.get(turn))
+						{
 							if(Players[x].attFrame>2) Players[x].attFrame = 0;
 							//battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
 						}
 						
 						//check if player is doing regular idle or not? for now it would be attacking or idle
-						if (Players[x].attFrame > 2) {
+						if (Players[x].attFrame > 2)
+						{
 							if (Players[x].idleUp) {
 								Players[x].idleFrame += 1;
 							}
