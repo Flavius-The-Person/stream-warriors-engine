@@ -116,25 +116,25 @@ public class Enemy
             String baseloc = "src/main/java/com/flavcreations/testfiles/500/";
     
             idleIcons[0] = new ImageIcon( //idle 1
-                    baseloc + "celestialguard-horus-idle1.png");
+                    baseloc + "Fungoliath/Fungoliath-Idle-01.png");
             idleIcons[1] = new ImageIcon( //idle 2
-                    baseloc + "celestialguard-horus-idle2.png");
+                    baseloc + "Fungoliath/Fungoliath-Idle-02.png");
             idleIcons[2] = new ImageIcon( //idle 3
-                    baseloc + "celestialguard-horus-idle3.png");
+                    baseloc + "Fungoliath/Fungoliath-Idle-03.png");
     
             koIcons[0] = new ImageIcon(//knocked out 1
-                    baseloc + "");
+                    baseloc + "Fungoliath/Fungoliath-Dead-01.png");
             koIcons[1] = new ImageIcon(//knocked out 2
-                    baseloc + "");
+                    baseloc + "Fungoliath/Fungoliath-Dead-02.png");
             koIcons[2] = new ImageIcon(//knocked out 3
-                    baseloc + "");
+                    baseloc + "Fungoliath/Fungoliath-Dead-03.png");
     
             attackIcons[0] = new ImageIcon(//attack 1
-                    baseloc + "");
+                    baseloc + "Fungoliath/Fungoliath-Stabbing-01.png");
             attackIcons[1] = new ImageIcon(//attack 2
-                    baseloc + "");
+                    baseloc + "Fungoliath/Fungoliath-Stabbing-02.png");
             attackIcons[2] = new ImageIcon(//attack 3
-                    baseloc + "");
+                    baseloc + "Fungoliath/Fungoliath-Stabbing-03.png");
             
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2

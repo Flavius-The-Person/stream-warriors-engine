@@ -206,9 +206,42 @@ public class Scene extends JFrame
 				
 				//System.out.println("pre for loop turn: " + turnList.get(turn));
 				
-				for (int x = 0; x < Players.length; x++) {
+				for (int x = 0; x < Players.length; x++)
+				
+				{
+					if(x == turnList.get(turn))
+					{
+						//System.out.println("player turn: " + eventTimer);
+						battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
+						//System.out.println("Set player att icon");
+					}
+					//System.out.println("exiting player turn 1");
+					if(x != turnList.get(turn))
+					{
+						//System.out.println("Player but not turn: " + eventTimer + " Idle frame: " + Players[x].idleFrame);
+						if (Players[x].idleUp) {
+							Players[x].idleFrame += 1;
+						}
+						
+						if (!Players[x].idleUp) {
+							Players[x].idleFrame -= 1;
+						}
+						//System.out.println("setting player idle icon");
+						battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
+						
+						if (Players[x].idleFrame == 2) {
+							Players[x].idleUp = false;
+						}
+						
+						if (Players[x].idleFrame == 0) {
+							Players[x].idleUp = true;
+						}
+					}
+					//System.out.println("Exiting player idle 1");
+					/*
 					if (x == turnList.get(turn)) {
-						battlerLabels.get(x).setIcon(Players[x].idleIcons[eventTimer]);
+						if(Players[x].attFrame>2) Players[x].attFrame = 0;
+						//battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
 					}
 					
 					//check if player is doing regular idle or not? for now it would be attacking or idle
@@ -231,12 +264,17 @@ public class Scene extends JFrame
 							Players[x].idleUp = true;
 						}
 					}
+					if(Players[x].attFrame<3)
+					{
+						battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
+					}*/
 				}
 				
 				//System.out.println("Exited for loop");
 				
-				if (turnList.get(turn) >= Players.length) {
-					bossLabel.setIcon(Boss.idleIcons[eventTimer]);
+				if (turnList.get(turn) > Players.length) {
+					bossLabel.setIcon(Boss.attackIcons[eventTimer]);
+					//System.out.println("animating boss turn");
 				}
 				
 				if (turnList.get(turn) < Players.length) {
@@ -257,6 +295,7 @@ public class Scene extends JFrame
 					if (Boss.idleFrame == 0) {
 						Boss.idleUp = true;
 					}
+					//System.out.println("Animating boss idle");
 				}
 				
 				//System.out.println("end of one animating cycle");
