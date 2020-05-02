@@ -135,12 +135,12 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                if(scene.isFightStarted)
-                {
+                    System.out.println("restart selected");
                     scene.isFightStarted = false;
                     scene.isOpenRoster = true;
-                    clearPlayers();
-                }
+                    clearRoster();
+                    scene.clearPlayers();
+                
             }
         });
         
@@ -170,7 +170,7 @@ public class Menu extends JFrame
                         openRosterButton.setText("Close Roster");
                         
                         int playeradd = 0;
-                        while(rosterArrayList.size()<112)
+                        while(rosterArrayList.size()<8)
                         {
                             addPlayer("p" + playeradd);
                             playeradd++;
@@ -303,12 +303,13 @@ public class Menu extends JFrame
     }
 
     //method for clearing the roster/scrollpane
-    public void clearPlayers()
+    public void clearRoster()
     {
         if(!scene.isOpenRoster)
         {
             return;
         } else
+            
             rosterArrayList.clear();
             dlm.clear();
             rosterList = new JList(dlm);

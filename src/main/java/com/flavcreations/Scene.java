@@ -705,4 +705,20 @@ public class Scene extends JFrame
 		
 	}
 	
+	public void clearPlayers()
+	{
+		
+		for(int x = 0; x < battlerPanels.size(); x++)
+		{
+			remove(battlerPanels.get(x));
+			System.out.println("Panel " + x + " removed.");
+		}
+		remove(bossPanel);
+		battlerPanels.clear();
+		battlerLabels.clear();
+		
+		revalidate();
+		repaint();
+	}
+	
 }
