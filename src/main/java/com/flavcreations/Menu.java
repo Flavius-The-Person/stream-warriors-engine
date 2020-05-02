@@ -168,6 +168,14 @@ public class Menu extends JFrame
                     {
                         scene.isOpenRoster = true;
                         openRosterButton.setText("Close Roster");
+                        
+                        int playeradd = 0;
+                        while(rosterArrayList.size()<112)
+                        {
+                            addPlayer("p" + playeradd);
+                            playeradd++;
+                        }
+                        
                     }
                 }
             }

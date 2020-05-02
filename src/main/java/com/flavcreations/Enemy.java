@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Enemy
 {
-    private int maxHealth = 1000000;
+    private int baseHealth = 100;
     int health;
     public int idleFrame = 0;
     public int attFrame = 3;
@@ -103,7 +103,7 @@ public class Enemy
     
     
     public void setData(String bname) {
-        health = maxHealth;
+        //health = baseHealth;
         name = bname;
         ded = false;
         System.out.println("name" + name);
@@ -189,12 +189,22 @@ public class Enemy
     public void updateHealth(int damage)
     {
         health = health - damage;
-        if(health < 0) health = 0;
-        ded = true;
+        if(health <= 0)
+        {
+            ded=true;
+            health = 0;
+        }
     }
     
     public void animate()
     {
     
+    }
+    
+    public void setHealth(int playerTotalDamage)
+    {
+        health = playerTotalDamage;
+        System.out.println("Boss Health: " + health);
+                //((numPlayers/3)*2);
     }
 }

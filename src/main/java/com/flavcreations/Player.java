@@ -5,7 +5,7 @@ import java.net.URL;
 
 public class Player
 {
-    private int maxHealth = 1000;
+    private int maxHealth = 100;
     public int health;
     public int idleFrame = 0;
     public int attFrame = 3;
@@ -305,13 +305,21 @@ public class Player
         * and if the character dies set health to 0 and ded bool = true;
          */
         health = health - damage;
-        if(health < 0) health = 0;
-        isKO = true;
+        if(health <= 0)
+        {
+            isKO = true;
+            health = 0;
+        }
     }
     
     public void animate()
     {
     
     }
+    public void setHealth(int pHealth)
+    {
+        health = pHealth;
+    }
+    
 
 }
