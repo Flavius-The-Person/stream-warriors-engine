@@ -70,6 +70,8 @@ public class Scene extends JFrame
 	
 	boolean allPlayersDead = false;
 	private int playersDead = 0;
+	boolean fightWon = false;
+	boolean fightOver = false;
 	
 	long lSecond = 1000L;
 	long lMinute = 60000L;
@@ -78,6 +80,7 @@ public class Scene extends JFrame
 	int totalBossDamageSoFar = 0;
 	int totalTurns = 0;
 	int totalTurnstwo = 0;
+	
 	
 	Scene()
 	{
@@ -178,177 +181,274 @@ public class Scene extends JFrame
 		{
 			if (!isFightPaused)
 			{
-				Random rand = new Random();
-				
-				//check for player deaths
-				playersDead = 0;
-				for (int x = 0; x < Players.length; x++)
-				{
-					if(Players[x].isKO)
-					{
-						playersDead++;
-						//battlerLabels.get(x).setIcon(Players[x].koIcons[0]);
-					}
-					//if(playersDead>0)System.out.println("Players Dead: " + playersDead);
-				}
-				
-				//System.out.println("pre turnlist");
-				if (turn >= turnList.size()) //turnList.isEmpty())
-				{
-					turnList.clear();
+				if(!fightOver) {
+					Random rand = new Random();
 					
-					//System.out.println("enter turn list");
-					//double temp_turns = Players.length * 1.6;
-					//long temp_turns_long = Math.round(temp_turns);
-					
-					
-					
-					//int maxBossTurns = (int) Math.rint(Players.length * 0.75);
-					//int bossTurns = maxBossTurns + Players.length;//rand.nextInt(maxBossTurns + 1);
-					
-					//int bossTurns = Players.length * 2;
-					
-					//int temp_turns = bossTurns;//Players.length + bossTurns;
-					//System.out.println("dead players: " + playersDead);
-					int bossTurns = Players.length - playersDead;
-					totalTurns = Players.length + bossTurns;
-					totalTurnstwo = totalTurns;
-					//System.out.println("Total Turns: " + totalTurns);
-					//System.out.println("Total Turns2: " + totalTurnstwo);
-					
-					/*for (int temp_turn = 0; temp_turn <= total_turns; temp_turn++) //temp_turns_long; temp_turn++)
-					{
-						if(Players[temp_turn].isKO)
-						{
-							temp_turn++;
-							System.out.println("temp turn up due to KO player");
+					//check for player deaths
+					playersDead = 0;
+					for (int x = 0; x < Players.length; x++) {
+						if (Players[x].isKO) {
+							playersDead++;
+							//battlerLabels.get(x).setIcon(Players[x].koIcons[0]);
 						}
-						System.out.println("adding turn: " + temp_turn);
-						turnList.add(temp_turn);
-						
-						//System.out.println("For loop for adding temp turn: " + temp_turn);
-					}*/
+						//if(playersDead>0)System.out.println("Players Dead: " + playersDead);
+					}
 					
-					int temp_turn = 0;
-					
-					
-					while(temp_turn <= totalTurns)
+					//System.out.println("pre turnlist");
+					if (turn >= turnList.size()) //turnList.isEmpty())
 					{
-						//System.out.println("total turns: " + totalTurns);
-						//System.out.println("turn: " + temp_turn);
-						if(temp_turn < Players.length)
+						turnList.clear();
+						
+						//System.out.println("enter turn list");
+						//double temp_turns = Players.length * 1.6;
+						//long temp_turns_long = Math.round(temp_turns);
+						
+						
+						//int maxBossTurns = (int) Math.rint(Players.length * 0.75);
+						//int bossTurns = maxBossTurns + Players.length;//rand.nextInt(maxBossTurns + 1);
+						
+						//int bossTurns = Players.length * 2;
+						
+						//int temp_turns = bossTurns;//Players.length + bossTurns;
+						//System.out.println("dead players: " + playersDead);
+						int bossTurns = Players.length - playersDead;
+						totalTurns = Players.length + bossTurns;
+						totalTurnstwo = totalTurns;
+						//System.out.println("Total Turns: " + totalTurns);
+						//System.out.println("Total Turns2: " + totalTurnstwo);
+						
+						/*for (int temp_turn = 0; temp_turn <= total_turns; temp_turn++) //temp_turns_long; temp_turn++)
 						{
 							if(Players[temp_turn].isKO)
 							{
-								//System.out.println("Not adding player");
+								temp_turn++;
+								System.out.println("temp turn up due to KO player");
 							}
-							if(!Players[temp_turn].isKO)
-							{
-								//System.out.println("adding player");
-								turnList.add(temp_turn);
-							}
-							temp_turn++;
-						}
-						else
+							System.out.println("adding turn: " + temp_turn);
 							turnList.add(temp_turn);
+							
+							//System.out.println("For loop for adding temp turn: " + temp_turn);
+						}*/
+						
+						int temp_turn = 0;
+						
+						
+						while (temp_turn <= totalTurns) {
+							//System.out.println("total turns: " + totalTurns);
+							//System.out.println("turn: " + temp_turn);
+							if (temp_turn < Players.length) {
+								if (Players[temp_turn].isKO) {
+									//System.out.println("Not adding player");
+								}
+								if (!Players[temp_turn].isKO) {
+									//System.out.println("adding player");
+									turnList.add(temp_turn);
+								}
+								temp_turn++;
+							} else
+								turnList.add(temp_turn);
 							temp_turn++;
-						/*if(Players[temp_turn].isKO)
-						{
-							System.out.println("temp turn up due to ko player");
-							temp_turn++;
-						}
-						else {
+							/*if(Players[temp_turn].isKO)
+							{
+								System.out.println("temp turn up due to ko player");
+								temp_turn++;
+							}
+							else {
+								System.out.println("Adding turn: " + temp_turn);
+								turnList.add(temp_turn);
+								temp_turn++;
+							}*/
+						}/*
+						do {
+							if(Players[temp_turn].isKO)
+							{
+								System.out.println("temp turn up due to ko player");
+								temp_turn++;
+							}
 							System.out.println("Adding turn: " + temp_turn);
 							turnList.add(temp_turn);
 							temp_turn++;
-						}*/
-					}/*
-					do {
-						if(Players[temp_turn].isKO)
-						{
-							System.out.println("temp turn up due to ko player");
-							temp_turn++;
-						}
-						System.out.println("Adding turn: " + temp_turn);
-						turnList.add(temp_turn);
-						temp_turn++;
-					}while(temp_turn <= total_turns);
-					*/
-					
-					//System.out.println("exited for loop and shuffling collection");
-					
-					Collections.shuffle(turnList);
-					
-					//System.out.println("after shuffled collection, exiting if");
-					//System.out.println(turnList);
-					
-					turn = 0;
-				}
-				
-				/*if(eventTimer>2)
-				{
-					eventTimer = 0;
-					turn++;
-				}*/
-				
-				//System.out.println("entered gameTask()");
-				
-				//System.out.println("pre for loop turn: " + turnList.get(turn));
-				
-				
-				if(playersDead >= Players.length) allPlayersDead = true;
-				
-				if(allPlayersDead)
-				{
-					System.out.println("Players ded, game pausing");
-					cal = Calendar.getInstance();
-					sdf = new SimpleDateFormat("HH:mm:ss");
-					timeStringTwo = sdf.format(cal.getTime());
-					System.out.println("start:"+timeString);
-					System.out.println("end:"+timeStringTwo);
-					System.out.println("boss health:"+Boss.health);
-					for(int x = 0; x <= Players.length; x++)
-					{
-						System.out.println("Player " + x + "'s Health: " + Players[x].health);
-					}
-					pauseGame();
-				}
-				if(Boss.ded)
-				{
-					System.out.println("Boss ded, game pausing");
-					cal = Calendar.getInstance();
-					sdf = new SimpleDateFormat("HH:mm:ss");
-					timeStringTwo = sdf.format(cal.getTime());
-					System.out.println("start:"+timeString);
-					System.out.println("end:"+timeStringTwo);
-					System.out.println("boss health:"+Boss.health);
-					for(int x = 0; x < Players.length; x++)
-					{
-						System.out.println("Player " + Players[x].name + " Health: " + Players[x].health);
-					}
-					pauseGame();
-				}
-				
-				if(!allPlayersDead) {
-					for (int x = 0; x < Players.length; x++) {
+						}while(temp_turn <= total_turns);
+						*/
 						
-						if(!Players[x].isKO) {
-							if (x == turnList.get(turn)) {
-								//System.out.println("player turn: " + eventTimer);
-								battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
-								//System.out.println("Set player att icon");
-								if (eventTimer == 2) {
-									Boss.updateHealth(3);
-									totalPlayerDamageSoFar += 3;
+						//System.out.println("exited for loop and shuffling collection");
+						
+						Collections.shuffle(turnList);
+						
+						//System.out.println("after shuffled collection, exiting if");
+						//System.out.println(turnList);
+						
+						turn = 0;
+					}
+					
+					/*if(eventTimer>2)
+					{
+						eventTimer = 0;
+						turn++;
+					}*/
+					
+					//System.out.println("entered gameTask()");
+					
+					//System.out.println("pre for loop turn: " + turnList.get(turn));
+					
+					
+					if (playersDead >= Players.length) allPlayersDead = true;
+					
+					if (allPlayersDead) {
+						System.out.println("Players ded, game pausing");
+						cal = Calendar.getInstance();
+						sdf = new SimpleDateFormat("HH:mm:ss");
+						timeStringTwo = sdf.format(cal.getTime());
+						System.out.println("start:" + timeString);
+						System.out.println("end:" + timeStringTwo);
+						System.out.println("boss health:" + Boss.health);
+						for (int x = 0; x <= Players.length; x++) {
+							System.out.println("Player " + x + "'s Health: " + Players[x].health);
+						}
+						fightOver = true;
+						fightWon = false;
+						//pauseGame();
+					}
+					if (Boss.ded) {
+						System.out.println("Boss ded, game pausing");
+						cal = Calendar.getInstance();
+						sdf = new SimpleDateFormat("HH:mm:ss");
+						timeStringTwo = sdf.format(cal.getTime());
+						System.out.println("start:" + timeString);
+						System.out.println("end:" + timeStringTwo);
+						System.out.println("boss health:" + Boss.health);
+						for (int x = 0; x < Players.length; x++) {
+							System.out.println("Player " + Players[x].name + " Health: " + Players[x].health);
+						}
+						fightOver = true;
+						fightWon = true;
+						//pauseGame();
+					}
+					
+					if (!allPlayersDead) {
+						for (int x = 0; x < Players.length; x++) {
+							
+							if (!Players[x].isKO) {
+								if (x == turnList.get(turn)) {
+									//System.out.println("player turn: " + eventTimer);
+									battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
+									//System.out.println("Set player att icon");
+									if (eventTimer == 2) {
+										Boss.updateHealth(3);
+										totalPlayerDamageSoFar += 3;
+										
+										//System.out.println("Total Player Damge So Far: " + totalPlayerDamageSoFar);
+										
+										if (Boss.ded) bossLabel.setIcon(Boss.koIcons[0]);
+									}
+								}
+								//System.out.println("exiting player turn 1");
+								if (x != turnList.get(turn)) {
+									//System.out.println("Player but not turn: " + eventTimer + " Idle frame: " + Players[x].idleFrame);
+									if (Players[x].idleUp) {
+										Players[x].idleFrame += 1;
+									}
 									
-									//System.out.println("Total Player Damge So Far: " + totalPlayerDamageSoFar);
+									if (!Players[x].idleUp) {
+										Players[x].idleFrame -= 1;
+									}
+									//System.out.println("setting player idle icon");
+									battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
 									
-									if (Boss.ded) bossLabel.setIcon(Boss.koIcons[0]);
+									if (Players[x].idleFrame == 2) {
+										Players[x].idleUp = false;
+									}
+									
+									if (Players[x].idleFrame == 0) {
+										Players[x].idleUp = true;
+									}
 								}
 							}
-							//System.out.println("exiting player turn 1");
-							if (x != turnList.get(turn)) {
-								//System.out.println("Player but not turn: " + eventTimer + " Idle frame: " + Players[x].idleFrame);
+						}
+						
+						//System.out.println("Exited for loop");
+					}
+					
+					if (!Boss.ded) {
+						//System.out.println("boss not dead");
+						//System.out.println("Total turns: " + totalTurns);
+						if (turn < totalTurns) {
+							if (turnList.get(turn) > Players.length) {
+								
+								bossLabel.setIcon(Boss.attackIcons[eventTimer]);
+								if (eventTimer == 2) {
+									int target = rand.nextInt(Players.length);
+									while (Players[target].isKO) {
+										target = rand.nextInt(Players.length);
+									}
+									Players[target].updateHealth(3);
+									totalBossDamageSoFar += 3;
+									
+									//System.out.println("Total Boss Damage So Far: " + totalBossDamageSoFar);
+									
+									if (Players[target].isKO)
+										battlerLabels.get(target).setIcon(Players[target].koIcons[0]);
+									playersDead++;
+								}
+								
+								//System.out.println("animating boss turn");
+							} else if (turnList.get(turn) < Players.length) {
+								if (Boss.idleUp) {
+									Boss.idleFrame += 1;
+								}
+								
+								if (!Boss.idleUp) {
+									Boss.idleFrame -= 1;
+								}
+								
+								bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
+								
+								if (Boss.idleFrame == 2) {
+									Boss.idleUp = false;
+								}
+								
+								if (Boss.idleFrame == 0) {
+									Boss.idleUp = true;
+								}
+							}
+							//System.out.println("Animating boss idle");
+						}
+					}
+					
+					
+					//System.out.println("end of one animating cycle");
+					
+					//System.out.println("Event Timer before eventTimer++: " + eventTimer);
+					
+					eventTimer++;
+					
+					if (eventTimer > 2) {
+						//System.out.println("inside if eventTimer > 3");
+						//System.out.println("pre-turn++: " + turn);
+						
+						turn++;
+						
+						//System.out.println("post-turn++: " + turn);
+						//System.out.println("pre-eventTimer=0: " + eventTimer);
+						
+						eventTimer = 0;
+						
+						//System.out.println("post-eventTimer=0: " + eventTimer);
+						
+						
+						totalTurnstwo = totalTurns - playersDead;
+						
+						//System.out.println("turn: " + turn);
+						//System.out.println("Event Timer after eventTimer++: " + eventTimer);
+						
+					}
+				}
+				if(fightOver)
+				{
+					if(fightWon)
+					{
+						for(int x = 0; x < Players.length; x++) {
+							if(!Players[x].isKO) {
 								if (Players[x].idleUp) {
 									Players[x].idleFrame += 1;
 								}
@@ -357,7 +457,7 @@ public class Scene extends JFrame
 									Players[x].idleFrame -= 1;
 								}
 								//System.out.println("setting player idle icon");
-								battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
+								battlerLabels.get(x).setIcon(Players[x].attackIcons[Players[x].idleFrame]);
 								
 								if (Players[x].idleFrame == 2) {
 									Players[x].idleUp = false;
@@ -369,82 +469,26 @@ public class Scene extends JFrame
 							}
 						}
 					}
-					
-					//System.out.println("Exited for loop");
-				}
-				
-				if(!Boss.ded) {
-					//System.out.println("boss not dead");
-					//System.out.println("Total turns: " + totalTurns);
-					if (turn < totalTurns) {
-						if (turnList.get(turn) > Players.length) {
-							
-							bossLabel.setIcon(Boss.attackIcons[eventTimer]);
-							if (eventTimer == 2) {
-								int target = rand.nextInt(Players.length);
-								while (Players[target].isKO) {
-									target = rand.nextInt(Players.length);
-								}
-								Players[target].updateHealth(3);
-								totalBossDamageSoFar += 3;
-								
-								//System.out.println("Total Boss Damage So Far: " + totalBossDamageSoFar);
-								
-								if (Players[target].isKO) battlerLabels.get(target).setIcon(Players[target].koIcons[0]);
-								playersDead++;
-							}
-							
-							//System.out.println("animating boss turn");
-						} else if (turnList.get(turn) < Players.length) {
-							if (Boss.idleUp) {
-								Boss.idleFrame += 1;
-							}
-							
-							if (!Boss.idleUp) {
-								Boss.idleFrame -= 1;
-							}
-							
-							bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
-							
-							if (Boss.idleFrame == 2) {
-								Boss.idleUp = false;
-							}
-							
-							if (Boss.idleFrame == 0) {
-								Boss.idleUp = true;
-							}
+					if(!fightWon)
+					{
+						if (Boss.idleUp) {
+							Boss.idleFrame += 1;
 						}
-						//System.out.println("Animating boss idle");
+						
+						if (!Boss.idleUp) {
+							Boss.idleFrame -= 1;
+						}
+						
+						bossLabel.setIcon(Boss.attackIcons[Boss.idleFrame]);
+						
+						if (Boss.idleFrame == 2) {
+							Boss.idleUp = false;
+						}
+						
+						if (Boss.idleFrame == 0) {
+							Boss.idleUp = true;
+						}
 					}
-				}
-				
-				
-				//System.out.println("end of one animating cycle");
-				
-				//System.out.println("Event Timer before eventTimer++: " + eventTimer);
-				
-				eventTimer++;
-				
-				if (eventTimer > 2) {
-					//System.out.println("inside if eventTimer > 3");
-					//System.out.println("pre-turn++: " + turn);
-					
-					turn++;
-					
-					//System.out.println("post-turn++: " + turn);
-					//System.out.println("pre-eventTimer=0: " + eventTimer);
-					
-					eventTimer = 0;
-					
-					//System.out.println("post-eventTimer=0: " + eventTimer);
-					
-				
-				
-				totalTurnstwo = totalTurns - playersDead;
-				
-				//System.out.println("turn: " + turn);
-				//System.out.println("Event Timer after eventTimer++: " + eventTimer);
-				
 				}
 			}
 		}
@@ -534,8 +578,8 @@ public class Scene extends JFrame
 				battlerPanels.get(sceneSetupInt).setSize(wd,ht);
 				battlerLabels.get(sceneSetupInt).setIcon(Players[sceneSetupInt].idleIcons[0]);
 				battlerLabels.get(sceneSetupInt).setSize(wd,ht);
-				battlerLabels.get(sceneSetupInt).setText(Players[sceneSetupInt].name);
-				battlerLabels.get(sceneSetupInt).setForeground(Color.WHITE);
+				//battlerLabels.get(sceneSetupInt).setText(Players[sceneSetupInt].name);
+				//battlerLabels.get(sceneSetupInt).setForeground(Color.WHITE);
 				battlerPanels.get(sceneSetupInt).add(battlerLabels.get(sceneSetupInt));
 				battlerPanels.get(sceneSetupInt).updateUI();
 				
@@ -662,10 +706,9 @@ public class Scene extends JFrame
 		 *
 		 * */
 		
-		//int iBossBaseHealth = 900;
-		System.out.println("player total damage in 10 minutes: " + playerTotalDamage);
-		System.out.println("player total damage in 01 minutes: " + playerTotalDamageOneMin);
 		Boss.setHealth((int)playerTotalDamage);
+		System.out.println("Boss Health: " + Boss.health);
+
 		for(int x = 0; x < Players.length; x++)
 		{
 			Players[x].setHealth((int)healthPerPlayer);
