@@ -761,7 +761,7 @@ public class Scene extends JFrame
 		for(int x = 0; x < battlerPanels.size(); x++)
 		{
 			remove(battlerPanels.get(x));
-			System.out.println("Panel " + x + " removed.");
+			//System.out.println("Panel " + x + " removed.");
 		}
 		remove(bossPanel);
 		battlerPanels.clear();
