@@ -137,7 +137,7 @@ public class Menu extends JFrame
             {
                     System.out.println("restart selected");
                     scene.isFightStarted = false;
-                    scene.isOpenRoster = true;
+                    scene.isOpenRoster = false;
                     clearRoster();
                     scene.clearPlayers();
                 
@@ -170,11 +170,11 @@ public class Menu extends JFrame
                         openRosterButton.setText("Close Roster");
                         
                         int playeradd = 0;
-                        while(rosterArrayList.size()<8)
+                        /*while(rosterArrayList.size()<112)
                         {
                             addPlayer("p" + playeradd);
                             playeradd++;
-                        }
+                        }*/
                         
                     }
                 }
@@ -312,10 +312,12 @@ public class Menu extends JFrame
             
             rosterArrayList.clear();
             dlm.clear();
+            rosterList = null;
             rosterList = new JList(dlm);
             rosterScrollPane = new JScrollPane(rosterList);
             rosterScrollPane.updateUI();
             addPlayer("Flavius");
             addPlayer("Weylyn");
+            addPlayer("Test Roster Clear");
     }
 }

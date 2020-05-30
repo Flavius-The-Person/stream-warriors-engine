@@ -692,12 +692,19 @@ public class Scene extends JFrame
 		//initiate the load game function
 		loadGame();
 		
-		long playerTotalDamage = (((2*3)*60)*10) /2;
+		long playerTotalDamage = (((2*3)*60)*10);
 		long playerTotalDamageOneMin = (((2)*3)*60) /2;
 		
 		long totalPlayerHealthPool = playerTotalDamage;
-		long healthPerPlayer = totalPlayerHealthPool/(Players.length/2);
-		
+		long healthPerPlayer = 0;
+		if(Players.length>1)
+		{
+			healthPerPlayer = totalPlayerHealthPool / (Players.length / 2);
+		}
+		if(Players.length<=1)
+		{
+			healthPerPlayer = totalPlayerHealthPool;
+		}
 		/*
 		 * 10 minutes = 60 seconds * 10 = 600 seconds = 1 second / 5 = 5 * 600 = 3000
 		 * 3000 * 3 = 9000 / 10 = 900
