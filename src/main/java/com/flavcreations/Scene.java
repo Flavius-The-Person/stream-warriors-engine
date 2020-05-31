@@ -695,14 +695,18 @@ public class Scene extends JFrame
 		long playerTotalDamage = (((2*3)*60)*10);
 		long playerTotalDamageOneMin = (((2)*3)*60) /2;
 		
-		long totalPlayerHealthPool = playerTotalDamage;
+		long totalPlayerHealthPool = 0;// playerTotalDamage;
 		long healthPerPlayer = 0;
 		if(Players.length>1)
 		{
+			System.out.println("player length > 1 ");
+			totalPlayerHealthPool = playerTotalDamage/2;
 			healthPerPlayer = totalPlayerHealthPool / (Players.length / 2);
 		}
 		if(Players.length<=1)
 		{
+			totalPlayerHealthPool = playerTotalDamage/2;
+			System.out.println("player length < = 1 ");
 			healthPerPlayer = totalPlayerHealthPool;
 		}
 		/*
