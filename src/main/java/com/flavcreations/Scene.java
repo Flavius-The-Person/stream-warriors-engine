@@ -702,12 +702,14 @@ public class Scene extends JFrame
 			System.out.println("player length > 1 ");
 			totalPlayerHealthPool = playerTotalDamage/2;
 			healthPerPlayer = totalPlayerHealthPool / (Players.length / 2);
+			Boss.setHealth((int)totalPlayerHealthPool);
 		}
 		if(Players.length<=1)
 		{
-			totalPlayerHealthPool = playerTotalDamage/2;
+			totalPlayerHealthPool = playerTotalDamage;
 			System.out.println("player length < = 1 ");
 			healthPerPlayer = totalPlayerHealthPool;
+			Boss.setHealth((int)playerTotalDamage);
 		}
 		/*
 		 * 10 minutes = 60 seconds * 10 = 600 seconds = 1 second / 5 = 5 * 600 = 3000
@@ -717,7 +719,6 @@ public class Scene extends JFrame
 		 *
 		 * */
 		
-		Boss.setHealth((int)playerTotalDamage);
 		System.out.println("Boss Health: " + Boss.health);
 
 		for(int x = 0; x < Players.length; x++)
