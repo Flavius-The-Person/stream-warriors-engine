@@ -170,7 +170,7 @@ public class Menu extends JFrame
                         openRosterButton.setText("Close Roster");
                         
                         int playeradd = 0;
-                        while(rosterArrayList.size()<112)
+                        while(rosterArrayList.size()<40)
                         {
                             addPlayer("p" + (playeradd+2));
                             playeradd++;
