@@ -127,8 +127,8 @@ public class Scene extends JFrame
 		backgroundPanel.setLocation(0,-10);
 		setVisible(true);
 		iFrame.setVisible(true);
-		turnCycleDelay = lSecond / 10;
-		turnCyclePeriod = lSecond / 10;
+		turnCycleDelay = lSecond / 5;
+		turnCyclePeriod = lSecond / 5;
 	}
 	String timeString, timeStringTwo;
 	SimpleDateFormat sdf;
@@ -625,7 +625,7 @@ public class Scene extends JFrame
 		bossHealthPanel.setBackground(Color.BLACK);
 		bossHealthPanel.setSize(500,50);
 		bossHealthPanel.add(bossHealthLabel);
-		add(bossHealthPanel);
+		//add(bossHealthPanel);
 		
 		
 		// Add background Panel
@@ -692,8 +692,8 @@ public class Scene extends JFrame
 		//initiate the load game function
 		loadGame();
 		
-		long playerTotalDamage = (((2*3)*60)*10);
-		long playerTotalDamageOneMin = (((2)*3)*60) /2;
+		long playerTotalDamage = (((3)*60)*10);
+		long playerTotalDamageOneMin = ((2)*60) /2;
 		
 		long totalPlayerHealthPool = 0;// playerTotalDamage;
 		long healthPerPlayer = 0;
