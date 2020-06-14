@@ -303,7 +303,7 @@ public class Scene extends JFrame
 						System.out.println("end:" + timeStringTwo);
 						System.out.println("boss health:" + Boss.health);
 						for (int x = 0; x <= Players.length; x++) {
-							System.out.println("Player " + x + "'s Health: " + Players[x].health);
+							System.out.println("Player " + Players[x].name + "'s Health: " + Players[x].health);
 						}
 						fightOver = true;
 						fightWon = false;
@@ -673,58 +673,60 @@ public class Scene extends JFrame
 	//add players from roster to the scene
 	public void addPlayers(ArrayList<String> roster)
 	{
-		//set players object array size to roster size.
-		Players = new Player[roster.size()];
-		
-		//import random function
-		Random randy = new Random();
-		
-		//use random function to generate a random number between 2 for use when a person doesn't have a set character
-		int pgen = randy.nextInt(2);
-		
-		//for loop through the players object list adding data to each player
-		for(int playerLoopInt = 0; playerLoopInt < Players.length; playerLoopInt++)
+		if(isFightStarted)
 		{
-			Players[playerLoopInt] = new Player();
-			Players[playerLoopInt].setData(roster.get(playerLoopInt), pgen);
+			System.out.println("Game already started, can't add new players.");
 		}
-		
-		//initiate the load game function
-		loadGame();
-		
-		long playerTotalDamage = (((3)*60)*10);
-		long playerTotalDamageOneMin = ((2)*60) /2;
-		
-		long totalPlayerHealthPool = 0;// playerTotalDamage;
-		long healthPerPlayer = 0;
-		if(Players.length>1)
-		{
-			System.out.println("player length > 1 ");
-			totalPlayerHealthPool = playerTotalDamage/2;
-			healthPerPlayer = totalPlayerHealthPool / (Players.length / 2);
-			Boss.setHealth((int)totalPlayerHealthPool);
-		}
-		if(Players.length<=1)
-		{
-			totalPlayerHealthPool = playerTotalDamage;
-			System.out.println("player length < = 1 ");
-			healthPerPlayer = totalPlayerHealthPool;
-			Boss.setHealth((int)playerTotalDamage);
-		}
-		/*
-		 * 10 minutes = 60 seconds * 10 = 600 seconds = 1 second / 5 = 5 * 600 = 3000
-		 * 3000 * 3 = 9000 / 10 = 900
-		 *
-		 * 1 second * 10  /2 = 0.5 *
-		 *
-		 * */
-		
-		System.out.println("Boss Health: " + Boss.health);
-
-		for(int x = 0; x < Players.length; x++)
-		{
-			Players[x].setHealth((int)healthPerPlayer);
-			System.out.println("Player " + Players[x].name + "'s Health: " + Players[x].health);
+		else if(!isFightStarted) {
+			//set players object array size to roster size.
+			Players = new Player[roster.size()];
+			
+			//import random function
+			Random randy = new Random();
+			
+			//use random function to generate a random number between 2 for use when a person doesn't have a set character
+			int pgen = randy.nextInt(2);
+			
+			//for loop through the players object list adding data to each player
+			for (int playerLoopInt = 0; playerLoopInt < Players.length; playerLoopInt++) {
+				Players[playerLoopInt] = new Player();
+				Players[playerLoopInt].setData(roster.get(playerLoopInt), pgen);
+			}
+			
+			//initiate the load game function
+			loadGame();
+			
+			long playerTotalDamage = (((3) * 60) * 10);
+			long playerTotalDamageOneMin = ((2) * 60) / 2;
+			
+			long totalPlayerHealthPool = 0;// playerTotalDamage;
+			long healthPerPlayer = 0;
+			if (Players.length > 1) {
+				System.out.println("player length > 1 ");
+				totalPlayerHealthPool = playerTotalDamage / 2;
+				healthPerPlayer = totalPlayerHealthPool / (Players.length / 2);
+				Boss.setHealth((int) totalPlayerHealthPool);
+			}
+			if (Players.length <= 1) {
+				totalPlayerHealthPool = playerTotalDamage;
+				System.out.println("player length < = 1 ");
+				healthPerPlayer = totalPlayerHealthPool;
+				Boss.setHealth((int) playerTotalDamage);
+			}
+			/*
+			 * 10 minutes = 60 seconds * 10 = 600 seconds = 1 second / 5 = 5 * 600 = 3000
+			 * 3000 * 3 = 9000 / 10 = 900
+			 *
+			 * 1 second * 10  /2 = 0.5 *
+			 *
+			 * */
+			
+			System.out.println("Boss Health: " + Boss.health);
+			
+			for (int x = 0; x < Players.length; x++) {
+				Players[x].setHealth((int) healthPerPlayer);
+				System.out.println("Player " + Players[x].name + "'s Health: " + Players[x].health);
+			}
 		}
 	}
 	
@@ -774,6 +776,12 @@ public class Scene extends JFrame
 		
 		revalidate();
 		repaint();
+		isFightStarted = false;
+		fightOver = false;
+		fightWon = false;
+		allPlayersDead = false;
+		Boss.ded = false;
+		
 	}
 	
 }
