@@ -140,7 +140,8 @@ public class Menu extends JFrame
                     scene.isOpenRoster = false;
                     clearRoster();
                     scene.clearPlayers();
-                
+                    startButton.setText("Start");
+                    openRosterButton.setText("Open Roster");
             }
         });
         
@@ -170,7 +171,7 @@ public class Menu extends JFrame
                         openRosterButton.setText("Close Roster");
                         
                         int playeradd = 0;
-                        while(rosterArrayList.size()<112) //max 112
+                        while(rosterArrayList.size()<104) //max 112 messing up boss, new max is 104
                         {
                             addPlayer("p" + (playeradd+2));
                             playeradd++;
