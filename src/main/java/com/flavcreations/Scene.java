@@ -90,30 +90,6 @@ public class Scene extends JFrame
 		setLayout(null);
 		
 		
-		
-		//getContentPane().setBackground(Color.BLACK);
-		
-		/*
-		// Add background Panel
-		backgroundPanel = new JPanel();
-		backgroundLabel = new JLabel();
-		backgroundIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\overlay_map_01v1.png");
-		//backgroundLabel.setIcon(backgroundIcon);
-		//backgroundLabel.setBackground(Color.decode("#c900c9"));
-		
-		backgroundPanel.add(backgroundLabel);
-		//backgroundPanel.setBackground(Color.decode("#c900c9"));
-		
-		backgroundPanel.setLocation(0,-10);
-		backgroundPanel.setSize(1920,1080);
-		
-		repaint();
-		getContentPane().repaint();
-		
-		*/
-		//setupScene();
-		//updateScene();
-		
 		setSize(1920,1000);
 		setVisible(true);
 		
@@ -129,13 +105,6 @@ public class Scene extends JFrame
 		iFrame.setVisible(true);
 		turnCycleDelay = lSecond / 5;
 		turnCyclePeriod = lSecond / 5;
-	}
-	String timeString, timeStringTwo;
-	SimpleDateFormat sdf;
-	Calendar cal;
-	//start game function
-	public void startGame()
-	{
 		gameCycleEvent = new Runnable()
 		{
 			@Override
@@ -145,20 +114,41 @@ public class Scene extends JFrame
 				
 			}
 		};
+		// schedule task gameCycleEvent at turndycledelay, turncycleperiod, for milliseconds.
+		scheduler.scheduleAtFixedRate(gameCycleEvent, turnCycleDelay, turnCyclePeriod, MILLISECONDS);
+		
+	}
+	
+	
+	String timeString, timeStringTwo;
+	SimpleDateFormat sdf;
+	Calendar cal;
+	
+	
+	//start game function
+	public void startGame()
+	{
+		/*gameCycleEvent = new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				gameTask();
+				
+			}
+		};*/
 		
 		cal = Calendar.getInstance();
 		sdf = new SimpleDateFormat("HH:mm:ss");
 		timeString = sdf.format(cal.getTime());
 		System.out.println(timeString);
-		//isFightPaused = false;
-		//isFightStarted = true;
 		
 		
 		
 		
 		
 		// schedule task gameCycleEvent at turndycledelay, turncycleperiod, for milliseconds.
-		scheduler.scheduleAtFixedRate(gameCycleEvent, turnCycleDelay, turnCyclePeriod, MILLISECONDS);
+		//scheduler.scheduleAtFixedRate(gameCycleEvent, turnCycleDelay, turnCyclePeriod, MILLISECONDS);
 		
 	}
 	
@@ -177,7 +167,7 @@ public class Scene extends JFrame
 		* when finished with attack animations resume with idle animations
 		 */
 		
-		if(isFightStarted)// && !isFightPaused)
+		if(isFightStarted)
 		{
 			if (!isFightPaused)
 			{
@@ -189,107 +179,38 @@ public class Scene extends JFrame
 					for (int x = 0; x < Players.length; x++) {
 						if (Players[x].isKO) {
 							playersDead++;
-							//battlerLabels.get(x).setIcon(Players[x].koIcons[0]);
 						}
-						//if(playersDead>0)System.out.println("Players Dead: " + playersDead);
 					}
 					
-					//System.out.println("pre turnlist");
-					if (turn >= turnList.size()) //turnList.isEmpty())
+					if (turn >= turnList.size())
 					{
 						turnList.clear();
 						
-						//System.out.println("enter turn list");
-						//double temp_turns = Players.length * 1.6;
-						//long temp_turns_long = Math.round(temp_turns);
-						
-						
-						//int maxBossTurns = (int) Math.rint(Players.length * 0.75);
-						//int bossTurns = maxBossTurns + Players.length;//rand.nextInt(maxBossTurns + 1);
-						
-						//int bossTurns = Players.length * 2;
-						
-						//int temp_turns = bossTurns;//Players.length + bossTurns;
-						//System.out.println("dead players: " + playersDead);
 						int bossTurns = Players.length - playersDead;
 						totalTurns = Players.length + bossTurns;
 						totalTurnstwo = totalTurns;
-						//System.out.println("Total Turns: " + totalTurns);
-						//System.out.println("Total Turns2: " + totalTurnstwo);
-						
-						/*for (int temp_turn = 0; temp_turn <= total_turns; temp_turn++) //temp_turns_long; temp_turn++)
-						{
-							if(Players[temp_turn].isKO)
-							{
-								temp_turn++;
-								System.out.println("temp turn up due to KO player");
-							}
-							System.out.println("adding turn: " + temp_turn);
-							turnList.add(temp_turn);
-							
-							//System.out.println("For loop for adding temp turn: " + temp_turn);
-						}*/
 						
 						int temp_turn = 0;
 						
 						
 						while (temp_turn <= totalTurns) {
-							//System.out.println("total turns: " + totalTurns);
-							//System.out.println("turn: " + temp_turn);
 							if (temp_turn < Players.length) {
 								if (Players[temp_turn].isKO) {
-									//System.out.println("Not adding player");
 								}
 								if (!Players[temp_turn].isKO) {
-									//System.out.println("adding player");
 									turnList.add(temp_turn);
 								}
 								temp_turn++;
 							} else
 								turnList.add(temp_turn);
 							temp_turn++;
-							/*if(Players[temp_turn].isKO)
-							{
-								System.out.println("temp turn up due to ko player");
-								temp_turn++;
-							}
-							else {
-								System.out.println("Adding turn: " + temp_turn);
-								turnList.add(temp_turn);
-								temp_turn++;
-							}*/
-						}/*
-						do {
-							if(Players[temp_turn].isKO)
-							{
-								System.out.println("temp turn up due to ko player");
-								temp_turn++;
-							}
-							System.out.println("Adding turn: " + temp_turn);
-							turnList.add(temp_turn);
-							temp_turn++;
-						}while(temp_turn <= total_turns);
-						*/
-						
-						//System.out.println("exited for loop and shuffling collection");
+						}
 						
 						Collections.shuffle(turnList);
-						
-						//System.out.println("after shuffled collection, exiting if");
-						//System.out.println(turnList);
 						
 						turn = 0;
 					}
 					
-					/*if(eventTimer>2)
-					{
-						eventTimer = 0;
-						turn++;
-					}*/
-					
-					//System.out.println("entered gameTask()");
-					
-					//System.out.println("pre for loop turn: " + turnList.get(turn));
 					
 					
 					if (playersDead >= Players.length) allPlayersDead = true;
@@ -302,13 +223,14 @@ public class Scene extends JFrame
 						System.out.println("start:" + timeString);
 						System.out.println("end:" + timeStringTwo);
 						System.out.println("boss health:" + Boss.health);
-						for (int x = 0; x <= Players.length; x++) {
+						/*for (int x = 0; x <= Players.length; x++) {
 							System.out.println("Player " + Players[x].name + "'s Health: " + Players[x].health);
 						}
+					    //*/
 						fightOver = true;
 						fightWon = false;
-						//pauseGame();
 					}
+					
 					if (Boss.ded) {
 						System.out.println("Boss ded, game pausing");
 						cal = Calendar.getInstance();
@@ -316,13 +238,14 @@ public class Scene extends JFrame
 						timeStringTwo = sdf.format(cal.getTime());
 						System.out.println("start:" + timeString);
 						System.out.println("end:" + timeStringTwo);
-						System.out.println("boss health:" + Boss.health);
+						//System.out.println("boss health:" + Boss.health);
+						/*
 						for (int x = 0; x < Players.length; x++) {
 							System.out.println("Player " + Players[x].name + " Health: " + Players[x].health);
 						}
+						//*/
 						fightOver = true;
 						fightWon = true;
-						//pauseGame();
 					}
 					
 					if (!allPlayersDead) {
@@ -330,21 +253,15 @@ public class Scene extends JFrame
 							
 							if (!Players[x].isKO) {
 								if (x == turnList.get(turn)) {
-									//System.out.println("player turn: " + eventTimer);
 									battlerLabels.get(x).setIcon(Players[x].attackIcons[eventTimer]);
-									//System.out.println("Set player att icon");
 									if (eventTimer == 2) {
 										Boss.updateHealth(3);
 										totalPlayerDamageSoFar += 3;
-										
-										//System.out.println("Total Player Damge So Far: " + totalPlayerDamageSoFar);
-										
 										if (Boss.ded) bossLabel.setIcon(Boss.koIcons[0]);
 									}
 								}
-								//System.out.println("exiting player turn 1");
+								
 								if (x != turnList.get(turn)) {
-									//System.out.println("Player but not turn: " + eventTimer + " Idle frame: " + Players[x].idleFrame);
 									if (Players[x].idleUp) {
 										Players[x].idleFrame += 1;
 									}
@@ -352,7 +269,6 @@ public class Scene extends JFrame
 									if (!Players[x].idleUp) {
 										Players[x].idleFrame -= 1;
 									}
-									//System.out.println("setting player idle icon");
 									battlerLabels.get(x).setIcon(Players[x].idleIcons[Players[x].idleFrame]);
 									
 									if (Players[x].idleFrame == 2) {
@@ -365,13 +281,9 @@ public class Scene extends JFrame
 								}
 							}
 						}
-						
-						//System.out.println("Exited for loop");
 					}
 					
 					if (!Boss.ded) {
-						//System.out.println("boss not dead");
-						//System.out.println("Total turns: " + totalTurns);
 						if (turn < totalTurns) {
 							if (turnList.get(turn) > Players.length) {
 								
@@ -384,14 +296,12 @@ public class Scene extends JFrame
 									Players[target].updateHealth(3);
 									totalBossDamageSoFar += 3;
 									
-									//System.out.println("Total Boss Damage So Far: " + totalBossDamageSoFar);
 									
 									if (Players[target].isKO)
 										battlerLabels.get(target).setIcon(Players[target].koIcons[0]);
 									playersDead++;
 								}
 								
-								//System.out.println("animating boss turn");
 							} else if (turnList.get(turn) < Players.length) {
 								if (Boss.idleUp) {
 									Boss.idleFrame += 1;
@@ -411,35 +321,18 @@ public class Scene extends JFrame
 									Boss.idleUp = true;
 								}
 							}
-							//System.out.println("Animating boss idle");
 						}
 					}
-					
-					
-					//System.out.println("end of one animating cycle");
-					
-					//System.out.println("Event Timer before eventTimer++: " + eventTimer);
 					
 					eventTimer++;
 					
 					if (eventTimer > 2) {
-						//System.out.println("inside if eventTimer > 3");
-						//System.out.println("pre-turn++: " + turn);
 						
 						turn++;
 						
-						//System.out.println("post-turn++: " + turn);
-						//System.out.println("pre-eventTimer=0: " + eventTimer);
-						
 						eventTimer = 0;
 						
-						//System.out.println("post-eventTimer=0: " + eventTimer);
-						
-						
 						totalTurnstwo = totalTurns - playersDead;
-						
-						//System.out.println("turn: " + turn);
-						//System.out.println("Event Timer after eventTimer++: " + eventTimer);
 						
 					}
 				}
@@ -456,7 +349,6 @@ public class Scene extends JFrame
 								if (!Players[x].idleUp) {
 									Players[x].idleFrame -= 1;
 								}
-								//System.out.println("setting player idle icon");
 								battlerLabels.get(x).setIcon(Players[x].attackIcons[Players[x].idleFrame]);
 								
 								if (Players[x].idleFrame == 2) {
@@ -495,10 +387,6 @@ public class Scene extends JFrame
 	}
 	
 	
-	public void updateScene()
-	{
-	
-	}
 	
 	
 	//pause the game
@@ -512,17 +400,7 @@ public class Scene extends JFrame
 	private int ht = 200;
 	private int wd = 200;
 	
-	/*
-	1920 - 520 = 1400 / 200 = 7
-	x							x==== 35
-	1080 - 80 =  1000 / 200 = 5
-	
-	1920 - 520 = 1400 / 250 = 5.75ish? -- 5.75ish - .75ish = 5
-	x 														x========== 20
-	1080 / 250 = 4 ----------------------------------------- 4
-		
-	 */
-	
+
 	private int[] posX = {
 			0, 0, 0, 0, 0, 0, 0, 0, //1-8
 			100, 100, 100, 100, 100, 100, 100, 100, //9-16
@@ -537,8 +415,6 @@ public class Scene extends JFrame
 			1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, //81-88
 			1100, 1100, 1100, 1100, 1100, 1100, 1100, 1100, //89-96
 			1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, //97-104
-			1300, 1300, 1300, 1300, 1300, 1300, 1300, 1300, //105-112
-			//1000, 1000, 1000, 1000, 1000, 1000, 1000, 1400,
 			
 	};
 	
@@ -556,16 +432,8 @@ public class Scene extends JFrame
 			0, 100, 200, 300, 400, 500, 600, 700, //81-88
 			0, 100, 200, 300, 400, 500, 600, 700, //89-96
 			0, 100, 200, 300, 400, 500, 600, 700, //97-104
-			0, 100, 200, 300, 400, 500, 600, 700, //105-112
 			
-			/*
-			0, 100, 200, 300, //5-8
-			0, 100, 200, 300, //9-12
-			0, 100, 200, 300, //13-16
-			0, 100, 200, 300, //17-20
-			0, 100, 200, 300, //21-24
-			0, 100, 200, 300  //25-28
-	*/
+		
 	};
 	
 	private void setupScene()
@@ -578,8 +446,6 @@ public class Scene extends JFrame
 				battlerPanels.get(sceneSetupInt).setSize(wd,ht);
 				battlerLabels.get(sceneSetupInt).setIcon(Players[sceneSetupInt].idleIcons[0]);
 				battlerLabels.get(sceneSetupInt).setSize(wd,ht);
-				//battlerLabels.get(sceneSetupInt).setText(Players[sceneSetupInt].name);
-				//battlerLabels.get(sceneSetupInt).setForeground(Color.WHITE);
 				battlerPanels.get(sceneSetupInt).add(battlerLabels.get(sceneSetupInt));
 				battlerPanels.get(sceneSetupInt).updateUI();
 				
@@ -629,23 +495,14 @@ public class Scene extends JFrame
 		
 		
 		// Add background Panel
-		//backgroundPanel = new JPanel();
-		//backgroundLabel = new JLabel();
-		//backgroundIcon = new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\overlay_map_01v1.png");
 		backgroundLabel.setIcon(backgroundIcon);
-		//backgroundLabel.setBackground(Color.decode("#c900c9"));
 		
 		backgroundPanel.add(backgroundLabel);
-		//backgroundPanel.setBackground(Color.decode("#c900c9"));
 		
 		backgroundPanel.setLocation(0,-10);
 		backgroundPanel.setSize(1920,1080);
 		add(backgroundPanel);
 		
-		/*
-		backgroundPanel2 = new JPanel();
-		add(backgroundPanel2);
-		*/
 		getContentPane().repaint();
 		super.repaint();
 		
@@ -696,7 +553,7 @@ public class Scene extends JFrame
 			//initiate the load game function
 			loadGame();
 			
-			long playerTotalDamage = (((3) * 60) * 10);
+			long playerTotalDamage = (((3) * 60) * 5/*10*/);
 			long playerTotalDamageOneMin = ((2) * 60) / 2;
 			
 			long totalPlayerHealthPool = 0;// playerTotalDamage;
@@ -725,8 +582,9 @@ public class Scene extends JFrame
 			
 			for (int x = 0; x < Players.length; x++) {
 				Players[x].setHealth((int) healthPerPlayer);
-				System.out.println("Player " + Players[x].name + "'s Health: " + Players[x].health);
+				//System.out.println("Player " + Players[x].name + "'s Health: " + Players[x].health);
 			}
+			System.out.println("Health per player: " + healthPerPlayer);
 		}
 	}
 	
@@ -781,6 +639,8 @@ public class Scene extends JFrame
 		fightWon = false;
 		allPlayersDead = false;
 		Boss.ded = false;
+		playersDead = 0;
+		turn = turnList.size()+1;
 		
 	}
 	

@@ -130,7 +130,7 @@ public class Player
 
         if (inDB)
         {
-            System.out.println("Player found in db");
+            //System.out.println("Player found in db");
             
             idleIcons[0] = new ImageIcon( //idle 1
                     "com/flavcreations/testfiles/200/PhantomKnightIdle1.png");
@@ -211,7 +211,7 @@ public class Player
             /*"D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
                 "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
                 "PhantomKnightIdle1.png"*/
-            System.out.println("Player not found in db");
+            //System.out.println("Player not found in db");
     
             String baseloc = "src/main/java/com/flavcreations/testfiles/200/";
             
