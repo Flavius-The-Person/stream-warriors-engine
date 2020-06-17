@@ -553,8 +553,11 @@ public class Scene extends JFrame
 			//initiate the load game function
 			loadGame();
 			
-			long playerTotalDamage = (((3) * 60) * 5/*10*/);
-			long playerTotalDamageOneMin = ((2) * 60) / 2;
+			long damage = 3;
+			long fight_length = 1;
+			
+			long playerTotalDamageOneMin = damage * 60;
+			long playerTotalDamage = playerTotalDamageOneMin * fight_length;
 			
 			long totalPlayerHealthPool = 0;// playerTotalDamage;
 			long healthPerPlayer = 0;
@@ -578,7 +581,7 @@ public class Scene extends JFrame
 			 *
 			 * */
 			
-			System.out.println("Boss Health: " + Boss.health);
+			//System.out.println("Boss Health: " + Boss.health);
 			
 			for (int x = 0; x < Players.length; x++) {
 				Players[x].setHealth((int) healthPerPlayer);
