@@ -205,6 +205,6 @@ public class Enemy
     {
         health = playerTotalDamage;
         System.out.println("Boss Health: " + health);
-                //((numPlayers/3)*2);
+        
     }
 }
