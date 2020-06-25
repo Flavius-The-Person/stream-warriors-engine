@@ -581,8 +581,6 @@ public class Scene extends JFrame
 			 *
 			 * */
 			
-			//System.out.println("Boss Health: " + Boss.health);
-			
 			for (int x = 0; x < Players.length; x++) {
 				Players[x].setHealth((int) healthPerPlayer);
 				//System.out.println("Player " + Players[x].name + "'s Health: " + Players[x].health);
