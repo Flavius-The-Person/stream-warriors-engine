@@ -593,9 +593,13 @@ public class Scene extends JFrame
 	private void loadGame()
 	{
 		
-		
+		for(int x = 0; x < battlerPanels.size(); x++)
+		{
+			remove(battlerPanels.get(x));
+			//System.out.println("Panel " + x + " removed.");
+		}
+		remove(bossPanel);
 		//console print stating that the panels and labels were created for testing purposes (will be taken out later)
-		// System.out.println("end of setting player count, and panel/label arrays");
 		battlerPanels.clear();
 		battlerLabels.clear();
 		
