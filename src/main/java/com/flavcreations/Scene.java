@@ -592,13 +592,15 @@ public class Scene extends JFrame
 	//load game function to create panels and labels for each character.
 	private void loadGame()
 	{
-		
+		/*if(isFightStarted)
 		for(int x = 0; x < battlerPanels.size(); x++)
 		{
 			remove(battlerPanels.get(x));
 			//System.out.println("Panel " + x + " removed.");
 		}
 		remove(bossPanel);
+		//*/
+		
 		//console print stating that the panels and labels were created for testing purposes (will be taken out later)
 		battlerPanels.clear();
 		battlerLabels.clear();
