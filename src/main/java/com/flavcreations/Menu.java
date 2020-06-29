@@ -198,7 +198,7 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                openWebPage("https://www.flavcreations.com");
+                openWebPage("https://flavcreations.com/");
             }
         });
 
@@ -220,7 +220,7 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                openWebPage("https://www.flavcreations.com");
+                openWebPage("https://flavcreations.com/");
             }
         });
 
