@@ -554,7 +554,7 @@ public class Scene extends JFrame
 			loadGame();
 			
 			long damage = 3;
-			long fight_length = 1;
+			long fight_length = 5;
 			
 			long playerTotalDamageOneMin = damage * 60;
 			long playerTotalDamage = playerTotalDamageOneMin * fight_length;
