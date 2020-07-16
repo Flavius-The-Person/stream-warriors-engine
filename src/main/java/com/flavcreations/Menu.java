@@ -157,7 +157,7 @@ public class Menu extends JFrame
                     scene.isOpenRoster = false;
                     openRosterButton.setText("Open Roster");
 
-                    System.out.println(rosterArrayList);
+                    //System.out.println(rosterArrayList);
                     System.out.println("boss combo box index=" + bossComboBox.getSelectedIndex());
                     scene.setBoss(bossComboBox.getSelectedIndex());
                     scene.addPlayers(rosterArrayList);
