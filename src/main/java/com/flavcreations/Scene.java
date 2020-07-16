@@ -166,6 +166,7 @@ public class Scene extends JFrame
 		*
 		* when finished with attack animations resume with idle animations
 		 */
+		/*
 		
 		if(isFightStarted)
 		{
@@ -223,10 +224,7 @@ public class Scene extends JFrame
 						System.out.println("start:" + timeString);
 						System.out.println("end:" + timeStringTwo);
 						System.out.println("boss health:" + Boss.health);
-						/*for (int x = 0; x <= Players.length; x++) {
-							System.out.println("Player " + Players[x].name + "'s Health: " + Players[x].health);
-						}
-					    //*/
+						
 						fightOver = true;
 						fightWon = false;
 					}
@@ -238,12 +236,7 @@ public class Scene extends JFrame
 						timeStringTwo = sdf.format(cal.getTime());
 						System.out.println("start:" + timeString);
 						System.out.println("end:" + timeStringTwo);
-						//System.out.println("boss health:" + Boss.health);
-						/*
-						for (int x = 0; x < Players.length; x++) {
-							System.out.println("Player " + Players[x].name + " Health: " + Players[x].health);
-						}
-						//*/
+						
 						fightOver = true;
 						fightWon = true;
 					}
@@ -335,6 +328,14 @@ public class Scene extends JFrame
 						totalTurnstwo = totalTurns - playersDead;
 						
 					}
+					
+					int playerbase_current_health = 0;
+					for(int y = 0; y < Players.length; y++)
+					{
+						playerbase_current_health += Players[y].health;
+					}
+					System.out.println("Playerbase Health: " + playerbase_current_health);
+					System.out.println("Boss Health: " + Boss.health);
 				}
 				if(fightOver)
 				{
@@ -380,6 +381,255 @@ public class Scene extends JFrame
 						if (Boss.idleFrame == 0) {
 							Boss.idleUp = true;
 						}
+					}
+				}
+			}
+		}
+	}*/
+		
+		
+		if(isFightStarted)
+		{
+			if (!isFightPaused)
+			{
+				if(!fightOver) {
+					Random rand = new Random();
+					
+					//check for player deaths
+					playersDead = 0;
+					for (int pd = 0; pd < Players.length; pd++) {
+						if (Players[pd].isKO) playersDead++;
+					}
+					if (playersDead >= Players.length) allPlayersDead = true;
+					
+					if (allPlayersDead) {
+						System.out.println("Players ded, game pausing");
+						cal = Calendar.getInstance();
+						sdf = new SimpleDateFormat("HH:mm:ss");
+						timeStringTwo = sdf.format(cal.getTime());
+						System.out.println("start:" + timeString);
+						System.out.println("end:" + timeStringTwo);
+						System.out.println("boss health:" + Boss.health);
+						/*for (int x = 0; x <= Players.length; x++) {
+							System.out.println("Player " + Players[x].name + "'s Health: " + Players[x].health);
+						}
+					    //*/
+	
+						fightOver = true;
+						fightWon = false;
+					}
+					
+					if (Boss.ded) {
+						System.out.println("Boss ded, game pausing");
+						cal = Calendar.getInstance();
+						sdf = new SimpleDateFormat("HH:mm:ss");
+						timeStringTwo = sdf.format(cal.getTime());
+						System.out.println("start:" + timeString);
+						System.out.println("end:" + timeStringTwo);
+						//System.out.println("boss health:" + Boss.health);
+						/*
+						for (int x = 0; x < Players.length; x++) {
+							System.out.println("Player " + Players[x].name + " Health: " + Players[x].health);
+						}
+						//*/
+	
+						fightOver = true;
+						fightWon = true;
+					}
+					
+					if (!fightOver) {
+						int bossTurns, playerTurns = 0;
+						if (turn >= turnList.size()) {
+							turnList.clear();
+							bossTurns = Players.length - playersDead;
+							playerTurns = Players.length;// - playersDead;
+							totalTurns = playerTurns + bossTurns;
+							totalTurnstwo = totalTurns;
+							
+							
+							for(int temp_turn = 0; temp_turn <= totalTurns; temp_turn++)
+							{
+								if (temp_turn < Players.length) {
+									if(!Players[temp_turn].isKO)
+									{
+										turnList.add(temp_turn);
+									}
+								}
+								if(temp_turn >= Players.length)
+								{
+									turnList.add(temp_turn);
+								}
+							}
+							
+								
+								//int temp_turn = 0;
+							
+							
+							/*
+							for(int temp_player_turn = 0; temp_player_turn < Players.length)
+							{
+								turnList.add(temp_player_turn);
+							}
+							for (int temp_turn = 0; temp_turn < totalTurns; temp_turn++) {
+								if (temp_turn < playerTurns) {
+									if (!Players[temp_turn].isKO) {
+										turnList.add(temp_turn);
+									}
+								} else turnList.add(temp_turn);
+							}*/
+	
+							
+							Collections.shuffle(turnList);
+							turn = 0;
+						}
+						
+						for (int anim_int = 0; anim_int <= Players.length; anim_int++) {
+							if (!fightOver) {
+								if (anim_int < Players.length) {
+									if (!Players[anim_int].isKO) {
+										if (turnList.get(turn) == anim_int) {
+											battlerLabels.get(anim_int).setIcon(Players[anim_int].attackIcons[eventTimer]);
+											if (eventTimer == 2) {
+												Boss.updateHealth(3);
+												//System.out.println("Boss Health: " + Boss.health);
+												totalPlayerDamageSoFar += 3;
+												if (Boss.ded) {
+													bossLabel.setIcon(Boss.koIcons[0]);
+													System.out.println("Boss ded, game pausing");
+													cal = Calendar.getInstance();
+													sdf = new SimpleDateFormat("HH:mm:ss");
+													timeStringTwo = sdf.format(cal.getTime());
+													for (int x = 0; x < Players.length; x++) {
+														System.out.println("Player " + Players[x].name
+																								+ " Health: " + Players[x].health);
+													}
+													System.out.println("start:" + timeString);
+													System.out.println("end:" + timeStringTwo);
+													fightWon = true;
+													fightOver = true;
+												}
+											}
+										}
+										if (turnList.get(turn) != anim_int) {
+											if (Players[anim_int].idleUp) {
+												Players[anim_int].idleFrame += 1;
+											}
+											
+											if (!Players[anim_int].idleUp) {
+												Players[anim_int].idleFrame -= 1;
+											}
+											battlerLabels.get(anim_int).setIcon(Players[anim_int].idleIcons[Players[anim_int].idleFrame]);
+											
+											if (Players[anim_int].idleFrame == 2) {
+												Players[anim_int].idleUp = false;
+											}
+											
+											if (Players[anim_int].idleFrame == 0) {
+												Players[anim_int].idleUp = true;
+											}
+										}
+									}
+								}
+								
+								if (anim_int == Players.length) {
+									
+									if (turnList.get(turn) > playerTurns - playersDead) {
+										if(turnList.get(turn) < totalTurnstwo) {
+											bossLabel.setIcon(Boss.attackIcons[eventTimer]);
+											if (eventTimer == 2) {
+												int target = rand.nextInt(Players.length);
+												while (Players[target].isKO) {
+													target = rand.nextInt(Players.length);
+												}
+												//System.out.println("damaging player: " + target);
+												Players[target].updateHealth(3);
+												totalBossDamageSoFar += 3;
+												
+												//System.out.println("Player " + target + " health: " + Players[target].health);
+												
+												
+												if (Players[target].isKO) {
+													battlerLabels.get(target).setIcon(Players[target].koIcons[0]);
+													playersDead++;
+													totalTurnstwo = totalTurns - playersDead;
+												}
+												if (playersDead >= Players.length) {
+													System.out.println("Players ded, game pausing");
+													cal = Calendar.getInstance();
+													sdf = new SimpleDateFormat("HH:mm:ss");
+													timeStringTwo = sdf.format(cal.getTime());
+													System.out.println("start:" + timeString);
+													System.out.println("end:" + timeStringTwo);
+													System.out.println("boss health:" + Boss.health);
+													fightOver = true;
+												}
+											}
+										}
+									}
+									if (turnList.get(turn) < Players.length - playersDead) {
+										if (Boss.idleUp) {
+											Boss.idleFrame += 1;
+										}
+										
+										if (!Boss.idleUp) {
+											Boss.idleFrame -= 1;
+										}
+										
+										bossLabel.setIcon(Boss.idleIcons[Boss.idleFrame]);
+										
+										if (Boss.idleFrame == 2) {
+											Boss.idleUp = false;
+										}
+										
+										if (Boss.idleFrame == 0) {
+											Boss.idleUp = true;
+										}
+									}
+								}
+							}
+						}
+						eventTimer++;
+						
+						if (eventTimer > 2) {
+							
+							turn++;
+							
+							eventTimer = 0;
+							
+							totalTurnstwo = totalTurns - playersDead;
+							
+						}
+						int playerbase_current_health = 0;
+						for(int y = 0; y < Players.length; y++)
+						{
+							playerbase_current_health += Players[y].health;
+						}
+						System.out.println("Playerbase Health: " + playerbase_current_health);
+						System.out.println("Boss Health: " + Boss.health);
+					}
+				}
+				if(fightOver)
+				{
+					//System.out.println("entering fight over");
+					if(fightWon)
+					{
+						for(int x = 0; x < Players.length; x++) {
+							if(!Players[x].isKO) {
+								if (Players[x].idleUp) Players[x].idleFrame += 1;
+								if (!Players[x].idleUp) Players[x].idleFrame -= 1;
+								battlerLabels.get(x).setIcon(Players[x].attackIcons[Players[x].idleFrame]);
+								if (Players[x].idleFrame == 2) Players[x].idleUp = false;
+								if (Players[x].idleFrame == 0) Players[x].idleUp = true;
+							}
+						}
+					}
+					if(!fightWon)
+					{
+						if (Boss.idleUp) Boss.idleFrame += 1;
+						if (!Boss.idleUp) Boss.idleFrame -= 1;
+						bossLabel.setIcon(Boss.attackIcons[Boss.idleFrame]);
+						if (Boss.idleFrame == 2) Boss.idleUp = false;
+						if (Boss.idleFrame == 0) Boss.idleUp = true;
 					}
 				}
 			}
@@ -554,18 +804,20 @@ public class Scene extends JFrame
 			loadGame();
 			
 			long damage = 3;
-			long fight_length = 5;
+			long fight_length = 1;
 			
 			long playerTotalDamageOneMin = damage * 60;
 			long playerTotalDamage = playerTotalDamageOneMin * fight_length;
 			
 			long totalPlayerHealthPool = 0;// playerTotalDamage;
+			long totalBossHealth = 0;
 			long healthPerPlayer = 0;
 			if (Players.length > 1) {
 				System.out.println("player length > 1 ");
 				totalPlayerHealthPool = playerTotalDamage / 2;
 				healthPerPlayer = totalPlayerHealthPool / (Players.length / 2);
-				Boss.setHealth((int) totalPlayerHealthPool);
+				totalBossHealth = healthPerPlayer * (Players.length);
+				Boss.setHealth((int) totalBossHealth);
 			}
 			if (Players.length <= 1) {
 				totalPlayerHealthPool = playerTotalDamage;
