@@ -5,12 +5,12 @@ import javax.swing.*;
 public class Enemy
 {
     private int baseHealth = 100;
-    int health;
+    public int health;
     public int idleFrame = 0;
     public int attFrame = 3;
     public boolean idleUp = true;
-    String name;
-    boolean isKO;
+    public String name;
+    public boolean isKO;
     
     public String[] sounds = new String[6];
     /*
