@@ -419,7 +419,7 @@ public class Scene extends JFrame
 						fightWon = false;
 					}
 					
-					if (Boss.ded) {
+					if (Boss.isKO) {
 						System.out.println("Boss ded, game pausing");
 						cal = Calendar.getInstance();
 						sdf = new SimpleDateFormat("HH:mm:ss");
@@ -493,7 +493,7 @@ public class Scene extends JFrame
 												Boss.updateHealth(3);
 												//System.out.println("Boss Health: " + Boss.health);
 												totalPlayerDamageSoFar += 3;
-												if (Boss.ded) {
+												if (Boss.isKO) {
 													bossLabel.setIcon(Boss.koIcons[0]);
 													System.out.println("Boss ded, game pausing");
 													cal = Calendar.getInstance();
@@ -718,10 +718,6 @@ public class Scene extends JFrame
 		bossPanel = new JPanel();
 		bossLabel = new JLabel();
 		
-		ImageIcon bossIcon = new ImageIcon( //idle 1
-				"D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-						"src\\main\\java\\com\\flavcreations\\testfiles\\500\\" +
-						"celestialguard-horus-idle1.png");
 		
 		bossLabel.setIcon(Boss.idleIcons[0]);
 		bossLabel.setOpaque(false);
@@ -771,10 +767,11 @@ public class Scene extends JFrame
 		Boss = new Enemy();
 		
 		//if bossint = 0, set boss to celestial guard - horus
-		if(bossInt == 0)
+		/*if(bossInt == 0)
 		{
-			Boss.setData("celestialguard-horus");
-		}
+			Boss.setData("Fungoliath");
+		}*/
+		Boss.setData(bossInt);
 	}
 	
 	//add players from roster to the scene
@@ -897,7 +894,7 @@ public class Scene extends JFrame
 		fightOver = false;
 		fightWon = false;
 		allPlayersDead = false;
-		Boss.ded = false;
+		Boss.isKO = false;
 		playersDead = 0;
 		turn = turnList.size()+1;
 		
