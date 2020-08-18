@@ -43,11 +43,11 @@ public class Menu extends JFrame
     private JLabel titleLabel;
     private JComboBox bossComboBox;
     
-    private String[] bossChoices = {"boss1", "not available", "not available"};
+    private String[] bossChoices = {"Fungoliath", "not available"};
     private int bossChoice;
     private ImageIcon[] bossChoiceImages = {
-            new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\celestialguard-horus-idle1.png"),
-            new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\celestialguard-horus-idle1.png")
+            new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\Fungoliath\\Fungoliath-Idle-01.png"),
+            new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\Fungoliath\\Fungoliath-Idle-01.png")
     };
     
     
