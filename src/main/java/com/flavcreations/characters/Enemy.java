@@ -1,4 +1,4 @@
-package com.flavcreations;
+package com.flavcreations.characters;
 
 import javax.swing.*;
 
