@@ -126,6 +126,24 @@ public class Player
         name = pname;
         isKO = false;
         boolean inDB = false;
+        
+        String baseloc = "src/main/java/com/flavcreations/testfiles/200/";
+        
+        String[] sIdleIcons = {"Knight/Knight_Idle_"};
+        String[] sAttackIcons = {"Knight/Knight_Swinging_"};
+        String[] sKoIcons = {"Knight/Knight_Dead_"};
+        String[] sVictoryIcons = {"Knight/Knight_Swinging_"};
+    
+        String[] sDamagedIcons = {""};
+        String[] sGuardIcons = {""};
+        String[] sEvadeIcons = {""};
+        String[] sPSkillIcons = {""};
+        String[] sMSkillIcons = {""};
+        String[] sIUseIcons = {""};
+        String[] sCrisisIcons = {""};
+        String[] sAbnormalIcons = {""};
+        String[] sSleepIcons = {""};
+        
         //check if in db
 
         if (inDB)
@@ -133,19 +151,32 @@ public class Player
             //System.out.println("Player found in db");
             
             idleIcons[0] = new ImageIcon( //idle 1
-                    "com/flavcreations/testfiles/200/PhantomKnightIdle1.png");
+                    baseloc + sIdleIcons[0] + "01.png");
             idleIcons[1] = new ImageIcon( //idle 2
-                    "com/flavcreations/testfiles/200/PhantomKnightIdle2.png");
+                    baseloc + sIdleIcons[0] + "02.png");
             idleIcons[2] = new ImageIcon( //idle 3
-                    "com/flavcreations/testfiles/200/PhantomKnightIdle3.png");
+                    baseloc + sIdleIcons[0] + "03.png");
     
-            koIcons[0] = new ImageIcon("");//knocked out 1
-            koIcons[2] = new ImageIcon("");//knocked out 2
-            koIcons[1] = new ImageIcon("");//knocked out 3
+            koIcons[0] = new ImageIcon( //knocked out 1
+                    baseloc + sKoIcons[0] + "01.png");
+            koIcons[1] = new ImageIcon( //knocked out 1
+                    baseloc + sKoIcons[0] + "02.png");
+            koIcons[2] = new ImageIcon( //knocked out 1
+                    baseloc + sKoIcons[0] + "03.png");
     
-            attackIcons[0] = new ImageIcon("");//attack 1
-            attackIcons[2] = new ImageIcon("");//attack 2
-            attackIcons[1] = new ImageIcon("");//attack 3
+            attackIcons[0] = new ImageIcon(//attack 1
+                    baseloc + sAttackIcons[0] + "01.png");//attack 1
+            attackIcons[1] = new ImageIcon(//attack 2
+                    baseloc + sAttackIcons[0] + "02.png");//attack 2
+            attackIcons[2] = new ImageIcon(//attack 3
+                    baseloc + sAttackIcons[0] + "03.png");//attack 3
+    
+            victoryIcons[0] = new ImageIcon(//victory 1
+                    baseloc + sVictoryIcons[0] + "01.png");//attack 3//victory 1
+            victoryIcons[1] = new ImageIcon(//victory 2
+                    baseloc + sVictoryIcons[0] + "02.png");//attack 3//victory 2
+            victoryIcons[2] = new ImageIcon(//victory 3
+                    baseloc + sVictoryIcons[0] + "03.png");//attack 3//victory 3
 
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2
@@ -170,10 +201,6 @@ public class Player
             itemIcons[0] = new ImageIcon("");//use item 1
             itemIcons[1] = new ImageIcon("");//use item 2
             itemIcons[2] = new ImageIcon("");//use item 3
-
-            victoryIcons[0] = new ImageIcon("");//victory 1
-            victoryIcons[1] = new ImageIcon("");//victory 2
-            victoryIcons[2] = new ImageIcon("");//victory 3
 
             crisisIcons[0] = new ImageIcon("");//crisis/danger 1
             crisisIcons[1] = new ImageIcon("");//crisis/danger 2
@@ -208,33 +235,35 @@ public class Player
         }
         else if(!inDB)
         {
-            /*"D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\" +
-                "src\\main\\java\\com\\flavcreations\\testfiles\\200\\" +
-                "PhantomKnightIdle1.png"*/
             //System.out.println("Player not found in db");
     
-            String baseloc = "src/main/java/com/flavcreations/testfiles/200/";
-            
             idleIcons[0] = new ImageIcon( //idle 1
-                    baseloc + "Knight/Knight_Idle_01.png");
+                    baseloc + sIdleIcons[0] + "01.png");
             idleIcons[1] = new ImageIcon( //idle 2
-                    baseloc + "Knight/Knight_Idle_02.png");
+                    baseloc + sIdleIcons[0] + "02.png");
             idleIcons[2] = new ImageIcon( //idle 3
-                    baseloc + "Knight/Knight_Idle_03.png");
+                    baseloc + sIdleIcons[0] + "03.png");
     
-            koIcons[0] = new ImageIcon(//knocked out 1
-                    baseloc + "Knight/Knight_Dead_01.png");
-            koIcons[1] = new ImageIcon(//knocked out 2
-                    baseloc + "Knight/Knight_Dead_02.png");
-            koIcons[2] = new ImageIcon(//knocked out 3
-                    baseloc + "Knight/Knight_Dead_03.png");
+            koIcons[0] = new ImageIcon( //knocked out 1
+                    baseloc + sKoIcons[0] + "01.png");
+            koIcons[1] = new ImageIcon( //knocked out 1
+                    baseloc + sKoIcons[0] + "02.png");
+            koIcons[2] = new ImageIcon( //knocked out 1
+                    baseloc + sKoIcons[0] + "03.png");
     
             attackIcons[0] = new ImageIcon(//attack 1
-                    baseloc + "Knight/Knight_Swinging_01.png");
+                    baseloc + sAttackIcons[0] + "01.png");//attack 1
             attackIcons[1] = new ImageIcon(//attack 2
-                    baseloc + "Knight/Knight_Swinging_02.png");
+                    baseloc + sAttackIcons[0] + "02.png");//attack 2
             attackIcons[2] = new ImageIcon(//attack 3
-                    baseloc + "Knight/Knight_Swinging_03.png");
+                    baseloc + sAttackIcons[0] + "03.png");//attack 3
+    
+            victoryIcons[0] = new ImageIcon(//victory 1
+                    baseloc + sVictoryIcons[0] + "01.png");//attack 3//victory 1
+            victoryIcons[1] = new ImageIcon(//victory 2
+                    baseloc + sVictoryIcons[0] + "02.png");//attack 3//victory 2
+            victoryIcons[2] = new ImageIcon(//victory 3
+                    baseloc + sVictoryIcons[0] + "03.png");//attack 3//victory 3
             
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2
@@ -259,10 +288,6 @@ public class Player
             itemIcons[0] = new ImageIcon("");//use item 1
             itemIcons[1] = new ImageIcon("");//use item 2
             itemIcons[2] = new ImageIcon("");//use item 3
-    
-            victoryIcons[0] = new ImageIcon("");//victory 1
-            victoryIcons[1] = new ImageIcon("");//victory 2
-            victoryIcons[2] = new ImageIcon("");//victory 3
     
             crisisIcons[0] = new ImageIcon("");//crisis/danger 1
             crisisIcons[1] = new ImageIcon("");//crisis/danger 2
