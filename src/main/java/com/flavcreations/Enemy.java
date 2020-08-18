@@ -10,7 +10,7 @@ public class Enemy
     public int attFrame = 3;
     public boolean idleUp = true;
     String name;
-    boolean ded;
+    boolean isKO;
     
     public String[] sounds = new String[6];
     /*
@@ -102,39 +102,60 @@ public class Enemy
 	*/
     
     
-    public void setData(String bname) {
+    public void setData(int bId) {
         //health = baseHealth;
-        name = bname;
-        ded = false;
-        System.out.println("name" + name);
+        //name = bname;
+        isKO = false;
+        System.out.println("name: " + name);
+        
+        String baseloc = "src/main/java/com/flavcreations/testfiles/500/";
     
+        String[] sIdleIcons = {"Fungoliath/Fungoliath-Idle-"};
+        String[] sAttackIcons = {"Fungoliath/Fungoliath-Stabbing-"};
+        String[] sKoIcons = {"Fungoliath/Fungoliath-Dead-"};
+        String[] sDamagedIcons = {"PhantomKnight"};
+        String[] sVictoryIcons = {"Fungoliath/Fungoliath-Stabbing-"};
     
-        if (name == "celestialguard-horus") {
+        String[] sGuardIcons = {""};
+        String[] sEvadeIcons = {""};
+        String[] sPSkillIcons = {""};
+        String[] sMSkillIcons = {""};
+        String[] sIUseIcons = {""};
+        String[] sCrisisIcons = {""};
+        String[] sAbnormalIcons = {""};
+        String[] sSleepIcons = {""};
     
-            System.out.println("CelestialGuard-horus was name of boss");
+        //if (name == "Fungoliath") {
     
-            String baseloc = "src/main/java/com/flavcreations/testfiles/500/";
+            System.out.println("Fungoliath was name of boss");
     
             idleIcons[0] = new ImageIcon( //idle 1
-                    baseloc + "Fungoliath/Fungoliath-Idle-01.png");
+                    baseloc + sIdleIcons[bId] + "01.png");
             idleIcons[1] = new ImageIcon( //idle 2
-                    baseloc + "Fungoliath/Fungoliath-Idle-02.png");
+                    baseloc + sIdleIcons[bId] + "02.png");
             idleIcons[2] = new ImageIcon( //idle 3
-                    baseloc + "Fungoliath/Fungoliath-Idle-03.png");
+                    baseloc + sIdleIcons[bId] + "03.png");
     
-            koIcons[0] = new ImageIcon(//knocked out 1
-                    baseloc + "Fungoliath/Fungoliath-Dead-01.png");
-            koIcons[1] = new ImageIcon(//knocked out 2
-                    baseloc + "Fungoliath/Fungoliath-Dead-02.png");
-            koIcons[2] = new ImageIcon(//knocked out 3
-                    baseloc + "Fungoliath/Fungoliath-Dead-03.png");
+            koIcons[0] = new ImageIcon( //knocked out 1
+                    baseloc + sKoIcons[bId] + "01.png");
+            koIcons[1] = new ImageIcon( //knocked out 1
+                    baseloc + sKoIcons[bId] + "02.png");
+            koIcons[2] = new ImageIcon( //knocked out 1
+                    baseloc + sKoIcons[bId] + "03.png");
     
             attackIcons[0] = new ImageIcon(//attack 1
-                    baseloc + "Fungoliath/Fungoliath-Stabbing-01.png");
+                    baseloc + sAttackIcons[bId] + "01.png");//attack 1
             attackIcons[1] = new ImageIcon(//attack 2
-                    baseloc + "Fungoliath/Fungoliath-Stabbing-02.png");
+                    baseloc + sAttackIcons[bId] + "02.png");//attack 2
             attackIcons[2] = new ImageIcon(//attack 3
-                    baseloc + "Fungoliath/Fungoliath-Stabbing-03.png");
+                    baseloc + sAttackIcons[bId] + "03.png");//attack 3
+    
+            victoryIcons[0] = new ImageIcon(//victory 1
+                    baseloc + sVictoryIcons[bId] + "01.png");//attack 3//victory 1
+            victoryIcons[1] = new ImageIcon(//victory 2
+                    baseloc + sVictoryIcons[bId] + "02.png");//attack 3//victory 2
+            victoryIcons[2] = new ImageIcon(//victory 3
+                    baseloc + sVictoryIcons[bId] + "03.png");//attack 3//victory 3
             
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2
@@ -160,10 +181,6 @@ public class Enemy
             itemIcons[1] = new ImageIcon("");//use item 2
             itemIcons[2] = new ImageIcon("");//use item 3
         
-            victoryIcons[0] = new ImageIcon("");//victory 1
-            victoryIcons[1] = new ImageIcon("");//victory 2
-            victoryIcons[2] = new ImageIcon("");//victory 3
-        
             crisisIcons[0] = new ImageIcon("");//crisis/danger 1
             crisisIcons[1] = new ImageIcon("");//crisis/danger 2
             crisisIcons[2] = new ImageIcon("");//crisis/danger 3
@@ -184,14 +201,14 @@ public class Enemy
             sounds[3] = "";//magical skill
             sounds[4] = "";//knocked out
             sounds[5] = "";//victory
-        }
+        //}
     }
     public void updateHealth(int damage)
     {
         health = health - damage;
         if(health <= 0)
         {
-            ded=true;
+            isKO =true;
             health = 0;
         }
     }
