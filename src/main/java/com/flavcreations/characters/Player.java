@@ -314,19 +314,7 @@ public class Player
             sleepIcons[0] = new ImageIcon("");//sleeping 1
             sleepIcons[1] = new ImageIcon("");//sleeping 2
             sleepIcons[2] = new ImageIcon("");//sleeping 3
-    
-           
-    
-    
-            //since I can't store and reproduce the file itself from a database,
-            //I can store the file in the program and the name of the file in the database.
-            //which will be sounds[x] = "sound location" + sound name + ".fileformat";
-            //I believe this should work and will just have to update both
-            //the character creation app and the game itself when I add new voice stuff
-    
-            //ultimately if I use the same file in the creator it will already have the same name
-            //so I just need to take the name of the file being used
-            //which makes it sounds[x] = "sound location" + filename.format --- all at once
+            
     
             sounds[0] = "";//Atk
             sounds[1] = "";//hit/damaged
