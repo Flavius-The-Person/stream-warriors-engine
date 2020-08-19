@@ -130,8 +130,7 @@ public class Enemy
     
     
     public void setData(int bId) {
-        //health = baseHealth;
-        //name = bname;
+        
         isKO = false;
         System.out.println("name: " + name);
         
@@ -229,7 +228,7 @@ public class Enemy
             sounds[3] = "";//magical skill
             sounds[4] = "";//knocked out
             sounds[5] = "";//victory
-        //}
+        
     }
     public void updateHealth(int damage)
     {
