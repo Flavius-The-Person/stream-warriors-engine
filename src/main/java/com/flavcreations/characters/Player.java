@@ -143,8 +143,7 @@ public class Player
         
         String baseloc = "src/main/java/com/flavcreations/testfiles/200/";
         
-        String[] sIdleIcons = {"Knight/Knight_Idle_"};
-        String[] sAttackIcons = {"Knight/Knight_Swinging_"};
+        String[] sCharIcons = {"Knight/Knight_Idle_"};
         String[] sKoIcons = {"Knight/Knight_Dead_"};
         String[] sVictoryIcons = {"Knight/Knight_Swinging_"};
     
@@ -160,37 +159,62 @@ public class Player
         
         //check if in db
 
+        /*
+         *
+         * put notes here for top of head thinking whatever?
+         *
+         * If I randomly select a set of attack anims like set 1 = 0-2, set 2 = 3-5, set 3 = 6-8
+         * I can effectively randomize the animations a bit and it will only make me do a slight bit more file saving?
+         * More of an issue for anything that doesn't have more than one set of attacks though which should be ok if
+         * I just duplicate 1-3 and add the numbers so that it just thinks its more but its really renamed original 1-3?
+         *
+         */
+        
+        
         if (inDB)
         {
             //System.out.println("Player found in db");
             
             idleIcons[0] = new ImageIcon( //idle 1
-                    baseloc + sIdleIcons[0] + "01.png");
+                    baseloc + sCharIcons[0] + "01.png");
             idleIcons[1] = new ImageIcon( //idle 2
-                    baseloc + sIdleIcons[0] + "02.png");
+                    baseloc + sCharIcons[0] + "02.png");
             idleIcons[2] = new ImageIcon( //idle 3
-                    baseloc + sIdleIcons[0] + "03.png");
-    
-            koIcons[0] = new ImageIcon( //knocked out 1
-                    baseloc + sKoIcons[0] + "01.png");
-            koIcons[1] = new ImageIcon( //knocked out 1
-                    baseloc + sKoIcons[0] + "02.png");
-            koIcons[2] = new ImageIcon( //knocked out 1
-                    baseloc + sKoIcons[0] + "03.png");
-    
+                    baseloc + sCharIcons[0] + "03.png");
+            
+            int iKoIcons = 0;
+            
+            if(iKoIcons == 0) {
+                koIcons[0] = new ImageIcon( //knocked out 1
+                        baseloc + sCharIcons[0] + "01.png");
+                koIcons[1] = new ImageIcon( //knocked out 1
+                        baseloc + sCharIcons[0] + "02.png");
+                koIcons[2] = new ImageIcon( //knocked out 1
+                        baseloc + sCharIcons[0] + "03.png");
+            }
+            if(iKoIcons >= 1)
+            {
+                koIcons[0] = new ImageIcon( //knocked out 1
+                        baseloc + sKoIcons[iKoIcons-1] + "01.png");
+                koIcons[1] = new ImageIcon( //knocked out 1
+                        baseloc + sKoIcons[iKoIcons-1] + "02.png");
+                koIcons[2] = new ImageIcon( //knocked out 1
+                        baseloc + sKoIcons[iKoIcons-1] + "03.png");
+            }
+        
             attackIcons[0] = new ImageIcon(//attack 1
-                    baseloc + sAttackIcons[0] + "01.png");//attack 1
+                    baseloc + sCharIcons[0] + "01.png");//attack 1
             attackIcons[1] = new ImageIcon(//attack 2
-                    baseloc + sAttackIcons[0] + "02.png");//attack 2
+                    baseloc + sCharIcons[0] + "02.png");//attack 2
             attackIcons[2] = new ImageIcon(//attack 3
-                    baseloc + sAttackIcons[0] + "03.png");//attack 3
+                    baseloc + sCharIcons[0] + "03.png");//attack 3
     
             victoryIcons[0] = new ImageIcon(//victory 1
-                    baseloc + sVictoryIcons[0] + "01.png");//attack 3//victory 1
+                    baseloc + sCharIcons[0] + "01.png");//attack 3//victory 1
             victoryIcons[1] = new ImageIcon(//victory 2
-                    baseloc + sVictoryIcons[0] + "02.png");//attack 3//victory 2
+                    baseloc + sCharIcons[0] + "02.png");//attack 3//victory 2
             victoryIcons[2] = new ImageIcon(//victory 3
-                    baseloc + sVictoryIcons[0] + "03.png");//attack 3//victory 3
+                    baseloc + sCharIcons[0] + "03.png");//attack 3//victory 3
 
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2
@@ -252,32 +276,32 @@ public class Player
             //System.out.println("Player not found in db");
     
             idleIcons[0] = new ImageIcon( //idle 1
-                    baseloc + sIdleIcons[0] + "01.png");
+                    baseloc + sCharIcons[0] + "01.png");
             idleIcons[1] = new ImageIcon( //idle 2
-                    baseloc + sIdleIcons[0] + "02.png");
+                    baseloc + sCharIcons[0] + "02.png");
             idleIcons[2] = new ImageIcon( //idle 3
-                    baseloc + sIdleIcons[0] + "03.png");
+                    baseloc + sCharIcons[0] + "03.png");
     
             koIcons[0] = new ImageIcon( //knocked out 1
-                    baseloc + sKoIcons[0] + "01.png");
+                    baseloc + sCharIcons[0] + "01.png");
             koIcons[1] = new ImageIcon( //knocked out 1
-                    baseloc + sKoIcons[0] + "02.png");
+                    baseloc + sCharIcons[0] + "02.png");
             koIcons[2] = new ImageIcon( //knocked out 1
-                    baseloc + sKoIcons[0] + "03.png");
+                    baseloc + sCharIcons[0] + "03.png");
     
             attackIcons[0] = new ImageIcon(//attack 1
-                    baseloc + sAttackIcons[0] + "01.png");//attack 1
+                    baseloc + sCharIcons[0] + "01.png");//attack 1
             attackIcons[1] = new ImageIcon(//attack 2
-                    baseloc + sAttackIcons[0] + "02.png");//attack 2
+                    baseloc + sCharIcons[0] + "02.png");//attack 2
             attackIcons[2] = new ImageIcon(//attack 3
-                    baseloc + sAttackIcons[0] + "03.png");//attack 3
+                    baseloc + sCharIcons[0] + "03.png");//attack 3
     
             victoryIcons[0] = new ImageIcon(//victory 1
-                    baseloc + sVictoryIcons[0] + "01.png");//attack 3//victory 1
+                    baseloc + sCharIcons[0] + "01.png");//attack 3//victory 1
             victoryIcons[1] = new ImageIcon(//victory 2
-                    baseloc + sVictoryIcons[0] + "02.png");//attack 3//victory 2
+                    baseloc + sCharIcons[0] + "02.png");//attack 3//victory 2
             victoryIcons[2] = new ImageIcon(//victory 3
-                    baseloc + sVictoryIcons[0] + "03.png");//attack 3//victory 3
+                    baseloc + sCharIcons[0] + "03.png");//attack 3//victory 3
             
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2
