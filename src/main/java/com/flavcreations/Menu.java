@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Menu extends JFrame
@@ -32,6 +33,8 @@ public class Menu extends JFrame
     */
     
     public ArrayList<String> rosterArrayList = new ArrayList<String>();
+    public ArrayList<Integer> rosterCharArrayList = new ArrayList<Integer>();
+    
     private JScrollPane rosterScrollPane;
     
     private JButton startButton, restartButton;
@@ -160,7 +163,7 @@ public class Menu extends JFrame
                     //System.out.println(rosterArrayList);
                     System.out.println("boss combo box index=" + bossComboBox.getSelectedIndex());
                     scene.setBoss(bossComboBox.getSelectedIndex());
-                    scene.addPlayers(rosterArrayList);
+                    scene.addPlayers(rosterArrayList, rosterCharArrayList);
                     
 
                 } else if(!scene.isOpenRoster)
@@ -171,6 +174,8 @@ public class Menu extends JFrame
                         openRosterButton.setText("Close Roster");
                         
                         int playeradd = 0;
+                        Random randy = new Random();
+                        
                         while(rosterArrayList.size()<104) //max 112 messing up boss, new max is 104
                         {
                             addPlayer("p" + (playeradd+2));
@@ -181,16 +186,19 @@ public class Menu extends JFrame
                 }
             }
         });
-
-        rosterArrayList.add("Flavius");
+        
+        /*
+        rosterArrayList.add("Flavius");*/
+        
         dlm = new DefaultListModel();
-        for (String rAdd : rosterArrayList)
+        /*for (String rAdd : rosterArrayList)
         {
             dlm.addElement(rAdd);
         }
         rosterList = new JList(dlm);
         rosterScrollPane = new JScrollPane(rosterList);
-
+        */
+        addPlayer("Flavius");
         websiteButton = new JButton("Website");
         websiteButton.setBackground(Color.DARK_GRAY);
         websiteButton.setForeground(Color.RED);
@@ -296,6 +304,11 @@ public class Menu extends JFrame
     //method for adding a player via string input.
     public void addPlayer(String player)
     {
+        Random randy = new Random();
+        int characterChoice = randy.nextInt(6);
+        System.out.println(characterChoice);
+        rosterCharArrayList.add(characterChoice);
+        
         rosterArrayList.add(player);
         dlm.addElement(player);
         rosterList = new JList(dlm);
