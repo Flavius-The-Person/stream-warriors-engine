@@ -143,9 +143,18 @@ public class Player
         
         String baseloc = "src/main/java/com/flavcreations/testfiles/200/";
         
-        String[] sCharIcons = {"Knight/Knight_Idle_"};
-        String[] sKoIcons = {"Knight/Knight_Dead_"};
-        String[] sVictoryIcons = {"Knight/Knight_Swinging_"};
+        String[] sCharIcons = {
+                                "Anima/Bunny/Bunny","Anima/Cat/Cat","Anima/Fox/Fox",
+                                "Anima/Paintcat/Paintcat","Anima/Puffy/Puffy","Anima/Witchcat/Witchcat"};
+        String[] sKoIcons = {
+                                "Anima/Bunny/Bunny","Anima/Cat/Cat","Anima/Fox/Fox",
+                                "Anima/Paintcat/Paintcat","Anima/Puffy/Puffy","Anima/Witchcat/Witchcat"};
+        String[] sAttackIcons = {//"Knight/Knight_Swinging_"
+                                "Anima/Bunny/Bunny_Swinging_","Anima/Cat/Cat_Swinging_","Anima/Fox/Fox_Swinging_",
+                                "Anima/Paintcat/Paintcat_Swinging_","Anima/Puffy/Puffy_Swinging_","Anima/Witchcat/Witchcat_Swinging_" };
+        String[] sVictoryIcons = {//"Knight/Knigh_Victory_"
+                                "Anima/Bunny/Bunny","Anima/Cat/Cat","Anima/Fox/Fox",
+                                "Anima/Paintcat/Paintcat","Anima/Puffy/Puffy","Anima/Witchcat/Witchcat" };
     
         String[] sDamagedIcons = {""};
         String[] sGuardIcons = {""};
@@ -186,11 +195,11 @@ public class Player
             
             if(iKoIcons == 0) {
                 koIcons[0] = new ImageIcon( //knocked out 1
-                        baseloc + sCharIcons[0] + "01.png");
+                        baseloc + sAttackIcons[0] + "01.png");
                 koIcons[1] = new ImageIcon( //knocked out 1
-                        baseloc + sCharIcons[0] + "02.png");
+                        baseloc + sAttackIcons[0] + "02.png");
                 koIcons[2] = new ImageIcon( //knocked out 1
-                        baseloc + sCharIcons[0] + "03.png");
+                        baseloc + sAttackIcons[0] + "03.png");
             }
             if(iKoIcons >= 1)
             {
@@ -203,18 +212,18 @@ public class Player
             }
         
             attackIcons[0] = new ImageIcon(//attack 1
-                    baseloc + sCharIcons[0] + "01.png");//attack 1
+                    baseloc + sAttackIcons[0] +  "01.png");//attack 1
             attackIcons[1] = new ImageIcon(//attack 2
-                    baseloc + sCharIcons[0] + "02.png");//attack 2
+                    baseloc + sAttackIcons[0] + "02.png");//attack 2
             attackIcons[2] = new ImageIcon(//attack 3
-                    baseloc + sCharIcons[0] + "03.png");//attack 3
+                    baseloc + sAttackIcons[0] + "03.png");//attack 3
     
             victoryIcons[0] = new ImageIcon(//victory 1
-                    baseloc + sCharIcons[0] + "01.png");//attack 3//victory 1
+                    baseloc + sCharIcons[0] + "_Swinging_" + "01.png");//attack 3//victory 1
             victoryIcons[1] = new ImageIcon(//victory 2
-                    baseloc + sCharIcons[0] + "02.png");//attack 3//victory 2
+                    baseloc + sCharIcons[0] + "_Swinging_" + "02.png");//attack 3//victory 2
             victoryIcons[2] = new ImageIcon(//victory 3
-                    baseloc + sCharIcons[0] + "03.png");//attack 3//victory 3
+                    baseloc + sCharIcons[0] + "_Swinging_" + "03.png");//attack 3//victory 3
 
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2
@@ -274,34 +283,46 @@ public class Player
         else if(!inDB)
         {
             //System.out.println("Player not found in db");
-    
             idleIcons[0] = new ImageIcon( //idle 1
-                    baseloc + sCharIcons[0] + "01.png");
+                    baseloc + sCharIcons[pgen] + "_Idle_" + "01.png");
             idleIcons[1] = new ImageIcon( //idle 2
-                    baseloc + sCharIcons[0] + "02.png");
+                    baseloc + sCharIcons[pgen] + "_Idle_" + "02.png");
             idleIcons[2] = new ImageIcon( //idle 3
-                    baseloc + sCharIcons[0] + "03.png");
+                    baseloc + sCharIcons[pgen] + "_Idle_" + "03.png");
     
-            koIcons[0] = new ImageIcon( //knocked out 1
-                    baseloc + sCharIcons[0] + "01.png");
-            koIcons[1] = new ImageIcon( //knocked out 1
-                    baseloc + sCharIcons[0] + "02.png");
-            koIcons[2] = new ImageIcon( //knocked out 1
-                    baseloc + sCharIcons[0] + "03.png");
+            int iKoIcons = 0;
+    
+            if(iKoIcons == 0) {
+                koIcons[0] = new ImageIcon( //knocked out 1
+                        baseloc + sCharIcons[pgen]  + "_Dead_" + "01.png");
+                koIcons[1] = new ImageIcon( //knocked out 1
+                        baseloc + sCharIcons[pgen]  + "_Dead_" + "02.png");
+                koIcons[2] = new ImageIcon( //knocked out 1
+                        baseloc + sCharIcons[pgen]  + "_Dead_" + "03.png");
+            }
+            if(iKoIcons >= 1)
+            {
+                koIcons[0] = new ImageIcon( //knocked out 1
+                        baseloc + sKoIcons[iKoIcons-1] + "01.png");
+                koIcons[1] = new ImageIcon( //knocked out 1
+                        baseloc + sKoIcons[iKoIcons-1] + "02.png");
+                koIcons[2] = new ImageIcon( //knocked out 1
+                        baseloc + sKoIcons[iKoIcons-1] + "03.png");
+            }
     
             attackIcons[0] = new ImageIcon(//attack 1
-                    baseloc + sCharIcons[0] + "01.png");//attack 1
+                    baseloc + sAttackIcons[pgen] + "_Swinging_" +  "01.png");//attack 1
             attackIcons[1] = new ImageIcon(//attack 2
-                    baseloc + sCharIcons[0] + "02.png");//attack 2
+                    baseloc + sAttackIcons[pgen] + "_Swinging_" + "02.png");//attack 2
             attackIcons[2] = new ImageIcon(//attack 3
-                    baseloc + sCharIcons[0] + "03.png");//attack 3
+                    baseloc + sAttackIcons[pgen] + "_Swinging_" + "03.png");//attack 3
     
             victoryIcons[0] = new ImageIcon(//victory 1
-                    baseloc + sCharIcons[0] + "01.png");//attack 3//victory 1
+                    baseloc + sVictoryIcons[pgen] + "_Victory_" + "01.png");//attack 3//victory 1
             victoryIcons[1] = new ImageIcon(//victory 2
-                    baseloc + sCharIcons[0] + "02.png");//attack 3//victory 2
+                    baseloc + sVictoryIcons[pgen] + "_Victory_" + "02.png");//attack 3//victory 2
             victoryIcons[2] = new ImageIcon(//victory 3
-                    baseloc + sCharIcons[0] + "03.png");//attack 3//victory 3
+                    baseloc + sVictoryIcons[pgen] + "_Victory_" + "03.png");//attack 3//victory 3
             
             guardIcons[0] = new ImageIcon("");//guard 1
             guardIcons[1] = new ImageIcon("");//guard 2
@@ -360,6 +381,7 @@ public class Player
         {
             isKO = true;
             health = 0;
+            System.out.println(this.name + " is dead");
         }
     }
     
