@@ -508,7 +508,7 @@ public class Scene extends JFrame
 		bossPanel.setOpaque(false);
 		bossLabel.setSize(500,500);
 		bossPanel.setSize(500,500);
-		bossPanel.setLocation(1420,250);
+		bossPanel.setLocation(1400,250);
 		add(bossPanel);
 		
 		// Add Boss health Panel and label
@@ -558,7 +558,7 @@ public class Scene extends JFrame
 	}
 	
 	//add players from roster to the scene
-	public void addPlayers(ArrayList<String> roster)
+	public void addPlayers(ArrayList<String> roster, ArrayList<Integer> characterChoice)
 	{
 		if(isFightStarted)
 		{
@@ -577,7 +577,8 @@ public class Scene extends JFrame
 			//for loop through the players object list adding data to each player
 			for (int playerLoopInt = 0; playerLoopInt < Players.length; playerLoopInt++) {
 				Players[playerLoopInt] = new Player();
-				Players[playerLoopInt].setData(roster.get(playerLoopInt), pgen);
+				System.out.println("name = " + roster.get(playerLoopInt) + " | character choice = " + characterChoice.get(playerLoopInt));
+				Players[playerLoopInt].setData(roster.get(playerLoopInt), characterChoice.get(playerLoopInt));
 			}
 			
 			//initiate the load game function
