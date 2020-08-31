@@ -1,6 +1,7 @@
 package com.flavcreations;
 
 import java.net.URL;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Init
@@ -19,7 +20,7 @@ public class Init
 
         while(!(sInp.equals("done")))
         {
-            if(!menu.scene.isOpenRoster)
+            if(!menu.llg.isOpenRoster)
             {
                 System.out.println("Roster is not open");
             }
@@ -30,7 +31,7 @@ public class Init
                 //return;
             }
             else
-            if(menu.scene.isOpenRoster)
+            if(menu.llg.isOpenRoster)
             {
                 if(menu.rosterArrayList.contains(sInp))
                 {
@@ -39,8 +40,13 @@ public class Init
                 if(!menu.rosterArrayList.contains(sInp))
                 {
                     System.out.println("input was: " + sInp);
-                    menu.addPlayer(sInp);
+                    Random randy = new Random();
+                    String playerID = "0";
+                    int characterChoice = randy.nextInt(6);
+                    String displayName = "test";
+                    menu.addPlayer(playerID, characterChoice, displayName);
                 }
+                
             }
             System.out.println("What is the player to be put in?");
             sInp = inp.nextLine();
