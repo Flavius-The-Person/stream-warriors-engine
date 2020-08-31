@@ -98,7 +98,10 @@ public class Scene extends JFrame
 		
 		backgroundPanel = new JPanel();
 		backgroundLabel = new JLabel();
-		backgroundIcon = new ImageIcon("src/main/java/com/flavcreations/testfiles/overlay_map_01v1.png");
+		String baseloc =
+				"src/main/java/com/flavcreations/legionslive/streamwarriorsengine/LegionsLiveGame/LLArt/Backgrounds/";
+		
+		backgroundIcon = new ImageIcon(baseloc + "overlay_map_01v1.png");
 		add(backgroundPanel);
 		
 		getContentPane().repaint();
@@ -159,15 +162,15 @@ public class Scene extends JFrame
 	public void gameTask()
 	{
 		/*
-		* While the game is started cycle through idle animations
-		* with a for loop, then cycle boss through idle animations
-		*
-		* Coming soon - check if attacking,
-		*
-		* cycle through attack animations if attacking
-		* instead of idle animations
-		*
-		* when finished with attack animations resume with idle animations
+		 * While the game is started cycle through idle animations
+		 * with a for loop, then cycle boss through idle animations
+		 *
+		 * Coming soon - check if attacking,
+		 *
+		 * cycle through attack animations if attacking
+		 * instead of idle animations
+		 *
+		 * when finished with attack animations resume with idle animations
 		 */
 		
 		
@@ -197,7 +200,7 @@ public class Scene extends JFrame
 							System.out.println("Player " + Players[x].name + "'s Health: " + Players[x].health);
 						}
 					    //*/
-	
+						
 						fightOver = true;
 						fightWon = false;
 					}
@@ -215,7 +218,7 @@ public class Scene extends JFrame
 							System.out.println("Player " + Players[x].name + " Health: " + Players[x].health);
 						}
 						//*/
-	
+						
 						fightOver = true;
 						fightWon = true;
 					}
@@ -244,8 +247,8 @@ public class Scene extends JFrame
 								}
 							}
 							
-								
-								//int temp_turn = 0;
+							
+							//int temp_turn = 0;
 							
 							
 							/*
@@ -260,7 +263,7 @@ public class Scene extends JFrame
 									}
 								} else turnList.add(temp_turn);
 							}*/
-	
+							
 							
 							Collections.shuffle(turnList);
 							turn = 0;
@@ -284,7 +287,7 @@ public class Scene extends JFrame
 													timeStringTwo = sdf.format(cal.getTime());
 													for (int x = 0; x < Players.length; x++) {
 														System.out.println("Player " + Players[x].name
-																								+ " Health: " + Players[x].health);
+																+ " Health: " + Players[x].health);
 													}
 													System.out.println("start:" + timeString);
 													System.out.println("end:" + timeStringTwo);
@@ -389,6 +392,10 @@ public class Scene extends JFrame
 						}
 						System.out.println("Playerbase Health: " + playerbase_current_health);
 						System.out.println("Boss Health: " + Boss.health);
+						
+						
+						//Lets manipulate the health bars here
+						
 					}
 				}
 				if(fightOver)
@@ -433,7 +440,7 @@ public class Scene extends JFrame
 	private int ht = 200;
 	private int wd = 200;
 	
-
+	
 	private int[] posX = {
 			0, 0, 0, 0, 0, 0, 0, 0, //1-8
 			100, 100, 100, 100, 100, 100, 100, 100, //9-16
@@ -448,7 +455,7 @@ public class Scene extends JFrame
 			1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, //81-88
 			1100, 1100, 1100, 1100, 1100, 1100, 1100, 1100, //89-96
 			1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, //97-104
-			
+		
 	};
 	
 	private int[] posY = {
@@ -465,7 +472,7 @@ public class Scene extends JFrame
 			0, 100, 200, 300, 400, 500, 600, 700, //81-88
 			0, 100, 200, 300, 400, 500, 600, 700, //89-96
 			0, 100, 200, 300, 400, 500, 600, 700, //97-104
-			
+		
 		
 	};
 	
@@ -538,6 +545,7 @@ public class Scene extends JFrame
 		setVisible(true);
 		
 		
+		
 		startGame();
 		
 		
@@ -558,7 +566,7 @@ public class Scene extends JFrame
 	}
 	
 	//add players from roster to the scene
-	public void addPlayers(ArrayList<String> roster, ArrayList<Integer> characterChoice)
+	public <rosterName> void addPlayers(ArrayList<String> roster, ArrayList<Integer> characterChoice, ArrayList<String> rosterName)
 	{
 		if(isFightStarted)
 		{
@@ -577,8 +585,8 @@ public class Scene extends JFrame
 			//for loop through the players object list adding data to each player
 			for (int playerLoopInt = 0; playerLoopInt < Players.length; playerLoopInt++) {
 				Players[playerLoopInt] = new Player();
-				System.out.println("name = " + roster.get(playerLoopInt) + " | character choice = " + characterChoice.get(playerLoopInt));
-				Players[playerLoopInt].setData(roster.get(playerLoopInt), characterChoice.get(playerLoopInt));
+				System.out.println("name = " + rosterName.get(playerLoopInt) + " | character choice = " + characterChoice.get(playerLoopInt));
+				Players[playerLoopInt].setData(roster.get(playerLoopInt), characterChoice.get(playerLoopInt), rosterName.get(playerLoopInt));
 			}
 			
 			//initiate the load game function
@@ -662,15 +670,18 @@ public class Scene extends JFrame
 	
 	public void clearPlayers()
 	{
-		
-		for(int x = 0; x < battlerPanels.size(); x++)
+		if(!battlerPanels.isEmpty())
 		{
-			remove(battlerPanels.get(x));
-			//System.out.println("Panel " + x + " removed.");
+			
+			for (int x = 0; x < battlerPanels.size(); x++) {
+				remove(battlerPanels.get(x));
+				remove(battlerLabels.get(x));
+			}
 		}
-		remove(bossPanel);
+		if(bossPanel!=null) remove(bossPanel);
 		battlerPanels.clear();
 		battlerLabels.clear();
+		bossPanel = null;
 		
 		revalidate();
 		repaint();
@@ -678,7 +689,7 @@ public class Scene extends JFrame
 		fightOver = false;
 		fightWon = false;
 		allPlayersDead = false;
-		Boss.isKO = false;
+		if(Boss!=null)Boss.isKO = false;
 		playersDead = 0;
 		turn = turnList.size()+1;
 		
