@@ -14,17 +14,17 @@ import java.util.Random;
 public class Menu extends JFrame
 {
     //class variables and object imports (such as scene and enemy)
-    Scene scene ;
     
-
+    Scene llg;
+    
     private JLabel menuImageLabel;
     private ImageIcon menuImageIcon;
     private JButton openRosterButton;
     private String backgroundImage = "";
     private JLabel backgroundLabel;
     private JPanel backgroundPanel;
-
-    private DefaultListModel dlm;
+    
+    private DefaultListModel<String> dlm;
     
     /*
     boolean isOpenRoster = false;
@@ -33,20 +33,21 @@ public class Menu extends JFrame
     */
     
     public ArrayList<String> rosterArrayList = new ArrayList<String>();
+    public ArrayList<String> rosterNameArrayList = new ArrayList<String>();
     public ArrayList<Integer> rosterCharArrayList = new ArrayList<Integer>();
     
     private JScrollPane rosterScrollPane;
     
     private JButton startButton, restartButton;
-    private JList rosterList;
+    private JList<String> rosterList;
     private JButton websiteButton, patreonButton, githubButton, creditsButton;
     
     
     
     private JLabel titleLabel;
-    private JComboBox bossComboBox;
+    private JComboBox<String> bossComboBox;
     
-    private String[] bossChoices = {"Fungoliath", "not available"};
+    private String[] bossChoices = {"Fungoliath", "Fungoliath"};
     private int bossChoice;
     private ImageIcon[] bossChoiceImages = {
             new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\Fungoliath\\Fungoliath-Idle-01.png"),
@@ -74,20 +75,20 @@ public class Menu extends JFrame
     {
         super("Stream Warriors Menu");
         
-        scene = new Scene();
+        llg = new Scene();
         
         setSize(600,930);
         menuImageIcon = new ImageIcon(backgroundImage);
         menuImageLabel = new JLabel();
         menuImageLabel.setIcon(menuImageIcon);
         menuImageLabel.setSize(600,930);
-
+        
         getContentPane().setBackground(Color.BLACK);
-
+        
         titleLabel = new JLabel("Game Name");
         titleLabel.setForeground(Color.RED);
-
-        bossComboBox = new JComboBox(bossChoiceImages);
+        
+        bossComboBox = new JComboBox<>(bossChoices);
         bossComboBox.addActionListener(new ActionListener()
         {
             @Override
@@ -106,25 +107,25 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                if(!scene.isOpenRoster)
+                if(!llg.isOpenRoster)
                 {
-                    if(scene.isFightStarted)
+                    if(llg.isFightStarted)
                     {
-                        if(scene.isFightPaused)
+                        if(llg.isFightPaused)
                         {
-                            scene.isFightPaused = false;
+                            llg.isFightPaused = false;
                             startButton.setText("Pause");
                             
                         }
-                        else if(!scene.isFightPaused)
+                        else if(!llg.isFightPaused)
                         {
-                            scene.isFightPaused = true;
+                            llg.isFightPaused = true;
                             startButton.setText("Start/Resume");
                         }
-                    }else if(!scene.isFightStarted)
+                    }else if(!llg.isFightStarted)
                     {
-                        scene.isFightStarted = true;
-                        scene.isFightPaused = false;
+                        llg.isFightStarted = true;
+                        llg.isFightPaused = false;
                         startButton.setText("Pause");
                     }
                 }
@@ -138,13 +139,13 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                    System.out.println("restart selected");
-                    scene.isFightStarted = false;
-                    scene.isOpenRoster = false;
-                    clearRoster();
-                    scene.clearPlayers();
-                    startButton.setText("Start");
-                    openRosterButton.setText("Open Roster");
+                System.out.println("restart selected");
+                llg.isFightStarted = false;
+                llg.isOpenRoster = false;
+                clearRoster();
+                llg.clearPlayers();
+                startButton.setText("Start");
+                openRosterButton.setText("Open Roster");
             }
         });
         
@@ -155,50 +156,39 @@ public class Menu extends JFrame
         {
             public void actionPerformed(ActionEvent e)
             {
-                if(scene.isOpenRoster)
+                if(llg.isOpenRoster)
                 {
-                    scene.isOpenRoster = false;
-                    openRosterButton.setText("Open Roster");
-
-                    //System.out.println(rosterArrayList);
-                    System.out.println("boss combo box index=" + bossComboBox.getSelectedIndex());
-                    scene.setBoss(bossComboBox.getSelectedIndex());
-                    scene.addPlayers(rosterArrayList, rosterCharArrayList);
-                    
-
-                } else if(!scene.isOpenRoster)
-                {
-                    if(!scene.isFightStarted)
+                    if(rosterNameArrayList.isEmpty())
                     {
-                        scene.isOpenRoster = true;
+                        System.out.println("Roster is empty!!!");
+                    }
+                    else {
+                        llg.isOpenRoster = false;
+                        openRosterButton.setText("Open Roster");
+                        
+                        //System.out.println(rosterArrayList);
+                        System.out.println("boss combo box index=" + bossComboBox.getSelectedIndex());
+                        llg.setBoss(bossComboBox.getSelectedIndex());
+                        llg.addPlayers(rosterArrayList, rosterCharArrayList, rosterNameArrayList);
+                    }
+                    
+                } else if(!llg.isOpenRoster)
+                {
+                    if(!llg.isFightStarted)
+                    {
+                        llg.isOpenRoster = true;
                         openRosterButton.setText("Close Roster");
                         
-                        int playeradd = 0;
-                        Random randy = new Random();
                         
-                        while(rosterArrayList.size()<104) //max 112 messing up boss, new max is 104
-                        {
-                            addPlayer("p" + (playeradd+2));
-                            playeradd++;
-                        }
                         
                     }
                 }
             }
         });
         
-        /*
-        rosterArrayList.add("Flavius");*/
         
-        dlm = new DefaultListModel();
-        /*for (String rAdd : rosterArrayList)
-        {
-            dlm.addElement(rAdd);
-        }
-        rosterList = new JList(dlm);
-        rosterScrollPane = new JScrollPane(rosterList);
-        */
-        addPlayer("Flavius");
+        dlm = new DefaultListModel<String>();
+        
         websiteButton = new JButton("Website");
         websiteButton.setBackground(Color.DARK_GRAY);
         websiteButton.setForeground(Color.RED);
@@ -209,7 +199,7 @@ public class Menu extends JFrame
                 openWebPage("https://flavcreations.com/");
             }
         });
-
+        
         githubButton = new JButton("Github Sponsors");
         githubButton.setBackground(Color.DARK_GRAY);
         githubButton.setForeground(Color.RED);
@@ -220,7 +210,7 @@ public class Menu extends JFrame
                 openWebPage("https://github.com/sponsors/Flavius-The-Person");
             }
         });
-
+        
         creditsButton = new JButton("Credits");
         creditsButton.setBackground(Color.DARK_GRAY);
         creditsButton.setForeground(Color.RED);
@@ -231,7 +221,7 @@ public class Menu extends JFrame
                 openWebPage("https://flavcreations.com/");
             }
         });
-
+        
         patreonButton = new JButton("Patreon");
         patreonButton.setBackground(Color.DARK_GRAY);
         patreonButton.setForeground(Color.RED);
@@ -242,96 +232,106 @@ public class Menu extends JFrame
                 openWebPage("https://www.patreon.com/FlavCreations");
             }
         });
-
-
+        
+        
         add(titleLabel);
         titleLabel.setSize(600,200);
         titleLabel.setLocation(0,0);
         
         add(bossComboBox);
-        bossComboBox.setSize(200,200);
-        bossComboBox.setLocation(200,300);
+        bossComboBox.setSize(200,50);
+        bossComboBox.setLocation(200,450);
         
         add(openRosterButton);
-        openRosterButton.setSize(200,60);
+        openRosterButton.setSize(200,50);
         openRosterButton.setLocation(200,500);
+        
+        rosterScrollPane = new JScrollPane();
         add(rosterScrollPane);
         rosterScrollPane.setSize(200,100);
-        rosterScrollPane.setLocation(200,560);
-    
-    
+        rosterScrollPane.setLocation(200,550);
+        
+        
         add(startButton);
-        startButton.setSize(200,60);
-        startButton.setLocation(200,660);
+        startButton.setSize(200,50);
+        startButton.setLocation(200,650);
         add(restartButton);
-        restartButton.setSize(200,60);
-        restartButton.setLocation(200,710);
+        restartButton.setSize(200,50);
+        restartButton.setLocation(200,700);
         
         add(websiteButton);
         websiteButton.setSize(200,50);
-        websiteButton.setLocation(200,760);
+        websiteButton.setLocation(200,750);
         
         add(githubButton);
         githubButton.setSize(200,50);
-        githubButton.setLocation(0,810);
+        githubButton.setLocation(0,800);
         add(creditsButton);
         creditsButton.setSize(200,50);
-        creditsButton.setLocation(200, 810);
+        creditsButton.setLocation(200, 800);
         add(patreonButton);
         patreonButton.setSize(200,50);
-        patreonButton.setLocation(400, 810);
-
+        patreonButton.setLocation(400, 800);
+        
         JLabel endLbl = new JLabel("");
         add(endLbl);
-
+        
         setVisible(true);
-
+        
+        
     }
-
+    
+    
     //open a website link when function is called with a url string
     public void openWebPage(String url)
     {
         try
         {
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
-
+            
         } catch (IOException e)
         {
             e.printStackTrace();
         }
     }
-
+    
     //method for adding a player via string input.
-    public void addPlayer(String player)
+    public void addPlayer(String player, int iChoice, String playerName)
     {
-        Random randy = new Random();
-        int characterChoice = randy.nextInt(6);
-        System.out.println(characterChoice);
-        rosterCharArrayList.add(characterChoice);
+		/*Random randy = new Random();
+		int characterChoice = randy.nextInt(6);
+		*/
+        System.out.println(iChoice);
+        
+        rosterCharArrayList.add(iChoice);
         
         rosterArrayList.add(player);
+        
+        rosterNameArrayList.add(playerName);
+        
         dlm.addElement(player);
-        rosterList = new JList(dlm);
+        rosterList = new JList<>(dlm);
         rosterScrollPane = new JScrollPane(rosterList);
         rosterScrollPane.updateUI();
     }
-
+    
     //method for clearing the roster/scrollpane
     public void clearRoster()
     {
-        if(!scene.isOpenRoster)
+        if(!llg.isOpenRoster)
         {
             return;
         } else
-            
             rosterArrayList.clear();
-            dlm.clear();
-            rosterList = null;
-            rosterList = new JList(dlm);
-            rosterScrollPane = new JScrollPane(rosterList);
-            rosterScrollPane.updateUI();
-            addPlayer("Flavius");
-            addPlayer("Weylyn");
-            addPlayer("Test Roster Clear");
+        rosterCharArrayList.clear();
+        rosterNameArrayList.clear();
+        dlm.clear();
+        rosterList = null;
+        rosterList = new JList<String>(dlm);
+        rosterScrollPane = new JScrollPane(rosterList);
+        rosterScrollPane.updateUI();
+			/*addPlayer("Flavius");
+			addPlayer("Weylyn");
+			addPlayer("Test Roster Clear");*/
     }
 }
