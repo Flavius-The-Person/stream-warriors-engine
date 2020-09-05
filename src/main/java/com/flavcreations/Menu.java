@@ -165,10 +165,11 @@ public class Menu extends JFrame
                     else {
                         llg.isOpenRoster = false;
                         openRosterButton.setText("Open Roster");
-                        
+    
                         //System.out.println(rosterArrayList);
                         System.out.println("boss combo box index=" + bossComboBox.getSelectedIndex());
                         llg.setBoss(bossComboBox.getSelectedIndex());
+                        
                         llg.addPlayers(rosterArrayList, rosterCharArrayList, rosterNameArrayList);
                     }
                     
@@ -178,7 +179,10 @@ public class Menu extends JFrame
                     {
                         llg.isOpenRoster = true;
                         openRosterButton.setText("Close Roster");
+                        for(int playerCount = 0; playerCount < 104; playerCount++)
+                        {
                         
+                        }
                         
                         
                     }
