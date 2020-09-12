@@ -53,23 +53,7 @@ public class Menu extends JFrame
             new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\Fungoliath\\Fungoliath-Idle-01.png"),
             new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\Fungoliath\\Fungoliath-Idle-01.png")
     };
-    
-    
-    
-    /*** Variables no longer using? Or might not be using?
-     *
-     * ArrayList<String> patrons = new ArrayList<String>();
-     * ArrayList<String> voiceArtists = new ArrayList<String>();
-     * JScrollPane pjsp, vjsp
-     * JList patronList, vAList;
-     * JLabel strtLbl, rstrOpnLbl, rstrLbl, ptrnLbl, vALbl;
-     * DefaultListModel dlm2, dlm3
-     *
-     */
-    
-    
-    
-    
+
     
     public Menu()
     {
