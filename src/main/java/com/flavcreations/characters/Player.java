@@ -140,9 +140,11 @@ public class Player
         name = pname;
         isKO = false;
         boolean inDB = false;
-        
-        String baseloc = "src/main/java/com/flavcreations/legionslive/streamwarriorsengine/legionslivegame/LLArt/200/";
-        
+
+        String contentRootLoc = "src/main/java/com/flavcreations/characters/art/player";
+        String sourceRootLoc = "com/flavcreations/characters/art/player";
+        String baseloc = sourceRootLoc;
+
         String[] sCharIcons = {
                 "Anima/Bunny/Bunny","Anima/Cat/Cat","Anima/Fox/Fox",
                 "Anima/Paintcat/Paintcat","Anima/Puffy/Puffy","Anima/Witchcat/Witchcat"};
