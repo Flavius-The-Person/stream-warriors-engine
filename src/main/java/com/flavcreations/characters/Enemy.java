@@ -133,9 +133,10 @@ public class Enemy
         
         isKO = false;
         System.out.println("name: " + name);
-        
-        String baseloc = "src/main/java/com/flavcreations/legionslive/streamwarriorsengine/legionslivegame/LLArt/500/";
-        
+        String contentRootLoc = "src/main/java/com/flavcreations/characters/art/boss";
+        String sourceRootLoc = "com/flavcreations/characters/art/boss";
+        String baseloc = sourceRootLoc;
+
         String[] sIdleIcons = {"Fungoliath/Fungoliath-Idle-"};
         String[] sAttackIcons = {"Fungoliath/Fungoliath-Stabbing-"};
         String[] sKoIcons = {"Fungoliath/Fungoliath-Dead-"};
