@@ -99,7 +99,7 @@ public class Scene extends JFrame
 		backgroundPanel = new JPanel();
 		backgroundLabel = new JLabel();
 		String baseloc =
-				"src/main/java/com/flavcreations/legionslive/streamwarriorsengine/LegionsLiveGame/LLArt/Backgrounds/";
+				"src/main/java/com/flavcreations/characters/art/background/";
 		
 		backgroundIcon = new ImageIcon(baseloc + "overlay_map_01v1.png");
 		add(backgroundPanel);
@@ -481,34 +481,34 @@ public class Scene extends JFrame
 		System.out.println("setting up scene");
 		for(int sceneSetupInt = Players.length - 1; sceneSetupInt >= 0; sceneSetupInt--) //battlerPanels.length; ss++)
 		{
-			
+
 			{
 				battlerPanels.get(sceneSetupInt).setSize(wd,ht);
 				battlerLabels.get(sceneSetupInt).setIcon(Players[sceneSetupInt].idleIcons[0]);
 				battlerLabels.get(sceneSetupInt).setSize(wd,ht);
 				battlerPanels.get(sceneSetupInt).add(battlerLabels.get(sceneSetupInt));
 				battlerPanels.get(sceneSetupInt).updateUI();
-				
+
 				add(battlerPanels.get(sceneSetupInt));
 				battlerPanels.get(sceneSetupInt).setLocation(posX[sceneSetupInt], posY[sceneSetupInt]);
 				battlerPanels.get(sceneSetupInt).setOpaque(false);
-				
+
 				effectPanels.get(sceneSetupInt).setSize(wd,ht);
 				effectLabels.get(sceneSetupInt).setSize(wd,ht);
 				effectPanels.get(sceneSetupInt).add(effectLabels.get(sceneSetupInt));
-				
+
 				add(effectPanels.get(sceneSetupInt));
 				effectPanels.get(sceneSetupInt).setLocation(posX[sceneSetupInt], posY[sceneSetupInt]);
 				effectPanels.get(sceneSetupInt).setOpaque(false);
-				
+
 			}
 		}
-		
+
 		//add boss
 		bossPanel = new JPanel();
 		bossLabel = new JLabel();
-		
-		
+
+
 		bossLabel.setIcon(Boss.idleIcons[0]);
 		bossLabel.setOpaque(false);
 		bossPanel.add(bossLabel);
@@ -517,7 +517,7 @@ public class Scene extends JFrame
 		bossPanel.setSize(500,500);
 		bossPanel.setLocation(1400,250);
 		add(bossPanel);
-		
+
 		// Add Boss health Panel and label
 		bossHealthPanel = new JPanel();
 		bossHealthLabel = new JLabel("Boss Health: ");
@@ -528,27 +528,26 @@ public class Scene extends JFrame
 		bossHealthPanel.setSize(500,50);
 		bossHealthPanel.add(bossHealthLabel);
 		//add(bossHealthPanel);
-		
-		
+
+
 		// Add background Panel
 		backgroundLabel.setIcon(backgroundIcon);
-		
+
 		backgroundPanel.add(backgroundLabel);
-		
+
 		backgroundPanel.setLocation(0,-10);
 		backgroundPanel.setSize(1920,1080);
 		add(backgroundPanel);
-		
+
 		getContentPane().repaint();
 		super.repaint();
-		
+
 		setVisible(true);
-		
-		
-		
+
+
+
 		startGame();
-		
-		
+
 	}
 	
 	//pull integer from Menu based on combo box selection
