@@ -21,7 +21,7 @@ public class Scene extends JFrame
 	private JFrame iFrame;
 	
 	
-	private List<JPanel> battlerPanels = new ArrayList<JPanel>();
+	 List<JPanel> battlerPanels = new ArrayList<JPanel>();
 	private List<JLabel> battlerLabels = new ArrayList<JLabel>();
 	
 	private List<JPanel> effectPanels = new ArrayList<JPanel>();
@@ -66,7 +66,7 @@ public class Scene extends JFrame
 	boolean isFightStarted = false;
 	boolean isFightPaused = true;
 	
-	private Player[] Players;
+	Player[] Players;
 	private Enemy Boss;
 	
 	private int eventTimer = 0;
