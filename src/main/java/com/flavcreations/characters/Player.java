@@ -141,9 +141,9 @@ public class Player
         isKO = false;
         boolean inDB = false;
 
-        String contentRootLoc = "src/main/java/com/flavcreations/characters/art/player";
-        String sourceRootLoc = "com/flavcreations/characters/art/player";
-        String baseloc = sourceRootLoc;
+        String contentRootLoc = "src/main/java/com/flavcreations/characters/art/player/";
+        //String sourceRootLoc = "com/flavcreations/characters/art/player/";
+        String baseloc = contentRootLoc;
 
         String[] sCharIcons = {
                 "Anima/Bunny/Bunny","Anima/Cat/Cat","Anima/Fox/Fox",
