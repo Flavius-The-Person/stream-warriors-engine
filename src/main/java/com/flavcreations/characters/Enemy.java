@@ -133,9 +133,9 @@ public class Enemy
         
         isKO = false;
         System.out.println("name: " + name);
-        String contentRootLoc = "src/main/java/com/flavcreations/characters/art/boss";
-        String sourceRootLoc = "com/flavcreations/characters/art/boss";
-        String baseloc = sourceRootLoc;
+        String contentRootLoc = "src/main/java/com/flavcreations/characters/art/boss/";
+        //String sourceRootLoc = "com/flavcreations/characters/art/boss/";
+        String baseloc = contentRootLoc;
 
         String[] sIdleIcons = {"Fungoliath/Fungoliath-Idle-"};
         String[] sAttackIcons = {"Fungoliath/Fungoliath-Stabbing-"};
