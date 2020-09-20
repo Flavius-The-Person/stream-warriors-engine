@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -149,14 +148,13 @@ public class Menu extends JFrame
                     else {
                         llg.isOpenRoster = false;
                         openRosterButton.setText("Open Roster");
-    
+
                         //System.out.println(rosterArrayList);
                         System.out.println("boss combo box index=" + bossComboBox.getSelectedIndex());
                         llg.setBoss(bossComboBox.getSelectedIndex());
-                        
                         llg.addPlayers(rosterArrayList, rosterCharArrayList, rosterNameArrayList);
                     }
-                    
+
                 } else if(!llg.isOpenRoster)
                 {
                     if(!llg.isFightStarted)
@@ -165,9 +163,15 @@ public class Menu extends JFrame
                         openRosterButton.setText("Close Roster");
                         for(int playerCount = 0; playerCount < 104; playerCount++)
                         {
-                        
+                            Random randy = new Random();
+                            int pchoice = randy.nextInt(6);
+                            addPlayer("playerID:"+(playerCount+1), pchoice,"playerName:"+(playerCount+1));
                         }
-                        
+                        int pids = rosterArrayList.size();
+                        int pcs = rosterCharArrayList.size();
+                        int pns = rosterNameArrayList.size();
+                        System.out.println("rosterArrayList size = " + pids + " || rosterCharArrayList size = " + pcs + " || rosterNameArrayList size = " + pns);
+
                         
                     }
                 }
@@ -175,7 +179,7 @@ public class Menu extends JFrame
         });
         
         
-        dlm = new DefaultListModel<String>();
+        dlm = new DefaultListModel<>();
         
         websiteButton = new JButton("Website");
         websiteButton.setBackground(Color.DARK_GRAY);
@@ -298,9 +302,20 @@ public class Menu extends JFrame
         rosterNameArrayList.add(playerName);
         
         dlm.addElement(player);
+        for(int x = 0; x < dlm.getSize(); x++)
+        {
+            System.out.println(dlm.get(x));
+        }
         rosterList = new JList<>(dlm);
         rosterScrollPane = new JScrollPane(rosterList);
+        rosterScrollPane.revalidate();
+        rosterScrollPane.repaint();
+        rosterList.revalidate();
+        rosterList.repaint();
         rosterScrollPane.updateUI();
+        rosterList.updateUI();
+        revalidate();
+        repaint();
     }
     
     //method for clearing the roster/scrollpane
