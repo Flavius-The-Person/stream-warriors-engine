@@ -1,5 +1,7 @@
 package com.flavcreations;
 
+import com.flavcreations.characters.Player;
+
 import javax.swing.*;
 
 import java.awt.Color;
@@ -7,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -31,9 +34,9 @@ public class Menu extends JFrame
     boolean isFightPaused = false;
     */
     
-    public ArrayList<String> rosterArrayList = new ArrayList<String>();
-    public ArrayList<String> rosterNameArrayList = new ArrayList<String>();
-    public ArrayList<Integer> rosterCharArrayList = new ArrayList<Integer>();
+    public ArrayList<String> rosterArrayList = new ArrayList<>();
+    public ArrayList<String> rosterNameArrayList = new ArrayList<>();
+    public ArrayList<Integer> rosterCharArrayList = new ArrayList<>();
     
     private JScrollPane rosterScrollPane;
     
@@ -145,7 +148,10 @@ public class Menu extends JFrame
                     {
                         System.out.println("Roster is empty!!!");
                     }
-                    else {
+                    else
+                        if(llg.battlerPanels.isEmpty()){
+
+
                         llg.isOpenRoster = false;
                         openRosterButton.setText("Open Roster");
 
@@ -154,24 +160,33 @@ public class Menu extends JFrame
                         llg.setBoss(bossComboBox.getSelectedIndex());
                         llg.addPlayers(rosterArrayList, rosterCharArrayList, rosterNameArrayList);
                     }
+                        else if(!llg.battlerPanels.isEmpty())
+                        {
+                            llg.isOpenRoster = false;
+                            openRosterButton.setText("Open Roster");
+                        }
 
                 } else if(!llg.isOpenRoster)
                 {
                     if(!llg.isFightStarted)
                     {
+
                         llg.isOpenRoster = true;
                         openRosterButton.setText("Close Roster");
-                        for(int playerCount = 0; playerCount < 104; playerCount++)
-                        {
-                            Random randy = new Random();
-                            int pchoice = randy.nextInt(6);
-                            addPlayer("playerID:"+(playerCount+1), pchoice,"playerName:"+(playerCount+1));
-                        }
-                        int pids = rosterArrayList.size();
-                        int pcs = rosterCharArrayList.size();
-                        int pns = rosterNameArrayList.size();
-                        System.out.println("rosterArrayList size = " + pids + " || rosterCharArrayList size = " + pcs + " || rosterNameArrayList size = " + pns);
 
+                        if(rosterArrayList.size()<1) {
+                            for (int playerCount = 0; playerCount < 104; playerCount++) {
+                                Random randy = new Random();
+                                int pchoice = randy.nextInt(6);
+                                String playerId = "playerID:" + playerCount + 1;
+                                String playerName = "playerName:" + playerCount + 1;
+                                addPlayer(playerId, pchoice, playerName);
+                            }
+                            int pids = rosterArrayList.size();
+                            int pcs = rosterCharArrayList.size();
+                            int pns = rosterNameArrayList.size();
+                            System.out.println("rosterArrayList size = " + pids + " || rosterCharArrayList size = " + pcs + " || rosterNameArrayList size = " + pns);
+                        }
                         
                     }
                 }
@@ -293,29 +308,35 @@ public class Menu extends JFrame
 		/*Random randy = new Random();
 		int characterChoice = randy.nextInt(6);
 		*/
-        System.out.println(iChoice);
-        
-        rosterCharArrayList.add(iChoice);
-        
+        //System.out.println(iChoice);
+
         rosterArrayList.add(player);
-        
+
+        rosterCharArrayList.add(iChoice);
+
         rosterNameArrayList.add(playerName);
-        
-        dlm.addElement(player);
-        for(int x = 0; x < dlm.getSize(); x++)
-        {
-            System.out.println(dlm.get(x));
-        }
+
+        /*for (String s : rosterNameArrayList) {
+            if(!dlm.contains(s)) dlm.addElement(s);
+        }*/
+        dlm.addElement(playerName);
+        System.out.println("dlm added: " + playerName);
+
         rosterList = new JList<>(dlm);
-        rosterScrollPane = new JScrollPane(rosterList);
-        rosterScrollPane.revalidate();
-        rosterScrollPane.repaint();
-        rosterList.revalidate();
-        rosterList.repaint();
+
+        rosterScrollPane.add(rosterList);
         rosterScrollPane.updateUI();
-        rosterList.updateUI();
+        rosterScrollPane.repaint();
+        // = new JScrollPane(rosterList);
+        //rosterList = new JList(strArr);
+        //rosterList = new JList<String>(rosterNameArrayList);
+        //rosterScrollPane = new JScrollPane(rosterList);
+        rosterScrollPane.revalidate();
+        rosterScrollPane.updateUI();
+
         revalidate();
         repaint();
+
     }
     
     //method for clearing the roster/scrollpane
@@ -330,7 +351,7 @@ public class Menu extends JFrame
         rosterNameArrayList.clear();
         dlm.clear();
         rosterList = null;
-        rosterList = new JList<String>(dlm);
+        rosterList = new JList<>();
         rosterScrollPane = new JScrollPane(rosterList);
         rosterScrollPane.updateUI();
 			/*addPlayer("Flavius");
