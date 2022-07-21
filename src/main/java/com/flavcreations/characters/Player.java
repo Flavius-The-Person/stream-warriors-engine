@@ -142,7 +142,6 @@ public class Player
         boolean inDB = false;
 
         String contentRootLoc = "src/main/java/com/flavcreations/characters/art/player/";
-        //String sourceRootLoc = "com/flavcreations/characters/art/player/";
         String baseloc = contentRootLoc;
 
         String[] sCharIcons = {
@@ -185,7 +184,6 @@ public class Player
         if (inDB)
         {
             //System.out.println("Player found in db");
-            
             idleIcons[0] = new ImageIcon( //idle 1
                     baseloc + sCharIcons[0] + "01.png");
             idleIcons[1] = new ImageIcon( //idle 2
@@ -195,7 +193,8 @@ public class Player
             
             int iKoIcons = 0;
             
-            if(iKoIcons == 0) {
+            if(iKoIcons == 0) 
+	    {
                 koIcons[0] = new ImageIcon( //knocked out 1
                         baseloc + sAttackIcons[0] + "01.png");
                 koIcons[1] = new ImageIcon( //knocked out 1
@@ -263,8 +262,6 @@ public class Player
             sleepIcons[1] = new ImageIcon("");//sleeping 2
             sleepIcons[2] = new ImageIcon("");//sleeping 3
             
-            
-            
             //since I can't store and reproduce the file itself from a database,
             //I can store the file in the program and the name of the file in the database.
             //which will be sounds[x] = "sound location" + sound name + ".fileformat";
@@ -294,7 +291,8 @@ public class Player
             
             int iKoIcons = 0;
             
-            if(iKoIcons == 0) {
+            if(iKoIcons == 0) 
+	    {
                 koIcons[0] = new ImageIcon( //knocked out 1
                         baseloc + sCharIcons[pgen]  + "_Dead_" + "01.png");
                 koIcons[1] = new ImageIcon( //knocked out 1
@@ -395,6 +393,4 @@ public class Player
     {
         health = pHealth;
     }
-    
-    
 }
