@@ -28,7 +28,6 @@ public class Init
             if(menu.rosterArrayList.size() == 28)
             {
                 System.out.println("Roster at max");
-                //return;
             }
             else
             if(menu.llg.isOpenRoster)
