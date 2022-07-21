@@ -15,10 +15,8 @@ import java.util.Random;
 
 public class Menu extends JFrame
 {
-    //class variables and object imports (such as scene and enemy)
-    
+
     Scene llg;
-    
     private JLabel menuImageLabel;
     private ImageIcon menuImageIcon;
     private JButton openRosterButton;
@@ -27,12 +25,6 @@ public class Menu extends JFrame
     private JPanel backgroundPanel;
     
     private DefaultListModel<String> dlm;
-    
-    /*
-    boolean isOpenRoster = false;
-    boolean isFightStarted = false;
-    boolean isFightPaused = false;
-    */
     
     public ArrayList<String> rosterArrayList = new ArrayList<>();
     public ArrayList<String> rosterNameArrayList = new ArrayList<>();
@@ -44,8 +36,6 @@ public class Menu extends JFrame
     private JList<String> rosterList;
     private JButton websiteButton, patreonButton, githubButton, creditsButton;
     
-    
-    
     private JLabel titleLabel;
     private JComboBox<String> bossComboBox;
     
@@ -56,7 +46,6 @@ public class Menu extends JFrame
             new ImageIcon("D:\\GitHub\\FlaviusThePerson\\stream-warriors-engine\\src\\main\\java\\com\\flavcreations\\testfiles\\500\\Fungoliath\\Fungoliath-Idle-01.png")
     };
 
-    
     public Menu()
     {
         super("Stream Warriors Menu");
@@ -155,18 +144,18 @@ public class Menu extends JFrame
                         llg.isOpenRoster = false;
                         openRosterButton.setText("Open Roster");
 
-                        //System.out.println(rosterArrayList);
                         System.out.println("boss combo box index=" + bossComboBox.getSelectedIndex());
                         llg.setBoss(bossComboBox.getSelectedIndex());
                         llg.addPlayers(rosterArrayList, rosterCharArrayList, rosterNameArrayList);
                     }
-                        else if(!llg.battlerPanels.isEmpty())
-                        {
-                            llg.isOpenRoster = false;
-                            openRosterButton.setText("Open Roster");
-                        }
+                    else if(!llg.battlerPanels.isEmpty())
+                    {
+                        llg.isOpenRoster = false;
+                        openRosterButton.setText("Open Roster");
+                    }
 
-                } else if(!llg.isOpenRoster)
+                } 
+		else if(!llg.isOpenRoster)
                 {
                     if(!llg.isFightStarted)
                     {
@@ -174,25 +163,26 @@ public class Menu extends JFrame
                         llg.isOpenRoster = true;
                         openRosterButton.setText("Close Roster");
 
-                        if(rosterArrayList.size()<1) {
-                            for (int playerCount = 0; playerCount < 104; playerCount++) {
+                        if(rosterArrayList.size()<1) 
+			{
+                            for (int playerCount = 0; playerCount < 104; playerCount++) 
+			    {
                                 Random randy = new Random();
                                 int pchoice = randy.nextInt(6);
                                 String playerId = "playerID:" + playerCount + 1;
                                 String playerName = "playerName:" + playerCount + 1;
                                 addPlayer(playerId, pchoice, playerName);
                             }
+			    
                             int pids = rosterArrayList.size();
                             int pcs = rosterCharArrayList.size();
                             int pns = rosterNameArrayList.size();
                             System.out.println("rosterArrayList size = " + pids + " || rosterCharArrayList size = " + pcs + " || rosterNameArrayList size = " + pns);
                         }
-                        
                     }
                 }
             }
         });
-        
         
         dlm = new DefaultListModel<>();
         
@@ -285,10 +275,8 @@ public class Menu extends JFrame
         
         setVisible(true);
         
-        
     }
-    
-    
+   
     //open a website link when function is called with a url string
     public void openWebPage(String url)
     {
@@ -305,20 +293,10 @@ public class Menu extends JFrame
     //method for adding a player via string input.
     public void addPlayer(String player, int iChoice, String playerName)
     {
-		/*Random randy = new Random();
-		int characterChoice = randy.nextInt(6);
-		*/
-        //System.out.println(iChoice);
-
         rosterArrayList.add(player);
-
         rosterCharArrayList.add(iChoice);
-
         rosterNameArrayList.add(playerName);
 
-        /*for (String s : rosterNameArrayList) {
-            if(!dlm.contains(s)) dlm.addElement(s);
-        }*/
         dlm.addElement(playerName);
         System.out.println("dlm added: " + playerName);
 
@@ -327,16 +305,11 @@ public class Menu extends JFrame
         rosterScrollPane.add(rosterList);
         rosterScrollPane.updateUI();
         rosterScrollPane.repaint();
-        // = new JScrollPane(rosterList);
-        //rosterList = new JList(strArr);
-        //rosterList = new JList<String>(rosterNameArrayList);
-        //rosterScrollPane = new JScrollPane(rosterList);
         rosterScrollPane.revalidate();
         rosterScrollPane.updateUI();
 
         revalidate();
         repaint();
-
     }
     
     //method for clearing the roster/scrollpane
@@ -354,8 +327,5 @@ public class Menu extends JFrame
         rosterList = new JList<>();
         rosterScrollPane = new JScrollPane(rosterList);
         rosterScrollPane.updateUI();
-			/*addPlayer("Flavius");
-			addPlayer("Weylyn");
-			addPlayer("Test Roster Clear");*/
     }
 }
