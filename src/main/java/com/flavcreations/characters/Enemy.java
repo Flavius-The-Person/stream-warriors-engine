@@ -128,9 +128,8 @@ public class Enemy
 		   attackIcons[1] = new ImageIcon("");//attack 3
 	*/
     
-    
-    public void setData(int bId) {
-        
+    public void setData(int bId) 
+    {
         isKO = false;
         System.out.println("name: " + name);
         String contentRootLoc = "src/main/java/com/flavcreations/characters/art/boss/";
@@ -143,7 +142,6 @@ public class Enemy
         String[] sDamagedIcons = {"PhantomKnight"};
         String[] sVictoryIcons = {"Fungoliath/Fungoliath-Stabbing-"};
         
-        
         String[] sGuardIcons = {""};
         String[] sEvadeIcons = {""};
         String[] sPSkillIcons = {""};
@@ -152,8 +150,6 @@ public class Enemy
         String[] sCrisisIcons = {""};
         String[] sAbnormalIcons = {""};
         String[] sSleepIcons = {""};
-        
-        //if (name == "Fungoliath") {
         
         System.out.println("Fungoliath was name of boss");
         
@@ -221,16 +217,14 @@ public class Enemy
         sleepIcons[1] = new ImageIcon("");//sleeping 2
         sleepIcons[2] = new ImageIcon("");//sleeping 3
         
-        
-        
         sounds[0] = "";//Atk
         sounds[1] = "";//hit/damaged
         sounds[2] = "";//physical skill
         sounds[3] = "";//magical skill
         sounds[4] = "";//knocked out
         sounds[5] = "";//victory
-        
     }
+	
     public void updateHealth(int damage)
     {
         health = health - damage;
