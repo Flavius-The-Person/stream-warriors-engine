@@ -6,14 +6,11 @@ import java.util.Scanner;
 
 public class Init
 {
-
     public static void main(String[] args)
     {
         Scanner inp = new Scanner(System.in);
         Menu menu = new Menu();
-    
         
-    
         String sInp;
         System.out.println("What is the player to be put in?");
         sInp = inp.nextLine();
@@ -45,7 +42,6 @@ public class Init
                     String displayName = "test";
                     menu.addPlayer(playerID, characterChoice, displayName);
                 }
-                
             }
             System.out.println("What is the player to be put in?");
             sInp = inp.nextLine();
